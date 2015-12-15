@@ -34,6 +34,7 @@ class LoginViewController: UIViewController {
             if success == true {
                 EZLoadingActivity.hide(success: true, animated: false)
                 print("logged in")
+                self.dismissViewControllerAnimated(true, completion: nil)
             } else {
                 EZLoadingActivity.hide(success: false, animated: false)
                 print("not logged in")

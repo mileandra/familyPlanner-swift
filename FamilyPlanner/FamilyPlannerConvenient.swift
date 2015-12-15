@@ -28,7 +28,7 @@ extension FamilyPlannerClient {
             if let jsonObject = response.result.value {
                 let json = JSON(jsonObject)
                 print("JSON: \(json)")
-                self.currentUser = User(email: json["email"].stringValue, auth_token: json["auth_token"].stringValue)
+                self.currentUser = User(email: json["email"].stringValue, auth_token: json["auth_token"].stringValue, group_id: json["group_id"].int)
                 print(self.currentUser!.auth_token)
             }
             completionHandler(success: true, errorMessage: nil)
@@ -40,7 +40,7 @@ extension FamilyPlannerClient {
             if let jsonObject = response.result.value {
                 let json = JSON(jsonObject)
                 print("JSON: \(json)")
-                self.currentUser = User(email: json["email"].stringValue, auth_token: json["auth_token"].stringValue)
+                self.currentUser = User(email: json["email"].stringValue, auth_token: json["auth_token"].stringValue, group_id: json["group_id"].int)
                 print(self.currentUser!.auth_token)
             }
         }

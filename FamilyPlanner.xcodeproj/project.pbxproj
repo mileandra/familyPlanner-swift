@@ -19,6 +19,7 @@
 		7130C5401C1A056C007DCDE9 /* FamilyPlannerClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7130C53F1C1A056C007DCDE9 /* FamilyPlannerClient.swift */; };
 		7130C5431C1A1E4C007DCDE9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7130C5411C1A1E4C007DCDE9 /* Main.storyboard */; };
 		7130C5461C1A24ED007DCDE9 /* EZLoadingActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7130C5451C1A24ED007DCDE9 /* EZLoadingActivity.swift */; };
+		7130C5481C20A2E1007DCDE9 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7130C5471C20A2E1007DCDE9 /* DashboardViewController.swift */; };
 		BF838AD54C357D2A45360CC0 /* FamilyPlannerConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF838483611C6BC21E99F762 /* FamilyPlannerConstants.swift */; };
 		BF838CE0D0704E2ACED54F0B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8384942B60180B9563201D /* User.swift */; };
 		BF838F978620DA17DFE16349 /* FamilyPlannerConvenient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8389D7D39858C6ACCA5938 /* FamilyPlannerConvenient.swift */; };
@@ -39,6 +40,7 @@
 		7130C53F1C1A056C007DCDE9 /* FamilyPlannerClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyPlannerClient.swift; sourceTree = "<group>"; };
 		7130C5421C1A1E4C007DCDE9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7130C5451C1A24ED007DCDE9 /* EZLoadingActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EZLoadingActivity.swift; sourceTree = "<group>"; };
+		7130C5471C20A2E1007DCDE9 /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		BF838483611C6BC21E99F762 /* FamilyPlannerConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyPlannerConstants.swift; sourceTree = "<group>"; };
 		BF8384942B60180B9563201D /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BF8389D7D39858C6ACCA5938 /* FamilyPlannerConvenient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyPlannerConvenient.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 			children = (
 				7130C5321C18C7E6007DCDE9 /* LoginViewController.swift */,
 				7130C53A1C199B4C007DCDE9 /* SignUpViewController.swift */,
+				7130C5471C20A2E1007DCDE9 /* DashboardViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -234,6 +237,7 @@
 				7130C51B1C18C4BC007DCDE9 /* AppDelegate.swift in Sources */,
 				7130C53B1C199B4C007DCDE9 /* SignUpViewController.swift in Sources */,
 				BF838AD54C357D2A45360CC0 /* FamilyPlannerConstants.swift in Sources */,
+				7130C5481C20A2E1007DCDE9 /* DashboardViewController.swift in Sources */,
 				BF838F978620DA17DFE16349 /* FamilyPlannerConvenient.swift in Sources */,
 				BF838CE0D0704E2ACED54F0B /* User.swift in Sources */,
 			);
@@ -391,6 +395,7 @@
 				7130C52B1C18C4BC007DCDE9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

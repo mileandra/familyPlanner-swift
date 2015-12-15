@@ -8,5 +8,6 @@ import Foundation
 struct User {
     var email : String
     var auth_token : String
+    var group_id : Int?
     // TODO: persist currentUser as NSManagedObject
 }

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		7130C51B1C18C4BC007DCDE9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7130C51A1C18C4BC007DCDE9 /* AppDelegate.swift */; };
 		7130C51D1C18C4BC007DCDE9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7130C51C1C18C4BC007DCDE9 /* ViewController.swift */; };
-		7130C5201C18C4BC007DCDE9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7130C51E1C18C4BC007DCDE9 /* Main.storyboard */; };
 		7130C5221C18C4BC007DCDE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7130C5211C18C4BC007DCDE9 /* Assets.xcassets */; };
 		7130C5251C18C4BC007DCDE9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7130C5231C18C4BC007DCDE9 /* LaunchScreen.storyboard */; };
 		7130C52E1C18C6D6007DCDE9 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7130C52C1C18C6D6007DCDE9 /* Alamofire.framework */; };
@@ -18,13 +17,17 @@
 		7130C5391C198659007DCDE9 /* CustomizableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7130C5381C198659007DCDE9 /* CustomizableTextField.swift */; };
 		7130C53B1C199B4C007DCDE9 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7130C53A1C199B4C007DCDE9 /* SignUpViewController.swift */; };
 		7130C5401C1A056C007DCDE9 /* FamilyPlannerClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7130C53F1C1A056C007DCDE9 /* FamilyPlannerClient.swift */; };
+		7130C5431C1A1E4C007DCDE9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7130C5411C1A1E4C007DCDE9 /* Main.storyboard */; };
+		7130C5461C1A24ED007DCDE9 /* EZLoadingActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7130C5451C1A24ED007DCDE9 /* EZLoadingActivity.swift */; };
+		BF838AD54C357D2A45360CC0 /* FamilyPlannerConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF838483611C6BC21E99F762 /* FamilyPlannerConstants.swift */; };
+		BF838CE0D0704E2ACED54F0B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8384942B60180B9563201D /* User.swift */; };
+		BF838F978620DA17DFE16349 /* FamilyPlannerConvenient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8389D7D39858C6ACCA5938 /* FamilyPlannerConvenient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7130C5171C18C4BC007DCDE9 /* FamilyPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FamilyPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7130C51A1C18C4BC007DCDE9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7130C51C1C18C4BC007DCDE9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		7130C51F1C18C4BC007DCDE9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7130C5211C18C4BC007DCDE9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7130C5241C18C4BC007DCDE9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7130C5261C18C4BC007DCDE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -34,6 +37,11 @@
 		7130C5381C198659007DCDE9 /* CustomizableTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomizableTextField.swift; sourceTree = "<group>"; };
 		7130C53A1C199B4C007DCDE9 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		7130C53F1C1A056C007DCDE9 /* FamilyPlannerClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyPlannerClient.swift; sourceTree = "<group>"; };
+		7130C5421C1A1E4C007DCDE9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		7130C5451C1A24ED007DCDE9 /* EZLoadingActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EZLoadingActivity.swift; sourceTree = "<group>"; };
+		BF838483611C6BC21E99F762 /* FamilyPlannerConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyPlannerConstants.swift; sourceTree = "<group>"; };
+		BF8384942B60180B9563201D /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		BF8389D7D39858C6ACCA5938 /* FamilyPlannerConvenient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyPlannerConvenient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,14 +78,15 @@
 		7130C5191C18C4BC007DCDE9 /* FamilyPlanner */ = {
 			isa = PBXGroup;
 			children = (
+				7130C5441C1A24DA007DCDE9 /* Vendor */,
 				7130C5351C18CB04007DCDE9 /* Views */,
 				7130C5341C18C7F2007DCDE9 /* Models */,
 				7130C5311C18C7C8007DCDE9 /* Controllers */,
 				7130C51A1C18C4BC007DCDE9 /* AppDelegate.swift */,
 				7130C51C1C18C4BC007DCDE9 /* ViewController.swift */,
-				7130C51E1C18C4BC007DCDE9 /* Main.storyboard */,
 				7130C5211C18C4BC007DCDE9 /* Assets.xcassets */,
 				7130C5231C18C4BC007DCDE9 /* LaunchScreen.storyboard */,
+				7130C5411C1A1E4C007DCDE9 /* Main.storyboard */,
 				7130C5261C18C4BC007DCDE9 /* Info.plist */,
 			);
 			path = FamilyPlanner;
@@ -96,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				7130C53E1C1A0549007DCDE9 /* FamilyPlannerApi */,
+				BF8384942B60180B9563201D /* User.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -112,8 +122,18 @@
 			isa = PBXGroup;
 			children = (
 				7130C53F1C1A056C007DCDE9 /* FamilyPlannerClient.swift */,
+				BF838483611C6BC21E99F762 /* FamilyPlannerConstants.swift */,
+				BF8389D7D39858C6ACCA5938 /* FamilyPlannerConvenient.swift */,
 			);
 			name = FamilyPlannerApi;
+			sourceTree = "<group>";
+		};
+		7130C5441C1A24DA007DCDE9 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				7130C5451C1A24ED007DCDE9 /* EZLoadingActivity.swift */,
+			);
+			name = Vendor;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -175,9 +195,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7130C5431C1A1E4C007DCDE9 /* Main.storyboard in Resources */,
 				7130C5251C18C4BC007DCDE9 /* LaunchScreen.storyboard in Resources */,
 				7130C5221C18C4BC007DCDE9 /* Assets.xcassets in Resources */,
-				7130C5201C18C4BC007DCDE9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,31 +227,35 @@
 			buildActionMask = 2147483647;
 			files = (
 				7130C5331C18C7E6007DCDE9 /* LoginViewController.swift in Sources */,
+				7130C5461C1A24ED007DCDE9 /* EZLoadingActivity.swift in Sources */,
 				7130C5401C1A056C007DCDE9 /* FamilyPlannerClient.swift in Sources */,
 				7130C5391C198659007DCDE9 /* CustomizableTextField.swift in Sources */,
 				7130C51D1C18C4BC007DCDE9 /* ViewController.swift in Sources */,
 				7130C51B1C18C4BC007DCDE9 /* AppDelegate.swift in Sources */,
 				7130C53B1C199B4C007DCDE9 /* SignUpViewController.swift in Sources */,
+				BF838AD54C357D2A45360CC0 /* FamilyPlannerConstants.swift in Sources */,
+				BF838F978620DA17DFE16349 /* FamilyPlannerConvenient.swift in Sources */,
+				BF838CE0D0704E2ACED54F0B /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		7130C51E1C18C4BC007DCDE9 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7130C51F1C18C4BC007DCDE9 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		7130C5231C18C4BC007DCDE9 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				7130C5241C18C4BC007DCDE9 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		7130C5411C1A1E4C007DCDE9 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7130C5421C1A1E4C007DCDE9 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

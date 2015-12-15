@@ -10,11 +10,36 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
+  
     @IBOutlet weak var emailField: CustomizableTextField!
     @IBOutlet weak var passwordField: CustomizableTextField!
     @IBOutlet weak var loginButton: UIButton!
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+       
+    }
+    
     @IBAction func loginButtonTouch(sender: AnyObject) {
-        FamilyPlannerClient.sharedInstance.showUser(1)
+        let email = emailField.text
+        let password = passwordField.text
+       
+        loginButton.enabled = false
+        
+        // TODO: add validation
+       
+        EZLoadingActivity.show("Logging in...", disableUI: true)
+        FamilyPlannerClient.sharedInstance.loginUser(email!, password: password!) { success, errorMessage in
+            self.loginButton.enabled = true
+            if success == true {
+                EZLoadingActivity.hide(success: true, animated: false)
+                print("logged in")
+            } else {
+                EZLoadingActivity.hide(success: false, animated: false)
+                print("not logged in")
+                //TODO: display error
+            }
+            
+        }
     }
 }

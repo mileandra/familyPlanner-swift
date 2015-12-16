@@ -27,9 +27,7 @@ extension FamilyPlannerClient {
 
             if let jsonObject = response.result.value {
                 let json = JSON(jsonObject)
-                print("JSON: \(json)")
-                self.currentUser = User(email: json["email"].stringValue, auth_token: json["auth_token"].stringValue, group_id: json["group_id"].int)
-                print(self.currentUser!.auth_token)
+                self.persistUser(json)
             }
             completionHandler(success: true, errorMessage: nil)
         }
@@ -39,11 +37,17 @@ extension FamilyPlannerClient {
         Alamofire.request(.POST, Constants.BASE_URL + Methods.USERS, parameters: params).responseJSON { response in
             if let jsonObject = response.result.value {
                 let json = JSON(jsonObject)
-                print("JSON: \(json)")
-                self.currentUser = User(email: json["email"].stringValue, auth_token: json["auth_token"].stringValue, group_id: json["group_id"].int)
-                print(self.currentUser!.auth_token)
+                self.persistUser(json)
             }
         }
+    }
+    
+    func persistUser(json: JSON) {
+        print("JSON: \(json)")
+        self.currentUser = User(email: json["email"].stringValue, auth_token: json["auth_token"].stringValue, context: sharedContext)
+        dispatch_async(dispatch_get_main_queue(), {
+            CoreDataStackManager.sharedInstance.saveContext()
+        })
     }
 
 }

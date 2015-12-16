@@ -3,11 +3,26 @@
 // Copyright (c) 2015 Julia Will. All rights reserved.
 //
 
-import Foundation
+import CoreData
 
-struct User {
-    var email : String
-    var auth_token : String
+
+class User : NSManagedObject {
+    @NSManaged var email : String
+    @NSManaged var auth_token : String
     var group_id : Int?
-    // TODO: persist currentUser as NSManagedObject
+    
+    override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
+        
+        super.init(entity: entity, insertIntoManagedObjectContext: context)
+    }
+    
+    init(email: String, auth_token: String, context: NSManagedObjectContext) {
+        
+        //Core Data
+        let entity = NSEntityDescription.entityForName("User", inManagedObjectContext: context)!
+        super.init(entity: entity, insertIntoManagedObjectContext: context)
+        
+        self.email = email
+        self.auth_token = auth_token
+    }
 }

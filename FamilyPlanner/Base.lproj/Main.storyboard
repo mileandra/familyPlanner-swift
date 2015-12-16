@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pA0-4J-INk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
@@ -7,10 +7,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Login View Controller-->
+        <!--Login View-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="LoginView" id="BYZ-38-t0r" customClass="LoginViewController" customModule="FamilyPlanner" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginView" title="Login View" id="BYZ-38-t0r" customClass="LoginViewController" customModule="FamilyPlanner" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -146,9 +146,6 @@
                                 <state key="normal" title="Sign Up">
                                     <color key="titleColor" red="0.25490196078431371" green="0.41568627450980389" blue="0.49019607843137253" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="203" y="424" width="51" height="29"/>
-                                </variation>
                                 <connections>
                                     <segue destination="fYF-wF-hai" kind="show" id="gty-r9-Vm3"/>
                                 </connections>
@@ -254,24 +251,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="304.5" y="429"/>
-        </scene>
-        <!--Dashboard-->
-        <scene sceneID="8V4-Kz-jLO">
-            <objects>
-                <viewController title="Dashboard" id="c7e-Ny-hRs" customClass="DashboardViewController" customModule="FamilyPlanner" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="HBJ-xn-232"/>
-                        <viewControllerLayoutGuide type="bottom" id="6nB-Qo-uYP"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="XsH-zq-r9i">
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="I0O-mj-EjH"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Nq9-bL-V0o" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="948" y="1193"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="KEx-81-kgX">
@@ -389,9 +368,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.23137254900000001" green="0.21960784310000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="20" y="458" width="168" height="21"/>
-                                </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XfL-p0-qNr">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -399,9 +375,6 @@
                                 <state key="normal" title="Login">
                                     <color key="titleColor" red="0.25490196079999999" green="0.41568627450000001" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="190" y="454" width="46" height="30"/>
-                                </variation>
                                 <connections>
                                     <segue destination="BYZ-38-t0r" kind="show" id="dtR-j7-oJg"/>
                                 </connections>
@@ -448,31 +421,31 @@
                                 <exclude reference="XfL-p0-qNr"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="4Ei-dW-rks"/>
+                                <exclude reference="0q2-Pf-zhF"/>
+                                <exclude reference="QDs-nK-MZg"/>
+                                <exclude reference="xfp-Hd-Zk2"/>
+                                <exclude reference="QYb-Ws-is2"/>
+                                <exclude reference="WPl-HS-BT3"/>
+                                <exclude reference="gAA-n2-JaA"/>
+                                <exclude reference="BIO-is-hvF"/>
+                                <exclude reference="Pto-Mw-Qoj"/>
+                                <exclude reference="eht-le-kvy"/>
+                                <exclude reference="2RC-D5-e42"/>
+                                <exclude reference="Zkk-EM-qWI"/>
+                                <exclude reference="xnd-nd-m4u"/>
+                                <exclude reference="Ls7-Yz-cfj"/>
+                                <exclude reference="ysb-AK-71c"/>
+                                <exclude reference="PVn-1d-91l"/>
+                                <exclude reference="SOu-5h-hUv"/>
+                                <exclude reference="9jU-Gc-IGV"/>
+                                <exclude reference="sfH-gd-aMc"/>
                                 <exclude reference="E9c-1D-a3x"/>
                                 <exclude reference="XYl-wj-B1V"/>
                                 <exclude reference="hPe-pY-mi9"/>
                                 <exclude reference="6qY-7d-9ok"/>
                                 <exclude reference="Yi7-dJ-94c"/>
                                 <exclude reference="lC9-GX-Uff"/>
-                                <exclude reference="9jU-Gc-IGV"/>
-                                <exclude reference="sfH-gd-aMc"/>
-                                <exclude reference="BIO-is-hvF"/>
-                                <exclude reference="Pto-Mw-Qoj"/>
-                                <exclude reference="eht-le-kvy"/>
-                                <exclude reference="QYb-Ws-is2"/>
-                                <exclude reference="WPl-HS-BT3"/>
-                                <exclude reference="gAA-n2-JaA"/>
-                                <exclude reference="0q2-Pf-zhF"/>
-                                <exclude reference="QDs-nK-MZg"/>
-                                <exclude reference="xfp-Hd-Zk2"/>
-                                <exclude reference="2RC-D5-e42"/>
-                                <exclude reference="Zkk-EM-qWI"/>
-                                <exclude reference="xnd-nd-m4u"/>
-                                <exclude reference="PVn-1d-91l"/>
-                                <exclude reference="SOu-5h-hUv"/>
-                                <exclude reference="Ls7-Yz-cfj"/>
-                                <exclude reference="ysb-AK-71c"/>
-                                <exclude reference="4Ei-dW-rks"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -488,31 +461,31 @@
                                 <include reference="XfL-p0-qNr"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="4Ei-dW-rks"/>
+                                <include reference="0q2-Pf-zhF"/>
+                                <include reference="QDs-nK-MZg"/>
+                                <include reference="xfp-Hd-Zk2"/>
+                                <include reference="QYb-Ws-is2"/>
+                                <include reference="WPl-HS-BT3"/>
+                                <include reference="gAA-n2-JaA"/>
+                                <include reference="BIO-is-hvF"/>
+                                <include reference="Pto-Mw-Qoj"/>
+                                <include reference="eht-le-kvy"/>
+                                <include reference="2RC-D5-e42"/>
+                                <include reference="Zkk-EM-qWI"/>
+                                <include reference="xnd-nd-m4u"/>
+                                <include reference="Ls7-Yz-cfj"/>
+                                <include reference="ysb-AK-71c"/>
+                                <include reference="PVn-1d-91l"/>
+                                <include reference="SOu-5h-hUv"/>
+                                <include reference="9jU-Gc-IGV"/>
+                                <include reference="sfH-gd-aMc"/>
                                 <include reference="E9c-1D-a3x"/>
                                 <include reference="XYl-wj-B1V"/>
                                 <include reference="hPe-pY-mi9"/>
                                 <include reference="6qY-7d-9ok"/>
                                 <include reference="Yi7-dJ-94c"/>
                                 <include reference="lC9-GX-Uff"/>
-                                <include reference="9jU-Gc-IGV"/>
-                                <include reference="sfH-gd-aMc"/>
-                                <include reference="BIO-is-hvF"/>
-                                <include reference="Pto-Mw-Qoj"/>
-                                <include reference="eht-le-kvy"/>
-                                <include reference="QYb-Ws-is2"/>
-                                <include reference="WPl-HS-BT3"/>
-                                <include reference="gAA-n2-JaA"/>
-                                <include reference="0q2-Pf-zhF"/>
-                                <include reference="QDs-nK-MZg"/>
-                                <include reference="xfp-Hd-Zk2"/>
-                                <include reference="2RC-D5-e42"/>
-                                <include reference="Zkk-EM-qWI"/>
-                                <include reference="xnd-nd-m4u"/>
-                                <include reference="PVn-1d-91l"/>
-                                <include reference="SOu-5h-hUv"/>
-                                <include reference="Ls7-Yz-cfj"/>
-                                <include reference="ysb-AK-71c"/>
-                                <include reference="4Ei-dW-rks"/>
                             </mask>
                         </variation>
                     </view>
@@ -525,22 +498,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vAT-1l-jXz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1018.5" y="429"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="H83-9h-QHH">
-            <objects>
-                <navigationController id="pA0-4J-INk" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="R0T-bb-oXD">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="c7e-Ny-hRs" kind="relationship" relationship="rootViewController" id="V2U-dM-GpJ"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="AgN-jt-jcr" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="172.5" y="1183"/>
         </scene>
     </scenes>
     <resources>

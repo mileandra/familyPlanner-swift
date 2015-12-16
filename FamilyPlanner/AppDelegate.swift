@@ -16,24 +16,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        // check if the user already is logged in 
-        // TODO: persist user to be able to retrieve the data
-        if (true == true) {
-            showLoginScreen()
-        }
-        
+        // check if the user already is logged in
         // some basic styling work
         UINavigationBar.appearance().barTintColor = UIColor(red: 65.0/255.0, green: 106.0/255.0, blue: 125.0/255.0, alpha: 1.0)
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
         
         return true
-    }
-    
-    func showLoginScreen() {
-        let loginViewController:LoginViewController = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("LoginView") as! LoginViewController
-        window?.makeKeyAndVisible()
-        window?.rootViewController?.presentViewController(loginViewController, animated: true, completion: nil)
     }
 
     func applicationWillResignActive(application: UIApplication) {

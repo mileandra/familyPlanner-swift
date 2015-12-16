@@ -10,4 +10,21 @@ import UIKit
 
 class DashboardViewController: UIViewController {
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        if FamilyPlannerClient.sharedInstance.isAuthenticated() == false{
+            showLoginScreen()
+        } else {
+            showDashboard()
+        }
+    }
+    
+    func showDashboard() {
+        navigationController?.navigationBarHidden = false
+    }
+    
+    func showLoginScreen() {
+        navigationController?.navigationBarHidden = true
+        performSegueWithIdentifier("showLoginSegue", sender: self)
+    }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="B0N-Ck-gQD">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
@@ -7,6 +7,76 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--Main Controller-->
+        <scene sceneID="zTo-7K-BTQ">
+            <objects>
+                <navigationController title="Main Controller" id="B0N-Ck-gQD" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZH6-QJ-FaN">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="5eY-66-RVK" kind="relationship" relationship="rootViewController" id="QYv-Qv-JkM"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uhM-9Z-0Ya" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-519" y="1117"/>
+        </scene>
+        <!--Dashboard-->
+        <scene sceneID="QQg-CO-nR2">
+            <objects>
+                <viewController id="5eY-66-RVK" customClass="DashboardViewController" customModule="FamilyPlanner" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="KF4-ya-bIS"/>
+                        <viewControllerLayoutGuide type="bottom" id="ugM-VK-srS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cna-yu-caS">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundMain" translatesAutoresizingMaskIntoConstraints="NO" id="cT0-qz-GgY">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="cT0-qz-GgY" secondAttribute="trailing" constant="-20" id="Bhu-jI-H6f"/>
+                            <constraint firstItem="ugM-VK-srS" firstAttribute="top" secondItem="cT0-qz-GgY" secondAttribute="bottom" id="P2F-y7-OZH"/>
+                            <constraint firstItem="cT0-qz-GgY" firstAttribute="leading" secondItem="cna-yu-caS" secondAttribute="leadingMargin" constant="-20" id="fMF-Rr-Ibm"/>
+                            <constraint firstItem="cT0-qz-GgY" firstAttribute="top" secondItem="cna-yu-caS" secondAttribute="topMargin" id="mYb-mI-viI"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="cT0-qz-GgY"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="Bhu-jI-H6f"/>
+                                <exclude reference="fMF-Rr-Ibm"/>
+                                <exclude reference="mYb-mI-viI"/>
+                                <exclude reference="P2F-y7-OZH"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="cT0-qz-GgY"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="Bhu-jI-H6f"/>
+                                <include reference="fMF-Rr-Ibm"/>
+                                <include reference="mYb-mI-viI"/>
+                                <include reference="P2F-y7-OZH"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" title="Dashboard" id="GUh-wQ-yf7"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="showLoginSegue" id="Wc9-Kj-IgN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nFs-mq-fyD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="286.5" y="1117"/>
+        </scene>
         <!--Login View-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -504,4 +574,7 @@
         <image name="BackgroundMain" width="375" height="667"/>
         <image name="LaunchHeader" width="375" height="132"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Wc9-Kj-IgN"/>
+    </inferredMetricsTieBreakers>
 </document>

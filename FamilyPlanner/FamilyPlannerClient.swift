@@ -36,6 +36,10 @@ class FamilyPlannerClient: NSObject {
         }
     }
     
+    func isAuthenticated() -> Bool {
+        return currentUser != nil
+    }
+    
     var sharedContext: NSManagedObjectContext {
         return CoreDataStackManager.sharedInstance.managedObjectContext
     }

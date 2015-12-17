@@ -23,6 +23,7 @@
 		71BD1FAB1C220ACD0052A13C /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BD1FAA1C220ACD0052A13C /* CoreDataStackManager.swift */; };
 		71BD1FAE1C220AF50052A13C /* FamilyPlanner.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 71BD1FAC1C220AF50052A13C /* FamilyPlanner.xcdatamodeld */; };
 		71BD1FB01C220DEE0052A13C /* LaunchControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BD1FAF1C220DEE0052A13C /* LaunchControllerViewController.swift */; };
+		71BD1FB41C234F410052A13C /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71BD1FB31C234F410052A13C /* SWRevealViewController.m */; };
 		BF838AD54C357D2A45360CC0 /* FamilyPlannerConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF838483611C6BC21E99F762 /* FamilyPlannerConstants.swift */; };
 		BF838CE0D0704E2ACED54F0B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8384942B60180B9563201D /* User.swift */; };
 		BF838F978620DA17DFE16349 /* FamilyPlannerConvenient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8389D7D39858C6ACCA5938 /* FamilyPlannerConvenient.swift */; };
@@ -47,6 +48,9 @@
 		71BD1FAA1C220ACD0052A13C /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
 		71BD1FAD1C220AF50052A13C /* FamilyPlanner.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FamilyPlanner.xcdatamodel; sourceTree = "<group>"; };
 		71BD1FAF1C220DEE0052A13C /* LaunchControllerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchControllerViewController.swift; sourceTree = "<group>"; };
+		71BD1FB11C234F410052A13C /* FamilyPlanner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FamilyPlanner-Bridging-Header.h"; sourceTree = "<group>"; };
+		71BD1FB21C234F410052A13C /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		71BD1FB31C234F410052A13C /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		BF838483611C6BC21E99F762 /* FamilyPlannerConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyPlannerConstants.swift; sourceTree = "<group>"; };
 		BF8384942B60180B9563201D /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BF8389D7D39858C6ACCA5938 /* FamilyPlannerConvenient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyPlannerConvenient.swift; sourceTree = "<group>"; };
@@ -143,7 +147,10 @@
 		7130C5441C1A24DA007DCDE9 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				71BD1FB21C234F410052A13C /* SWRevealViewController.h */,
+				71BD1FB31C234F410052A13C /* SWRevealViewController.m */,
 				7130C5451C1A24ED007DCDE9 /* EZLoadingActivity.swift */,
+				71BD1FB11C234F410052A13C /* FamilyPlanner-Bridging-Header.h */,
 			);
 			name = Vendor;
 			sourceTree = "<group>";
@@ -240,6 +247,7 @@
 			files = (
 				7130C5331C18C7E6007DCDE9 /* LoginViewController.swift in Sources */,
 				7130C5461C1A24ED007DCDE9 /* EZLoadingActivity.swift in Sources */,
+				71BD1FB41C234F410052A13C /* SWRevealViewController.m in Sources */,
 				7130C5401C1A056C007DCDE9 /* FamilyPlannerClient.swift in Sources */,
 				7130C5391C198659007DCDE9 /* CustomizableTextField.swift in Sources */,
 				7130C51D1C18C4BC007DCDE9 /* ViewController.swift in Sources */,
@@ -362,6 +370,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -370,6 +379,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.juliawill.FamilyPlanner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FamilyPlanner/FamilyPlanner-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -377,6 +388,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -385,6 +397,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.juliawill.FamilyPlanner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FamilyPlanner/FamilyPlanner-Bridging-Header.h";
 			};
 			name = Release;
 		};

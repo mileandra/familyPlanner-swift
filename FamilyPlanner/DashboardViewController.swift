@@ -10,18 +10,19 @@ import UIKit
 
 class DashboardViewController: UIViewController {
     
+    @IBOutlet weak var menuBtn: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if FamilyPlannerClient.sharedInstance.isAuthenticated() == false{
             showLoginScreen()
-        } else {
-            showDashboard()
         }
-    }
-    
-    func showDashboard() {
-        navigationController?.navigationBarHidden = false
-    }
+        if (revealViewController() != nil) {
+            menuBtn.target = revealViewController()
+            menuBtn.action = Selector("revealToggle:")
+            view.addGestureRecognizer(revealViewController().panGestureRecognizer())
+        }
+    }    
     
     func showLoginScreen() {
         navigationController?.navigationBarHidden = true

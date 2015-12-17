@@ -26,7 +26,7 @@ class LoginViewController: UIViewController {
        
         loginButton.enabled = false
         
-        // TODO: add validation
+        // TODO: add validation and display error message
        
         EZLoadingActivity.show("Logging in...", disableUI: true)
         FamilyPlannerClient.sharedInstance.loginUser(email!, password: password!) { success, errorMessage in
@@ -34,7 +34,8 @@ class LoginViewController: UIViewController {
             if success == true {
                 EZLoadingActivity.hide(success: true, animated: false)
                 print("logged in")
-                self.dismissViewControllerAnimated(true, completion: nil)
+                self.navigationController?.popViewControllerAnimated(true)
+                self.navigationController?.navigationBarHidden = false
             } else {
                 EZLoadingActivity.hide(success: false, animated: false)
                 print("not logged in")

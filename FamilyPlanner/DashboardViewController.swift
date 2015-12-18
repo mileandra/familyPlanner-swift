@@ -12,11 +12,14 @@ class DashboardViewController: UIViewController {
     
     @IBOutlet weak var menuBtn: UIBarButtonItem!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if FamilyPlannerClient.sharedInstance.isAuthenticated() == false{
             showLoginScreen()
         }
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "showLoginScreen", name: "userLogoutNotification", object: nil)
+        
         if (revealViewController() != nil) {
             menuBtn.target = revealViewController()
             menuBtn.action = Selector("revealToggle:")
@@ -25,6 +28,7 @@ class DashboardViewController: UIViewController {
     }    
     
     func showLoginScreen() {
+        
         navigationController?.navigationBarHidden = true
         performSegueWithIdentifier("showLoginSegue", sender: self)
     }

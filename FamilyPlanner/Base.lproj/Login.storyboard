@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="tCL-Mn-U81">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
@@ -7,150 +7,6 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Reveal View Controller-->
-        <scene sceneID="dhr-lQ-B19">
-            <objects>
-                <viewController id="tCL-Mn-U81" customClass="SWRevealViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="cf6-LM-Y3n"/>
-                        <viewControllerLayoutGuide type="bottom" id="UqS-jH-slj"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="MfV-1U-siv">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <connections>
-                        <segue destination="B0N-Ck-gQD" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="7js-lt-UCK"/>
-                        <segue destination="RKc-ac-m7r" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegueSetController" id="dMg-Ob-TZT"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4Rd-Re-xE0" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-910.5" y="336"/>
-        </scene>
-        <!--Side Menu View Controller-->
-        <scene sceneID="bEY-c5-xAf">
-            <objects>
-                <viewController id="RKc-ac-m7r" customClass="SideMenuViewController" customModule="FamilyPlanner" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="BK2-1s-muK"/>
-                        <viewControllerLayoutGuide type="bottom" id="7YW-yA-02W"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="zZ0-Ww-PYM">
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aY4-OU-bdl">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Logout"/>
-                                <connections>
-                                    <action selector="logoutButtonTouch:" destination="RKc-ac-m7r" eventType="touchUpInside" id="l96-UK-H6B"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="aY4-OU-bdl" firstAttribute="leading" secondItem="zZ0-Ww-PYM" secondAttribute="leadingMargin" constant="-7" id="6A8-69-eTb"/>
-                            <constraint firstItem="aY4-OU-bdl" firstAttribute="top" secondItem="BK2-1s-muK" secondAttribute="bottom" id="sMo-gX-Dx7"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="aY4-OU-bdl"/>
-                            </mask>
-                            <mask key="constraints">
-                                <exclude reference="6A8-69-eTb"/>
-                                <exclude reference="sMo-gX-Dx7"/>
-                            </mask>
-                        </variation>
-                        <variation key="widthClass=compact">
-                            <mask key="subviews">
-                                <include reference="aY4-OU-bdl"/>
-                            </mask>
-                            <mask key="constraints">
-                                <include reference="6A8-69-eTb"/>
-                                <include reference="sMo-gX-Dx7"/>
-                            </mask>
-                        </variation>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bnm-LS-JCP" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-253.5" y="-107"/>
-        </scene>
-        <!--Main Controller-->
-        <scene sceneID="zTo-7K-BTQ">
-            <objects>
-                <navigationController title="Main Controller" id="B0N-Ck-gQD" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZH6-QJ-FaN">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="5eY-66-RVK" kind="relationship" relationship="rootViewController" id="QYv-Qv-JkM"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uhM-9Z-0Ya" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-519" y="1117"/>
-        </scene>
-        <!--Dashboard-->
-        <scene sceneID="QQg-CO-nR2">
-            <objects>
-                <viewController id="5eY-66-RVK" customClass="DashboardViewController" customModule="FamilyPlanner" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="KF4-ya-bIS"/>
-                        <viewControllerLayoutGuide type="bottom" id="ugM-VK-srS"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="cna-yu-caS">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundMain" translatesAutoresizingMaskIntoConstraints="NO" id="cT0-qz-GgY">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="cT0-qz-GgY" secondAttribute="trailing" constant="-20" id="Bhu-jI-H6f"/>
-                            <constraint firstItem="ugM-VK-srS" firstAttribute="top" secondItem="cT0-qz-GgY" secondAttribute="bottom" id="P2F-y7-OZH"/>
-                            <constraint firstItem="cT0-qz-GgY" firstAttribute="leading" secondItem="cna-yu-caS" secondAttribute="leadingMargin" constant="-20" id="fMF-Rr-Ibm"/>
-                            <constraint firstItem="cT0-qz-GgY" firstAttribute="top" secondItem="cna-yu-caS" secondAttribute="topMargin" id="mYb-mI-viI"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="cT0-qz-GgY"/>
-                            </mask>
-                            <mask key="constraints">
-                                <exclude reference="P2F-y7-OZH"/>
-                                <exclude reference="Bhu-jI-H6f"/>
-                                <exclude reference="fMF-Rr-Ibm"/>
-                                <exclude reference="mYb-mI-viI"/>
-                            </mask>
-                        </variation>
-                        <variation key="widthClass=compact">
-                            <mask key="subviews">
-                                <include reference="cT0-qz-GgY"/>
-                            </mask>
-                            <mask key="constraints">
-                                <include reference="P2F-y7-OZH"/>
-                                <include reference="Bhu-jI-H6f"/>
-                                <include reference="fMF-Rr-Ibm"/>
-                                <include reference="mYb-mI-viI"/>
-                            </mask>
-                        </variation>
-                    </view>
-                    <navigationItem key="navigationItem" title="Dashboard" id="GUh-wQ-yf7">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="E8Y-Qn-H5u"/>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="menuBtn" destination="E8Y-Qn-H5u" id="Eqp-t6-8PO"/>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="showLoginSegue" id="Wc9-Kj-IgN"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nFs-mq-fyD" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="286.5" y="1117"/>
-        </scene>
         <!--Login View-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -160,11 +16,11 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundMain" translatesAutoresizingMaskIntoConstraints="NO" id="sdZ-i9-cgf">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="LaunchHeader" translatesAutoresizingMaskIntoConstraints="NO" id="sGm-aI-x5D">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -386,6 +242,7 @@
                             </mask>
                         </variation>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="AbstractSizeClassScreen[widthClass=compact]"/>
                     <connections>
                         <outlet property="emailField" destination="hM2-9h-iXU" id="aDO-06-q7o"/>
                         <outlet property="loginButton" destination="5Kd-kL-iYv" id="yqU-s9-zak"/>
@@ -405,7 +262,7 @@
                         <viewControllerLayoutGuide type="bottom" id="x2V-Uz-DhS"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="DLO-5A-dfm">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundMain" translatesAutoresizingMaskIntoConstraints="NO" id="JzU-Dm-pvb">
@@ -648,7 +505,4 @@
         <image name="BackgroundMain" width="375" height="667"/>
         <image name="LaunchHeader" width="375" height="132"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="Wc9-Kj-IgN"/>
-    </inferredMetricsTieBreakers>
 </document>

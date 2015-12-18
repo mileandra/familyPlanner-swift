@@ -22,7 +22,8 @@ class SignUpViewController: UIViewController {
         let passwordConfirmation = passwordConfirmField.text!
         
         //TODO: add validation
-        // TODO: add completion Handler
+        //TODO: disable signup button on request
+        
         let params = [
             "user": [
                 "email": email,
@@ -30,6 +31,20 @@ class SignUpViewController: UIViewController {
                 "password_confirmation": passwordConfirmation
             ]
         ]
-        FamilyPlannerClient.sharedInstance.signupUser(params)
+        
+        EZLoadingActivity.show("Signing up...", disableUI: true)
+        FamilyPlannerClient.sharedInstance.signupUser(params) { success, errorMessage in
+            
+            if success == true {
+                EZLoadingActivity.hide(success: true, animated: false)
+                self.navigationController?.navigationBarHidden = false
+                self.navigationController?.popToRootViewControllerAnimated(true)                
+            } else {
+                EZLoadingActivity.hide(success: false, animated: false)
+                print("not logged in")
+                //TODO: display alertview
+            }
+            
+        }
     }
 }

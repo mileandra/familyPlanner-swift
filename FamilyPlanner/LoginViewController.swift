@@ -34,7 +34,7 @@ class LoginViewController: UIViewController {
             if success == true {
                 EZLoadingActivity.hide(success: true, animated: false)
                 print("logged in")
-                self.navigationController?.popViewControllerAnimated(true)
+                self.navigationController?.popToRootViewControllerAnimated(true)
                 self.navigationController?.navigationBarHidden = false
             } else {
                 EZLoadingActivity.hide(success: false, animated: false)

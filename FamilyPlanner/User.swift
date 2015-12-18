@@ -25,4 +25,5 @@ class User : NSManagedObject {
         self.email = email
         self.auth_token = auth_token
     }
+    
 }

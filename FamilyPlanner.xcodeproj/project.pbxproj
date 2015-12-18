@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		710A1BD21C24A4AC00500E25 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710A1BD11C24A4AC00500E25 /* SideMenuViewController.swift */; };
 		7130C51B1C18C4BC007DCDE9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7130C51A1C18C4BC007DCDE9 /* AppDelegate.swift */; };
 		7130C51D1C18C4BC007DCDE9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7130C51C1C18C4BC007DCDE9 /* ViewController.swift */; };
 		7130C5221C18C4BC007DCDE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7130C5211C18C4BC007DCDE9 /* Assets.xcassets */; };
@@ -30,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		710A1BD11C24A4AC00500E25 /* SideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		7130C5171C18C4BC007DCDE9 /* FamilyPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FamilyPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7130C51A1C18C4BC007DCDE9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7130C51C1C18C4BC007DCDE9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +71,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		710A1BD01C24977700500E25 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				7130C5231C18C4BC007DCDE9 /* LaunchScreen.storyboard */,
+				7130C5411C1A1E4C007DCDE9 /* Main.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
 		7130C50E1C18C4BC007DCDE9 = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +101,7 @@
 		7130C5191C18C4BC007DCDE9 /* FamilyPlanner */ = {
 			isa = PBXGroup;
 			children = (
+				710A1BD01C24977700500E25 /* Storyboards */,
 				7130C5441C1A24DA007DCDE9 /* Vendor */,
 				7130C5351C18CB04007DCDE9 /* Views */,
 				7130C5341C18C7F2007DCDE9 /* Models */,
@@ -97,8 +109,6 @@
 				7130C51A1C18C4BC007DCDE9 /* AppDelegate.swift */,
 				7130C51C1C18C4BC007DCDE9 /* ViewController.swift */,
 				7130C5211C18C4BC007DCDE9 /* Assets.xcassets */,
-				7130C5231C18C4BC007DCDE9 /* LaunchScreen.storyboard */,
-				7130C5411C1A1E4C007DCDE9 /* Main.storyboard */,
 				7130C5261C18C4BC007DCDE9 /* Info.plist */,
 				71BD1FAA1C220ACD0052A13C /* CoreDataStackManager.swift */,
 				71BD1FAC1C220AF50052A13C /* FamilyPlanner.xcdatamodeld */,
@@ -113,6 +123,7 @@
 				7130C53A1C199B4C007DCDE9 /* SignUpViewController.swift */,
 				7130C5471C20A2E1007DCDE9 /* DashboardViewController.swift */,
 				71BD1FAF1C220DEE0052A13C /* LaunchControllerViewController.swift */,
+				710A1BD11C24A4AC00500E25 /* SideMenuViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -245,6 +256,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				710A1BD21C24A4AC00500E25 /* SideMenuViewController.swift in Sources */,
 				7130C5331C18C7E6007DCDE9 /* LoginViewController.swift in Sources */,
 				7130C5461C1A24ED007DCDE9 /* EZLoadingActivity.swift in Sources */,
 				71BD1FB41C234F410052A13C /* SWRevealViewController.m in Sources */,

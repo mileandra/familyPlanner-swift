@@ -55,20 +55,15 @@ extension FamilyPlannerClient {
             completionHandler(success: true, errorMessage: nil);
             return
         }
-        //Destroy the current session on the server
-        let params = [
-            "Authorization": currentUser!.auth_token
-        ]
-        Alamofire.request(.DELETE, Constants.BASE_URL + Methods.SESSIONS, parameters: params).responseJSON { response in
-            //actually we do not care what happens here - worst thing that can happen is that the user's auth code will stay
-            // active on the server
-            dispatch_async(dispatch_get_main_queue(), {
-                self.sharedContext.deleteObject(self.currentUser!)
-                self.currentUser = nil
-                CoreDataStackManager.sharedInstance.saveContext()
-                completionHandler(success: true, errorMessage: nil)
-            })
-        }
+        // we should also delete it on the server, but in that case we
+        // would not be able to actively use this tool on multiple devices, so we just remove the currentUser for now
+        // This has nothing to do with the API, but logically it should stay here
+        dispatch_async(dispatch_get_main_queue(), {
+            self.sharedContext.deleteObject(self.currentUser!)
+            self.currentUser = nil
+            CoreDataStackManager.sharedInstance.saveContext()
+            completionHandler(success: true, errorMessage: nil)
+        })
     }
     
     

@@ -22,8 +22,7 @@ class SideMenuViewController: UIViewController {
     }
     
     @IBAction func logoutButtonTouch(sender: UIButton) {
-        print("logout")
-        FamilyPlannerClient.sharedInstance.logoutUser() { success, errorMessage in
+        FamilyPlannerClient.sharedInstance.logoutUser() { success, errorMessage in        
             // close the side menu
             self.revealViewController().revealToggle(self)
             // sending out a notification to notify the dashboardController

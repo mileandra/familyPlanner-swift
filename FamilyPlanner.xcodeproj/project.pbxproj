@@ -21,6 +21,7 @@
 		7130C5431C1A1E4C007DCDE9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7130C5411C1A1E4C007DCDE9 /* Main.storyboard */; };
 		7130C5461C1A24ED007DCDE9 /* EZLoadingActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7130C5451C1A24ED007DCDE9 /* EZLoadingActivity.swift */; };
 		7130C5481C20A2E1007DCDE9 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7130C5471C20A2E1007DCDE9 /* DashboardViewController.swift */; };
+		714F03651C2750EE0086AB7A /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 714F03641C2750EE0086AB7A /* .gitignore */; };
 		71BD1FAB1C220ACD0052A13C /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BD1FAA1C220ACD0052A13C /* CoreDataStackManager.swift */; };
 		71BD1FAE1C220AF50052A13C /* FamilyPlanner.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 71BD1FAC1C220AF50052A13C /* FamilyPlanner.xcdatamodeld */; };
 		71BD1FB01C220DEE0052A13C /* LaunchControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BD1FAF1C220DEE0052A13C /* LaunchControllerViewController.swift */; };
@@ -47,6 +48,7 @@
 		7130C5421C1A1E4C007DCDE9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7130C5451C1A24ED007DCDE9 /* EZLoadingActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EZLoadingActivity.swift; sourceTree = "<group>"; };
 		7130C5471C20A2E1007DCDE9 /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		714F03641C2750EE0086AB7A /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		71BD1FAA1C220ACD0052A13C /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
 		71BD1FAD1C220AF50052A13C /* FamilyPlanner.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FamilyPlanner.xcdatamodel; sourceTree = "<group>"; };
 		71BD1FAF1C220DEE0052A13C /* LaunchControllerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchControllerViewController.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 		7130C50E1C18C4BC007DCDE9 = {
 			isa = PBXGroup;
 			children = (
+				714F03641C2750EE0086AB7A /* .gitignore */,
 				7130C52C1C18C6D6007DCDE9 /* Alamofire.framework */,
 				7130C52D1C18C6D6007DCDE9 /* SwiftyJSON.framework */,
 				7130C5191C18C4BC007DCDE9 /* FamilyPlanner */,
@@ -225,6 +228,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				714F03651C2750EE0086AB7A /* .gitignore in Resources */,
 				7130C5431C1A1E4C007DCDE9 /* Main.storyboard in Resources */,
 				7130C5251C18C4BC007DCDE9 /* LaunchScreen.storyboard in Resources */,
 				7130C5221C18C4BC007DCDE9 /* Assets.xcassets in Resources */,

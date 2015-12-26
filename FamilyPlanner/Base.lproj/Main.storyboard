@@ -38,6 +38,7 @@
                         <viewControllerLayoutGuide type="bottom" id="7YW-yA-02W"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="zZ0-Ww-PYM">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aY4-OU-bdl">

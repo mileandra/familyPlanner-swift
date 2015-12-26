@@ -19,6 +19,9 @@ import UIKit
     
     @IBInspectable var borderColor: UIColor = UIColor.blackColor()
     
+    @IBInspectable var paddingLeft: CGFloat = 0
+    @IBInspectable var paddingRight: CGFloat = 0
+    
     #if !TARGET_INTERFACE_BUILDER
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -74,6 +77,21 @@ import UIKit
             CGContextAddLineToPoint(context, CGRectGetMinX(rect), CGRectGetMaxY(rect))
             CGContextStrokePath(context)
         }
+        
+        //Padding left - from https://medium.com/@deepdeviant/how-to-set-padding-for-uitextfield-in-swift-2f830d131f40#.y9223k44t
+        if (paddingLeft > 0) {
+            let paddingView = UIView(frame: CGRectMake(0, 0, paddingLeft, frame.height))
+            leftView = paddingView
+            leftViewMode = .Always
+        }
+        
+        // Padding right
+        if (paddingRight > 0) {
+            let paddingView = UIView(frame: CGRectMake(0, 0, paddingRight, frame.height))
+            rightView = paddingView
+            rightViewMode = .Always
+        }
+        
     }
     
 }

@@ -16,9 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        // check if the user already is logged in
         // some basic styling work
-        UINavigationBar.appearance().barTintColor = UIColor(red: 65.0/255.0, green: 106.0/255.0, blue: 125.0/255.0, alpha: 1.0)
+        let navbarImage = UIImage(named: "NavbarBackground")
+        UINavigationBar.appearance().setBackgroundImage(navbarImage, forBarMetrics: .Default)
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
         

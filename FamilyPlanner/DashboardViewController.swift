@@ -17,9 +17,8 @@ class DashboardViewController: UIViewController {
         super.viewDidLoad()
         if FamilyPlannerClient.sharedInstance.isAuthenticated() == false{
             showLoginScreen()
-        } else if FamilyPlannerClient.sharedInstance.hasGroup() == false {
-            showCreateGroupScreen()
         }
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "showLoginScreen", name: "userLogoutNotification", object: nil)
         
         if (revealViewController() != nil) {
@@ -27,7 +26,14 @@ class DashboardViewController: UIViewController {
             menuBtn.action = Selector("revealToggle:")
             view.addGestureRecognizer(revealViewController().panGestureRecognizer())
         }
-    }    
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        if FamilyPlannerClient.sharedInstance.hasGroup() == false {
+            showCreateGroupScreen()
+        }
+    }
     
     func showLoginScreen() {
         

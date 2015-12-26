@@ -41,7 +41,7 @@ class FamilyPlannerClient: NSObject {
     }
     
     func hasGroup() -> Bool {
-        return isAuthenticated() && currentUser?.group_id != nil
+        return isAuthenticated() && currentUser?.group != nil
     }
     
     var sharedContext: NSManagedObjectContext {

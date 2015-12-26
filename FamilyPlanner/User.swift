@@ -9,7 +9,7 @@ import CoreData
 class User : NSManagedObject {
     @NSManaged var email : String
     @NSManaged var auth_token : String
-    var group_id : Int?
+    @NSManaged var group: Group?
     
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         

@@ -30,7 +30,7 @@ class DashboardViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        if FamilyPlannerClient.sharedInstance.hasGroup() == false {
+        if FamilyPlannerClient.sharedInstance.isAuthenticated() && FamilyPlannerClient.sharedInstance.hasGroup() == false {
             showCreateGroupScreen()
         }
     }

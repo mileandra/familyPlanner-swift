@@ -91,8 +91,10 @@ extension FamilyPlannerClient {
                     })
                     return
                 }
+                let group = Group(id: json["id"].intValue, name: json["name"].stringValue, context: self.sharedContext)
+                self.currentUser!.group = group
+                
                 dispatch_async(dispatch_get_main_queue(), {
-                    self.currentUser!.group_id = json["id"].intValue
                     CoreDataStackManager.sharedInstance.saveContext()
                     completionHandler(success: true, errorMessage: nil)
                 })
@@ -106,6 +108,10 @@ extension FamilyPlannerClient {
     func persistUser(json: JSON) {
         print("JSON: \(json)")
         self.currentUser = User(email: json["email"].stringValue, auth_token: json["auth_token"].stringValue, context: sharedContext)
+        if let groupId = json["group"]["id"].int {
+            let group = Group(id: json["group"]["id"].intValue, name: json["group"]["name"].stringValue, context: sharedContext)
+            self.currentUser!.group = group
+        }
         dispatch_async(dispatch_get_main_queue(), {
             CoreDataStackManager.sharedInstance.saveContext()
         })

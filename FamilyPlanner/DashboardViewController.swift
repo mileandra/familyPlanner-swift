@@ -17,6 +17,8 @@ class DashboardViewController: UIViewController {
         super.viewDidLoad()
         if FamilyPlannerClient.sharedInstance.isAuthenticated() == false{
             showLoginScreen()
+        } else if FamilyPlannerClient.sharedInstance.hasGroup() == false {
+            showCreateGroupScreen()
         }
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "showLoginScreen", name: "userLogoutNotification", object: nil)
         
@@ -31,5 +33,10 @@ class DashboardViewController: UIViewController {
         
         navigationController?.navigationBarHidden = true
         performSegueWithIdentifier("showLoginSegue", sender: self)
+    }
+    
+    func showCreateGroupScreen() {
+        navigationController?.navigationBarHidden = true
+        performSegueWithIdentifier("showCreateGroupSegue", sender: self)
     }
 }

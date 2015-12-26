@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, AlertRenderer {
 
   
     @IBOutlet weak var emailField: CustomizableTextField!
@@ -22,15 +22,17 @@ class LoginViewController: UIViewController {
     
     @IBAction func loginButtonTouch(sender: AnyObject) {
         let email = emailField.text
-        let password = passwordField.text
-       
-        loginButton.enabled = false
+        let password = passwordField.text       
+    
         
-        // TODO: add validation and display error message
+        if email == "" || password == "" {
+            presentAlert("Error", message: "Please enter your email and password")
+            return
+        }
        
         EZLoadingActivity.show("Logging in...", disableUI: true)
         FamilyPlannerClient.sharedInstance.loginUser(email!, password: password!) { success, errorMessage in
-            self.loginButton.enabled = true
+          
             if success == true {
                 EZLoadingActivity.hide(success: true, animated: false)
                 print("logged in")
@@ -38,8 +40,7 @@ class LoginViewController: UIViewController {
                 self.navigationController?.navigationBarHidden = false
             } else {
                 EZLoadingActivity.hide(success: false, animated: false)
-                print("not logged in")
-                //TODO: display error
+                self.presentAlert("Oops", message: errorMessage!)
             }
             
         }

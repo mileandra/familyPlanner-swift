@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, AlertRenderer {
 
     @IBOutlet weak var emailField: CustomizableTextField!
     
@@ -21,8 +21,14 @@ class SignUpViewController: UIViewController {
         let password = passwordField.text!
         let passwordConfirmation = passwordConfirmField.text!
         
-        //TODO: add validation
-        //TODO: disable signup button on request
+        if (email == "" || password == "" || passwordConfirmation == "") {
+            presentAlert("Error", message: "Please fill in all fields")
+            return
+        }
+        if password != passwordConfirmation {
+            presentAlert("Error", message: "Your password does not match the confirmation")
+            return
+        }
         
         let params = [
             "user": [
@@ -41,8 +47,7 @@ class SignUpViewController: UIViewController {
                 self.navigationController?.popToRootViewControllerAnimated(true)                
             } else {
                 EZLoadingActivity.hide(success: false, animated: false)
-                print("not logged in")
-                //TODO: display alertview
+                self.presentAlert("Oops", message: errorMessage!)
             }
             
         }

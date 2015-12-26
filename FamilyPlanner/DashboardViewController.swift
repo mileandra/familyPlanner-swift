@@ -17,8 +17,7 @@ class DashboardViewController: UIViewController {
         super.viewDidLoad()
         if FamilyPlannerClient.sharedInstance.isAuthenticated() == false{
             showLoginScreen()
-        }
-        if FamilyPlannerClient.sharedInstance.hasGroup() == false {
+        } else if FamilyPlannerClient.sharedInstance.hasGroup() == false {
             showCreateGroupScreen()
         }
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "showLoginScreen", name: "userLogoutNotification", object: nil)

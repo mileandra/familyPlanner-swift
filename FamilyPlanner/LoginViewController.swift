@@ -22,9 +22,8 @@ class LoginViewController: UIViewController, AlertRenderer {
     
     @IBAction func loginButtonTouch(sender: AnyObject) {
         let email = emailField.text
-        let password = passwordField.text
-       
-        loginButton.enabled = false
+        let password = passwordField.text       
+    
         
         if email == "" || password == "" {
             presentAlert("Error", message: "Please enter your email and password")
@@ -33,7 +32,7 @@ class LoginViewController: UIViewController, AlertRenderer {
        
         EZLoadingActivity.show("Logging in...", disableUI: true)
         FamilyPlannerClient.sharedInstance.loginUser(email!, password: password!) { success, errorMessage in
-            self.loginButton.enabled = true
+          
             if success == true {
                 EZLoadingActivity.hide(success: true, animated: false)
                 print("logged in")

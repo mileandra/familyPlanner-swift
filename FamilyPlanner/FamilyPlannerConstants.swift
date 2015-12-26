@@ -14,5 +14,6 @@ extension FamilyPlannerClient {
     struct Methods {
         static let SESSIONS = "sessions/"
         static let USERS    = "users/"
+        static let GROUPS   = "groups/"
     }
 }

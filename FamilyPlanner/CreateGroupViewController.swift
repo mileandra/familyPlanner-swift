@@ -35,16 +35,37 @@ class CreateGroupViewController: UIViewController, AlertRenderer {
     }
     
     @IBAction func joinButtonTouch(sender: AnyObject) {
-        if invitationCodeField.text == "" {
+        let invitationCode = invitationCodeField.text!
+        
+        if invitationCode == "" {
             presentAlert("Error", message: "Please enter an invitation code")
             return
         }
     }
     
     @IBAction func createFamilyButtonTouch(sender: AnyObject) {
-        if familyNameField.text == "" {
+        let familyName = familyNameField.text!
+        
+        if familyName == "" {
             presentAlert("Error", message: "Please enter a family name")
             return
+        }
+        let params = [
+            "group": [
+                "name": familyName
+            ]
+        ]
+        
+        EZLoadingActivity.show("Creating group...", disableUI: true)
+        FamilyPlannerClient.sharedInstance.createGroup(params) { success, errorMessage in
+            if success == true {
+                EZLoadingActivity.hide(success: true, animated: false)
+                self.navigationController?.popToRootViewControllerAnimated(true)
+                self.navigationController?.navigationBarHidden = false
+            } else {
+                EZLoadingActivity.hide(success: false, animated: false)
+                self.presentAlert("Error", message: errorMessage!)
+            }
         }
     }
     

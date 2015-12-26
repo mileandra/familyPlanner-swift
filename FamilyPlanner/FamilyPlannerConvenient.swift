@@ -27,6 +27,12 @@ extension FamilyPlannerClient {
 
             if let jsonObject = response.result.value {
                 let json = JSON(jsonObject)
+                if let errorMsg = json["errors"].string {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        completionHandler(success: false, errorMessage: errorMsg)
+                    })
+                    return
+                }
                 self.persistUser(json)
             }
             completionHandler(success: true, errorMessage: nil)
@@ -64,6 +70,36 @@ extension FamilyPlannerClient {
             CoreDataStackManager.sharedInstance.saveContext()
             completionHandler(success: true, errorMessage: nil)
         })
+    }
+    
+    func createGroup(params: [String : AnyObject]?, completionHandler: (success: Bool, errorMessage: String?) -> Void) {
+        let headers = [
+            "Authorization": currentUser!.auth_token
+        ]
+        Alamofire.request(.POST, Constants.BASE_URL + Methods.GROUPS, parameters: params, headers: headers).responseJSON { response in
+            if response.result.isFailure {
+                completionHandler(success: false, errorMessage:  "A technical error occurred while creating a group")
+                return
+            }
+            
+            if let JSONObject = response.result.value {
+                let json = JSON(JSONObject)
+                print("JSON: \(json)")
+                if let errorMessage = json["errors"].string {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        completionHandler(success: false, errorMessage: errorMessage)
+                    })
+                    return
+                }
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.currentUser!.group_id = json["id"].intValue
+                    CoreDataStackManager.sharedInstance.saveContext()
+                    completionHandler(success: true, errorMessage: nil)
+                })
+                return
+            }           
+            
+        }
     }
     
     

@@ -25,6 +25,8 @@
 		714F03671C2F2F690086AB7A /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714F03661C2F2F690086AB7A /* CreateGroupViewController.swift */; };
 		714F036A1C2F3A500086AB7A /* AlertRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714F03691C2F3A500086AB7A /* AlertRenderer.swift */; };
 		7192DB5A1C2F51190029465B /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7192DB591C2F51190029465B /* Group.swift */; };
+		7192DB5C1C30705B0029465B /* ManageGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7192DB5B1C30705B0029465B /* ManageGroupViewController.swift */; };
+		7192DB5F1C307AA50029465B /* ManageGroup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7192DB5D1C307AA50029465B /* ManageGroup.storyboard */; };
 		71BD1FAB1C220ACD0052A13C /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BD1FAA1C220ACD0052A13C /* CoreDataStackManager.swift */; };
 		71BD1FAE1C220AF50052A13C /* FamilyPlanner.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 71BD1FAC1C220AF50052A13C /* FamilyPlanner.xcdatamodeld */; };
 		71BD1FB41C234F410052A13C /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71BD1FB31C234F410052A13C /* SWRevealViewController.m */; };
@@ -54,6 +56,8 @@
 		714F03661C2F2F690086AB7A /* CreateGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
 		714F03691C2F3A500086AB7A /* AlertRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertRenderer.swift; sourceTree = "<group>"; };
 		7192DB591C2F51190029465B /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		7192DB5B1C30705B0029465B /* ManageGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageGroupViewController.swift; sourceTree = "<group>"; };
+		7192DB5E1C307AA50029465B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ManageGroup.storyboard; sourceTree = "<group>"; };
 		71BD1FAA1C220ACD0052A13C /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
 		71BD1FAD1C220AF50052A13C /* FamilyPlanner.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FamilyPlanner.xcdatamodel; sourceTree = "<group>"; };
 		71BD1FB11C234F410052A13C /* FamilyPlanner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FamilyPlanner-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -82,6 +86,7 @@
 			children = (
 				7130C5231C18C4BC007DCDE9 /* LaunchScreen.storyboard */,
 				7130C5411C1A1E4C007DCDE9 /* Main.storyboard */,
+				7192DB5D1C307AA50029465B /* ManageGroup.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -132,6 +137,7 @@
 				7130C5471C20A2E1007DCDE9 /* DashboardViewController.swift */,
 				710A1BD11C24A4AC00500E25 /* SideMenuViewController.swift */,
 				714F03661C2F2F690086AB7A /* CreateGroupViewController.swift */,
+				7192DB5B1C30705B0029465B /* ManageGroupViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -243,6 +249,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7192DB5F1C307AA50029465B /* ManageGroup.storyboard in Resources */,
 				714F03651C2750EE0086AB7A /* .gitignore in Resources */,
 				7130C5431C1A1E4C007DCDE9 /* Main.storyboard in Resources */,
 				7130C5251C18C4BC007DCDE9 /* LaunchScreen.storyboard in Resources */,
@@ -293,6 +300,7 @@
 				BF838F978620DA17DFE16349 /* FamilyPlannerConvenient.swift in Sources */,
 				71BD1FAE1C220AF50052A13C /* FamilyPlanner.xcdatamodeld in Sources */,
 				BF838CE0D0704E2ACED54F0B /* User.swift in Sources */,
+				7192DB5C1C30705B0029465B /* ManageGroupViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,6 +321,14 @@
 				7130C5421C1A1E4C007DCDE9 /* Base */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		7192DB5D1C307AA50029465B /* ManageGroup.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7192DB5E1C307AA50029465B /* Base */,
+			);
+			name = ManageGroup.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

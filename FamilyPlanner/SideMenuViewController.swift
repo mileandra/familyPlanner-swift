@@ -8,7 +8,11 @@
 
 import UIKit
 
-class SideMenuViewController: UIViewController {
+class SideMenuViewController: UITableViewController {
+    
+    // TODO: build menu dynamically
+    
+    let menuItems = ["manageGroup"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +32,10 @@ class SideMenuViewController: UIViewController {
             // sending out a notification to notify the dashboardController
             NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: "userLogoutNotification", object: nil))
         }
+    }
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return menuItems.count
     }
 
     /*

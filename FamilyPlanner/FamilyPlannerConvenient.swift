@@ -108,6 +108,37 @@ extension FamilyPlannerClient {
         }
     }
     
+    func createInvite(completionHandler: (success: Bool, errorMessage: String?, code: String?) -> Void) {
+        let headers = [
+            "Authorization": currentUser!.auth_token
+        ]
+        Alamofire.request(.POST, Constants.BASE_URL + Methods.INVITE, headers: headers).responseJSON { response in
+            
+            debugPrint(response)
+            if response.result.isFailure {
+                completionHandler(success: false, errorMessage:  "A technical error occurred while creating a code", code: nil)
+                return
+            }
+            
+            if let JSONObject = response.result.value {
+                let json = JSON(JSONObject)
+                print("JSON: \(json)")
+                if let errorMessage = json["errors"].string {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        completionHandler(success: false, errorMessage: errorMessage, code: nil)
+                    })
+                    return
+                }
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    CoreDataStackManager.sharedInstance.saveContext()
+                    completionHandler(success: true, errorMessage: nil, code: json["code"].stringValue)
+                })
+                return
+            }
+        }
+    }
+    
     
     func persistUser(json: JSON) {
         print("JSON: \(json)")

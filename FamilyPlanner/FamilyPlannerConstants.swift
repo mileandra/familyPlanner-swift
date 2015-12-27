@@ -15,5 +15,6 @@ extension FamilyPlannerClient {
         static let SESSIONS = "sessions/"
         static let USERS    = "users/"
         static let GROUPS   = "groups/"
+        static let INVITE   = "invites/"
     }
 }

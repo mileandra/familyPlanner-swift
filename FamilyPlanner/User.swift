@@ -7,6 +7,8 @@ import CoreData
 
 
 class User : NSManagedObject {
+    @NSManaged var remoteID: NSNumber
+    @NSManaged var isGroupOwner: Bool
     @NSManaged var email : String
     @NSManaged var auth_token : String
     @NSManaged var group: Group?
@@ -16,14 +18,17 @@ class User : NSManagedObject {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
     }
     
-    init(email: String, auth_token: String, context: NSManagedObjectContext) {
+    init(properties: NSDictionary, context: NSManagedObjectContext) {
         
         //Core Data
         let entity = NSEntityDescription.entityForName("User", inManagedObjectContext: context)!
         super.init(entity: entity, insertIntoManagedObjectContext: context)
         
-        self.email = email
-        self.auth_token = auth_token
+        remoteID = NSNumber(integer: properties["id"] as! Int)
+        email = properties["email"] as! String
+        auth_token = properties["auth_token"] as! String
+        isGroupOwner = false
+
     }
     
 }

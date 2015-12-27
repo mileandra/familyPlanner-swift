@@ -11,7 +11,8 @@ import CoreData
 
 class Group : NSManagedObject {
     
-    @NSManaged var group_id : NSNumber
+    @NSManaged var remoteID : NSNumber
+    @NSManaged var ownerID : NSNumber
     @NSManaged var name : String
     
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
@@ -19,13 +20,14 @@ class Group : NSManagedObject {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
     }
     
-    init(id: Int, name: String, context: NSManagedObjectContext) {
+    init(id: Int, name: String, ownerID: Int, context: NSManagedObjectContext) {
         
         //Core Data
         let entity = NSEntityDescription.entityForName("Group", inManagedObjectContext: context)!
         super.init(entity: entity, insertIntoManagedObjectContext: context)
         
-        self.group_id = NSNumber(integer: id)
+        self.remoteID = NSNumber(integer: id)
+        self.ownerID = NSNumber(integer: ownerID)
         self.name = name
     }
 }

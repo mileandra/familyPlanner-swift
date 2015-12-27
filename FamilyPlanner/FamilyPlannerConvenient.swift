@@ -91,8 +91,12 @@ extension FamilyPlannerClient {
                     })
                     return
                 }
-                let group = Group(id: json["id"].intValue, name: json["name"].stringValue, context: self.sharedContext)
+                let group = Group(id: json["id"].intValue, name: json["name"].stringValue, ownerID: json["owner_id"].intValue, context: self.sharedContext)
                 self.currentUser!.group = group
+
+                if (group.ownerID == self.currentUser!.remoteID) {
+                    self.currentUser!.isGroupOwner = true
+                }
                 
                 dispatch_async(dispatch_get_main_queue(), {
                     CoreDataStackManager.sharedInstance.saveContext()
@@ -107,10 +111,23 @@ extension FamilyPlannerClient {
     
     func persistUser(json: JSON) {
         print("JSON: \(json)")
-        self.currentUser = User(email: json["email"].stringValue, auth_token: json["auth_token"].stringValue, context: sharedContext)
-        if let groupId = json["group"]["id"].int {
-            let group = Group(id: json["group"]["id"].intValue, name: json["group"]["name"].stringValue, context: sharedContext)
+        let properties = [
+            "email": json["email"].stringValue,
+            "id" : json["id"].intValue,
+            "auth_token" : json["auth_token"].stringValue
+        ]
+        self.currentUser = User(properties: properties, context: sharedContext)
+        
+        // see if the user already is assigned to a group
+        if json["group"]["id"].int != nil {
+            let group = Group(id: json["group"]["id"].intValue, name: json["group"]["name"].stringValue, ownerID: json["group"]["owner_id"].intValue, context: sharedContext)
             self.currentUser!.group = group
+            print("current user remoteID \(self.currentUser!.remoteID)")
+            print("group owner id \(group.ownerID)")
+            
+            if (group.ownerID == self.currentUser!.remoteID) {
+                self.currentUser!.isGroupOwner = true
+            }
         }
         dispatch_async(dispatch_get_main_queue(), {
             CoreDataStackManager.sharedInstance.saveContext()

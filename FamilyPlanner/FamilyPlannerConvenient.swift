@@ -27,15 +27,17 @@ extension FamilyPlannerClient {
 
             if let jsonObject = response.result.value {
                 let json = JSON(jsonObject)
+                debugPrint(json)
                 if let errorMsg = json["errors"].string {
                     dispatch_async(dispatch_get_main_queue(), {
                         completionHandler(success: false, errorMessage: errorMsg)
                     })
                     return
+                } else {
+                    self.persistUser(json, completionHandler: completionHandler)
                 }
-                self.persistUser(json)
+                
             }
-            completionHandler(success: true, errorMessage: nil)
         }
     }
 
@@ -49,9 +51,17 @@ extension FamilyPlannerClient {
             
             if let jsonObject = response.result.value {
                 let json = JSON(jsonObject)
-                self.persistUser(json)
+                if let errorMsg = json["errors"].string {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        completionHandler(success: false, errorMessage: errorMsg)
+                    })
+                    return
+                } else {
+                    self.persistUser(json, completionHandler: completionHandler)
+                   
+                }
+                
             }
-            completionHandler(success: true, errorMessage: nil)
         }
     }
     
@@ -138,9 +148,41 @@ extension FamilyPlannerClient {
             }
         }
     }
+
+    func acceptInvite(params: [String : AnyObject]?, completionHandler: (success: Bool, errorMessage: String?) -> Void) {
+        let headers = [
+            "Authorization": currentUser!.auth_token
+        ]
+
+        Alamofire.request(.POST, Constants.BASE_URL() + Methods.INVITE_ACCEPT, parameters: params, headers: headers).responseJSON { response in
+            if response.result.isFailure {
+                completionHandler(success: false, errorMessage:  "A technical error occurred while processing your request")
+                return
+            }
+
+            if let JSONObject = response.result.value {
+                let json = JSON(JSONObject)
+                if let errorMessage = json["errors"].string {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        completionHandler(success: false, errorMessage: errorMessage)
+                    })
+                    return
+                }
+
+                let group = Group(id: json["id"].intValue, name: json["name"].stringValue, ownerID: json["owner_id"].intValue, context: self.sharedContext)
+                self.currentUser!.group = group
+
+                dispatch_async(dispatch_get_main_queue(), {
+                    CoreDataStackManager.sharedInstance.saveContext()
+                    completionHandler(success: true, errorMessage: nil)
+                })
+                return
+            }
+        }
+    }
     
     
-    func persistUser(json: JSON) {
+    func persistUser(json: JSON, completionHandler: (success: Bool, errorMessage: String?) -> Void ) {
         print("JSON: \(json)")
         let properties = [
             "email": json["email"].stringValue,
@@ -162,6 +204,7 @@ extension FamilyPlannerClient {
         }
         dispatch_async(dispatch_get_main_queue(), {
             CoreDataStackManager.sharedInstance.saveContext()
+            completionHandler(success: true, errorMessage: nil)
         })
     }
 

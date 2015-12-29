@@ -14,9 +14,10 @@ extension FamilyPlannerClient {
     }
 
     struct Methods {
-        static let SESSIONS = "sessions/"
-        static let USERS    = "users/"
-        static let GROUPS   = "groups/"
-        static let INVITE   = "invites/"
+        static let SESSIONS         = "sessions/"
+        static let USERS            = "users/"
+        static let GROUPS           = "groups/"
+        static let INVITE           = "invites/"
+        static let INVITE_ACCEPT    = "invites/accept/"
     }
 }

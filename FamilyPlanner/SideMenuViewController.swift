@@ -9,23 +9,25 @@
 import UIKit
 
 class SideMenuViewController: UITableViewController {
+
     
-    // TODO: build menu dynamically
-    
-    let menuItems = ["manageGroup"]
+    var menuItems:[MenuItem] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        setupMenu()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    /**
+    * Create the Sidemenu structure
+    */
+    func setupMenu() {
+        menuItems.append(MenuItem(identifier: "dashboard", title: "Dashboard", selector: nil, segue: "showDashboardSegue", image: nil))
+        menuItems.append(MenuItem(identifier: "logoout", title: "Logout", selector: "logout", segue: nil, image: nil))
     }
     
-    @IBAction func logoutButtonTouch(sender: UIButton) {
+    func logout() {
         FamilyPlannerClient.sharedInstance.logoutUser() { success, errorMessage in        
             // close the side menu
             self.revealViewController().revealToggle(self)
@@ -38,6 +40,22 @@ class SideMenuViewController: UITableViewController {
         return menuItems.count
     }
 
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell")!
+        let item = menuItems[indexPath.row]
+        cell.textLabel?.text = item.title
+        return cell
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let item = menuItems[indexPath.row]
+        if item.selector != nil {
+            // We need a small hack here and create a timer to invoke once
+            NSTimer.scheduledTimerWithTimeInterval(0, target: self, selector: Selector(item.selector!), userInfo: nil, repeats: false)
+        } else if item.segue != nil {
+            performSegueWithIdentifier(item.segue!, sender: self)
+        }
+    }
     /*
     // MARK: - Navigation
 

@@ -33,29 +33,30 @@
         <scene sceneID="c0e-ex-a1a">
             <objects>
                 <tableViewController id="OJH-P8-dJo" customClass="SideMenuViewController" customModule="FamilyPlanner" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="t7n-wZ-7Wb">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="t7n-wZ-7Wb">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <sections>
-                            <tableViewSection id="lw0-vx-Prq">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="3hi-0c-bp8">
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3hi-0c-bp8" id="37N-VV-F4i">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="eoP-zx-ecv" kind="custom" customClass="SWRevealViewControllerSeguePushController" id="gmO-vL-gs9"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                        </sections>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="52" id="3hi-0c-bp8">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3hi-0c-bp8" id="37N-VV-F4i">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
                         <connections>
                             <outlet property="dataSource" destination="OJH-P8-dJo" id="6kI-9B-UyF"/>
                             <outlet property="delegate" destination="OJH-P8-dJo" id="EeI-V2-hyj"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="eoP-zx-ecv" kind="custom" identifier="showManageGroupSegue" customClass="SWRevealViewControllerSeguePushController" id="c9a-fh-Pdv"/>
+                        <segue destination="B0N-Ck-gQD" kind="custom" identifier="showDashboardSegue" customClass="SWRevealViewControllerSeguePushController" id="gZs-Y5-0sL"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OeQ-vy-t8H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -500,9 +501,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="20" y="153" width="73" height="29"/>
-                                </variation>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="hM2-9h-iXU" customClass="CustomizableTextField" customModule="FamilyPlanner">
                                 <rect key="frame" x="-25" y="-30" width="97" height="30"/>
@@ -540,8 +538,7 @@
                                         <exclude reference="I7P-2S-o6f"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="20" y="214" width="360" height="35"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="I7P-2S-o6f"/>
                                     </mask>
@@ -562,8 +559,7 @@
                                         <exclude reference="vjO-QN-LGU"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="20" y="329" width="360" height="40"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="vjO-QN-LGU"/>
                                     </mask>
@@ -577,9 +573,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="20" y="408" width="175" height="17"/>
-                                </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OwH-J5-jln">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -587,9 +580,6 @@
                                 <state key="normal" title="Sign Up">
                                     <color key="titleColor" red="0.25490196078431371" green="0.41568627450980389" blue="0.49019607843137253" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="203" y="403" width="51" height="29"/>
-                                </variation>
                                 <connections>
                                     <segue destination="fYF-wF-hai" kind="show" id="gty-r9-Vm3"/>
                                 </connections>
@@ -630,8 +620,7 @@
                                         <exclude reference="wVD-XP-rJA"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="20" y="264" width="360" height="35"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="wVD-XP-rJA"/>
                                     </mask>
@@ -749,9 +738,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="20" y="153" width="85" height="29"/>
-                                </variation>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gdD-cl-ljQ" customClass="CustomizableTextField" customModule="FamilyPlanner">
                                 <rect key="frame" x="-25" y="-30" width="97" height="30"/>
@@ -784,8 +770,7 @@
                                         <exclude reference="62B-aK-JeB"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="20" y="222" width="360" height="35"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="62B-aK-JeB"/>
                                     </mask>
@@ -822,8 +807,7 @@
                                         <exclude reference="ERB-IJ-TlW"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="20" y="271" width="360" height="35"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="ERB-IJ-TlW"/>
                                     </mask>
@@ -844,8 +828,7 @@
                                         <exclude reference="F8C-p2-5V8"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="20" y="387" width="360" height="40"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="F8C-p2-5V8"/>
                                     </mask>
@@ -885,8 +868,7 @@
                                         <exclude reference="xf3-Gz-Haa"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="20" y="322" width="361" height="35"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="xf3-Gz-Haa"/>
                                     </mask>
@@ -897,9 +879,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="20" y="467" width="166" height="17"/>
-                                </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XfL-p0-qNr">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -907,9 +886,6 @@
                                 <state key="normal" title="Login">
                                     <color key="titleColor" red="0.25490196079999999" green="0.41568627450000001" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="188" y="461" width="36" height="29"/>
-                                </variation>
                                 <connections>
                                     <segue destination="BYZ-38-t0r" kind="show" id="dtR-j7-oJg"/>
                                 </connections>
@@ -1037,6 +1013,7 @@
         <image name="HamburgerMenu" width="21" height="18"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="gZs-Y5-0sL"/>
         <segue reference="Wc9-Kj-IgN"/>
     </inferredMetricsTieBreakers>
 </document>

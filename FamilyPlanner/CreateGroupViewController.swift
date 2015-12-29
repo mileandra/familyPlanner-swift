@@ -41,6 +41,20 @@ class CreateGroupViewController: UIViewController, AlertRenderer {
             presentAlert("Error", message: "Please enter an invitation code")
             return
         }
+        
+        let params = [
+            "code": invitationCode
+        ]
+        
+        EZLoadingActivity.show("Processing Invite...", disableUI: true)
+        FamilyPlannerClient.sharedInstance.acceptInvite(params) { success, errorMessage in
+            if success {
+                EZLoadingActivity.hide(success: true, animated: false)
+            } else {
+                EZLoadingActivity.hide(success: false, animated: false)
+                self.presentAlert("Error", message: errorMessage!)
+            }
+        }
     }
     
     @IBAction func createFamilyButtonTouch(sender: AnyObject) {

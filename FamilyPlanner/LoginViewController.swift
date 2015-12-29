@@ -8,8 +8,12 @@
 
 import UIKit
 
-class LoginViewController: UIViewController, AlertRenderer {
+class LoginViewController: UIViewController, AlertRenderer, TapKeyboardDismisser {
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        recognizeTap()
+    }
   
     @IBOutlet weak var emailField: CustomizableTextField!
     @IBOutlet weak var passwordField: CustomizableTextField!
@@ -44,5 +48,13 @@ class LoginViewController: UIViewController, AlertRenderer {
             }
             
         }
+    }
+    
+    func recognizeTap() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(tap)
+    }
+    func dismissKeyboard() {
+        view.endEditing(true)
     }
 }

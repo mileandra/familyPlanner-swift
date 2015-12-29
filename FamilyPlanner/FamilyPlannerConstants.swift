@@ -8,12 +8,16 @@ import Foundation
 extension FamilyPlannerClient {
 
     struct Constants {
-        static let BASE_URL = "http://family-planner.dev/api/"
+        static func BASE_URL() -> String {
+            return Platform.isSimulator ?  "http://family-planner.dev/api/" : "https://evening-badlands-8128.herokuapp.com/api/"
+        }
     }
 
     struct Methods {
-        static let SESSIONS = "sessions/"
-        static let USERS    = "users/"
-        static let GROUPS   = "groups/"
+        static let SESSIONS         = "sessions/"
+        static let USERS            = "users/"
+        static let GROUPS           = "groups/"
+        static let INVITE           = "invites/"
+        static let INVITE_ACCEPT    = "invites/accept/"
     }
 }

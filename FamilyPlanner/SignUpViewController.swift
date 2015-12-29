@@ -8,7 +8,13 @@
 
 import UIKit
 
-class SignUpViewController: UIViewController, AlertRenderer {
+class SignUpViewController: UIViewController, AlertRenderer, TapKeyboardDismisser {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        recognizeTap()
+    }
+    
 
     @IBOutlet weak var emailField: CustomizableTextField!
     
@@ -51,5 +57,13 @@ class SignUpViewController: UIViewController, AlertRenderer {
             }
             
         }
+    }
+    
+    func recognizeTap() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(tap)
+    }
+    func dismissKeyboard() {
+        view.endEditing(true)
     }
 }

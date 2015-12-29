@@ -17,7 +17,7 @@ extension FamilyPlannerClient {
                 ]
         ]
 
-        Alamofire.request(.POST, Constants.BASE_URL + Methods.SESSIONS, parameters: params).responseJSON { response in
+        Alamofire.request(.POST, Constants.BASE_URL() + Methods.SESSIONS, parameters: params).responseJSON { response in
 
             if response.result.isFailure {
                 completionHandler(success: false, errorMessage: "A technical error occurred while logging you in")
@@ -40,7 +40,7 @@ extension FamilyPlannerClient {
     }
 
     func signupUser(params: [String : AnyObject]?, completionHandler: (success: Bool, errorMessage: String?) -> Void) {
-        Alamofire.request(.POST, Constants.BASE_URL + Methods.USERS, parameters: params).responseJSON { response in
+        Alamofire.request(.POST, Constants.BASE_URL() + Methods.USERS, parameters: params).responseJSON { response in
             
             if response.result.isFailure {
                 completionHandler(success: false, errorMessage: "A technical error occurred while signing you up")
@@ -76,7 +76,7 @@ extension FamilyPlannerClient {
         let headers = [
             "Authorization": currentUser!.auth_token
         ]
-        Alamofire.request(.POST, Constants.BASE_URL + Methods.GROUPS, parameters: params, headers: headers).responseJSON { response in
+        Alamofire.request(.POST, Constants.BASE_URL() + Methods.GROUPS, parameters: params, headers: headers).responseJSON { response in
             if response.result.isFailure {
                 completionHandler(success: false, errorMessage:  "A technical error occurred while creating a group")
                 return
@@ -112,7 +112,7 @@ extension FamilyPlannerClient {
         let headers = [
             "Authorization": currentUser!.auth_token
         ]
-        Alamofire.request(.POST, Constants.BASE_URL + Methods.INVITE, headers: headers).responseJSON { response in
+        Alamofire.request(.POST, Constants.BASE_URL() + Methods.INVITE, headers: headers).responseJSON { response in
             
             debugPrint(response)
             if response.result.isFailure {

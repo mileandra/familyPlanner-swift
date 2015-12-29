@@ -27,6 +27,7 @@
 		7192DB5A1C2F51190029465B /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7192DB591C2F51190029465B /* Group.swift */; };
 		7192DB5C1C30705B0029465B /* ManageGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7192DB5B1C30705B0029465B /* ManageGroupViewController.swift */; };
 		7192DB5F1C307AA50029465B /* ManageGroup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7192DB5D1C307AA50029465B /* ManageGroup.storyboard */; };
+		7192DB621C316D4F0029465B /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7192DB611C316D4F0029465B /* Platform.swift */; };
 		71BD1FAB1C220ACD0052A13C /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BD1FAA1C220ACD0052A13C /* CoreDataStackManager.swift */; };
 		71BD1FAE1C220AF50052A13C /* FamilyPlanner.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 71BD1FAC1C220AF50052A13C /* FamilyPlanner.xcdatamodeld */; };
 		71BD1FB41C234F410052A13C /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71BD1FB31C234F410052A13C /* SWRevealViewController.m */; };
@@ -58,6 +59,7 @@
 		7192DB591C2F51190029465B /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		7192DB5B1C30705B0029465B /* ManageGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageGroupViewController.swift; sourceTree = "<group>"; };
 		7192DB5E1C307AA50029465B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ManageGroup.storyboard; sourceTree = "<group>"; };
+		7192DB611C316D4F0029465B /* Platform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Platform.swift; sourceTree = "<group>"; };
 		71BD1FAA1C220ACD0052A13C /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
 		71BD1FAD1C220AF50052A13C /* FamilyPlanner.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FamilyPlanner.xcdatamodel; sourceTree = "<group>"; };
 		71BD1FB11C234F410052A13C /* FamilyPlanner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FamilyPlanner-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 		7130C5191C18C4BC007DCDE9 /* FamilyPlanner */ = {
 			isa = PBXGroup;
 			children = (
+				7192DB601C316D410029465B /* Util */,
 				714F03681C2F3A380086AB7A /* Protocols */,
 				710A1BD01C24977700500E25 /* Storyboards */,
 				7130C5441C1A24DA007DCDE9 /* Vendor */,
@@ -189,6 +192,14 @@
 			name = Protocols;
 			sourceTree = "<group>";
 		};
+		7192DB601C316D410029465B /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				7192DB611C316D4F0029465B /* Platform.swift */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -222,7 +233,7 @@
 				TargetAttributes = {
 					7130C5161C18C4BC007DCDE9 = {
 						CreatedOnToolsVersion = 7.1.1;
-						DevelopmentTeam = B45BS5PL2N;
+						DevelopmentTeam = X9PWJN7DYN;
 					};
 				};
 			};
@@ -292,6 +303,7 @@
 				7130C51D1C18C4BC007DCDE9 /* ViewController.swift in Sources */,
 				71BD1FAB1C220ACD0052A13C /* CoreDataStackManager.swift in Sources */,
 				7192DB5A1C2F51190029465B /* Group.swift in Sources */,
+				7192DB621C316D4F0029465B /* Platform.swift in Sources */,
 				7130C51B1C18C4BC007DCDE9 /* AppDelegate.swift in Sources */,
 				7130C53B1C199B4C007DCDE9 /* SignUpViewController.swift in Sources */,
 				714F03671C2F2F690086AB7A /* CreateGroupViewController.swift in Sources */,
@@ -420,7 +432,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Benjamin Eckel (CCPZ3LCXM9)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -429,6 +442,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.juliawill.FamilyPlanner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "FamilyPlanner/FamilyPlanner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -439,7 +453,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Benjamin Eckel (CCPZ3LCXM9)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -448,6 +463,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.juliawill.FamilyPlanner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "FamilyPlanner/FamilyPlanner-Bridging-Header.h";
 			};
 			name = Release;

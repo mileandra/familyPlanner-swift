@@ -10,6 +10,8 @@ import UIKit
 
 class ManageGroupViewController: UIViewController, AlertRenderer {
     
+    var code: String?
+    
     @IBOutlet weak var menuBtn: UIBarButtonItem!
     @IBOutlet weak var invitationView: UIView!
     
@@ -31,12 +33,14 @@ class ManageGroupViewController: UIViewController, AlertRenderer {
     }
     
     @IBAction func inviteButtonTouch(sender: AnyObject) {
-        invitationView.hidden = false
+        
         EZLoadingActivity.show("Generating Code...", disableUI: true)
         FamilyPlannerClient.sharedInstance.createInvite() { success, errorMessage, code in
             if success {
                 EZLoadingActivity.hide(success: true, animated: false)
                 self.invitationCode.text = code!
+                self.code = code!
+                self.invitationView.hidden = false
             } else {
                 EZLoadingActivity.hide(success: false, animated: false)
                 self.invitationView.hidden = true
@@ -46,6 +50,17 @@ class ManageGroupViewController: UIViewController, AlertRenderer {
     }
     
     @IBAction func shareButtonTouch(sender: AnyObject) {
+        let textToShare = "Join our family on Family Planner. Here is your invitation code: \(code!)"
+        
+        let activityViewController = UIActivityViewController(activityItems: [textToShare], applicationActivities: nil)
+        activityViewController.completionWithItemsHandler = { (activity, completed, items, error) in
+            if (completed) {
+                print("sharing done")
+            }
+        }
+        presentViewController(activityViewController, animated: true, completion:nil)
+
+        
     }
     
     @IBAction func cancelButtonTouch(sender: AnyObject) {

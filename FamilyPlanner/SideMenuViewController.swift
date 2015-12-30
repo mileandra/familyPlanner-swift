@@ -24,15 +24,16 @@ class SideMenuViewController: UITableViewController {
     */
     func setupMenu() {
         menuItems.append(MenuItem(identifier: "dashboard", title: "Dashboard", selector: nil, segue: "showDashboardSegue", image: nil))
+        if (FamilyPlannerClient.sharedInstance.currentUser!.isGroupOwner) {
+            menuItems.append(MenuItem(identifier: "manageGroup", title: "Manage Group", selector: nil, segue: "showManageGroupSegue", image: nil))
+        }
         menuItems.append(MenuItem(identifier: "logoout", title: "Logout", selector: "logout", segue: nil, image: nil))
     }
     
     func logout() {
         FamilyPlannerClient.sharedInstance.logoutUser() { success, errorMessage in        
-            // close the side menu
-            self.revealViewController().revealToggle(self)
-            // sending out a notification to notify the dashboardController
-            NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: "userLogoutNotification", object: nil))
+            // now we no longer have a current user, so the dashboard should handle it when we arrive
+            self.performSegueWithIdentifier("showDashboardSegue", sender: self)
         }
     }
     

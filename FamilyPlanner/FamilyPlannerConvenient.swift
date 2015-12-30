@@ -162,6 +162,7 @@ extension FamilyPlannerClient {
 
             if let JSONObject = response.result.value {
                 let json = JSON(JSONObject)
+                print("json: \(json)")
                 if let errorMessage = json["errors"].string {
                     dispatch_async(dispatch_get_main_queue(), {
                         completionHandler(success: false, errorMessage: errorMessage)
@@ -198,7 +199,7 @@ extension FamilyPlannerClient {
             print("current user remoteID \(self.currentUser!.remoteID)")
             print("group owner id \(group.ownerID)")
             
-            if (group.ownerID == self.currentUser!.remoteID) {
+            if (Int(group.ownerID) == Int(self.currentUser!.remoteID)) {
                 self.currentUser!.isGroupOwner = true
             }
         }

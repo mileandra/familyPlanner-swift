@@ -50,6 +50,8 @@ class CreateGroupViewController: UIViewController, AlertRenderer {
         FamilyPlannerClient.sharedInstance.acceptInvite(params) { success, errorMessage in
             if success {
                 EZLoadingActivity.hide(success: true, animated: false)
+                self.navigationController?.popToRootViewControllerAnimated(true)
+                self.navigationController?.navigationBarHidden = false
             } else {
                 EZLoadingActivity.hide(success: false, animated: false)
                 self.presentAlert("Error", message: errorMessage!)

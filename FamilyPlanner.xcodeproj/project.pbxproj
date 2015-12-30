@@ -25,6 +25,7 @@
 		714F03671C2F2F690086AB7A /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714F03661C2F2F690086AB7A /* CreateGroupViewController.swift */; };
 		714F036A1C2F3A500086AB7A /* AlertRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714F03691C2F3A500086AB7A /* AlertRenderer.swift */; };
 		7170E0221C332BBE00AA968A /* TapKeyboardDismisser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7170E0211C332BBE00AA968A /* TapKeyboardDismisser.swift */; };
+		7170E0241C34776100AA968A /* Reach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7170E0231C34776100AA968A /* Reach.swift */; };
 		7192DB5A1C2F51190029465B /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7192DB591C2F51190029465B /* Group.swift */; };
 		7192DB5C1C30705B0029465B /* ManageGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7192DB5B1C30705B0029465B /* ManageGroupViewController.swift */; };
 		7192DB5F1C307AA50029465B /* ManageGroup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7192DB5D1C307AA50029465B /* ManageGroup.storyboard */; };
@@ -59,6 +60,7 @@
 		714F03661C2F2F690086AB7A /* CreateGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
 		714F03691C2F3A500086AB7A /* AlertRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertRenderer.swift; sourceTree = "<group>"; };
 		7170E0211C332BBE00AA968A /* TapKeyboardDismisser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapKeyboardDismisser.swift; sourceTree = "<group>"; };
+		7170E0231C34776100AA968A /* Reach.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reach.swift; sourceTree = "<group>"; };
 		7192DB591C2F51190029465B /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		7192DB5B1C30705B0029465B /* ManageGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageGroupViewController.swift; sourceTree = "<group>"; };
 		7192DB5E1C307AA50029465B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ManageGroup.storyboard; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 		7130C5441C1A24DA007DCDE9 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				7170E0231C34776100AA968A /* Reach.swift */,
 				71BD1FB21C234F410052A13C /* SWRevealViewController.h */,
 				71BD1FB31C234F410052A13C /* SWRevealViewController.m */,
 				7130C5451C1A24ED007DCDE9 /* EZLoadingActivity.swift */,
@@ -314,6 +317,7 @@
 				7130C53B1C199B4C007DCDE9 /* SignUpViewController.swift in Sources */,
 				714F03671C2F2F690086AB7A /* CreateGroupViewController.swift in Sources */,
 				BF838AD54C357D2A45360CC0 /* FamilyPlannerConstants.swift in Sources */,
+				7170E0241C34776100AA968A /* Reach.swift in Sources */,
 				7130C5481C20A2E1007DCDE9 /* DashboardViewController.swift in Sources */,
 				BF838F978620DA17DFE16349 /* FamilyPlannerConvenient.swift in Sources */,
 				71BD1FAE1C220AF50052A13C /* FamilyPlanner.xcdatamodeld in Sources */,

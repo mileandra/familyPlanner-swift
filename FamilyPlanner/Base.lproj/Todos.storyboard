@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vhW-qU-fMq">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="yVK-g2-EQA">
+            <objects>
+                <navigationController id="vhW-qU-fMq" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="KhN-Mp-Asa">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="lZM-Ny-CHT" kind="relationship" relationship="rootViewController" id="UQ5-YV-9zh"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="w69-7W-sFM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1633.5" y="1243"/>
+        </scene>
+        <!--Todo-->
+        <scene sceneID="z1p-9W-DLx">
+            <objects>
+                <tableViewController id="lZM-Ny-CHT" customClass="TodoViewController" customModule="FamilyPlanner" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="VlR-8X-ryJ">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="397-6b-vg2">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="397-6b-vg2" id="59z-87-62g">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="lZM-Ny-CHT" id="MzL-2V-RlX"/>
+                            <outlet property="delegate" destination="lZM-Ny-CHT" id="t0n-zg-Myp"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Todo" id="wVg-2q-w5H">
+                        <barButtonItem key="leftBarButtonItem" image="HamburgerMenu" id="yZX-eg-Zjk"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="OCw-gN-mKb">
+                            <connections>
+                                <segue destination="atR-Bd-T7M" kind="show" id="90p-Z5-hN4"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="menuBtn" destination="yZX-eg-Zjk" id="hAu-Aq-Q14"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g80-GS-ipc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-840" y="1238"/>
+        </scene>
+        <!--Create Todo-->
+        <scene sceneID="38r-tE-Ogq">
+            <objects>
+                <viewController title="Create Todo" id="atR-Bd-T7M" customClass="CreateTodoViewController" customModule="FamilyPlanner" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="aqN-mS-msQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="VQy-Dk-7nU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yyU-GR-hcU">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fQC-Pj-L8C" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-87" y="1243"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="HamburgerMenu" width="21" height="18"/>
+    </resources>
+</document>

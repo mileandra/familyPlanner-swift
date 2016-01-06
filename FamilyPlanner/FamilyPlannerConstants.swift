@@ -19,5 +19,6 @@ extension FamilyPlannerClient {
         static let GROUPS           = "groups/"
         static let INVITE           = "invites/"
         static let INVITE_ACCEPT    = "invites/accept/"
+        static let TODOS            = "todos/"
     }
 }

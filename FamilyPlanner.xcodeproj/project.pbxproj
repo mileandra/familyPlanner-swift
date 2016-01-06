@@ -29,6 +29,7 @@
 		7170E0271C3C5D0A00AA968A /* Todos.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7170E0251C3C5D0A00AA968A /* Todos.storyboard */; };
 		7170E0291C3C5D2600AA968A /* TodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7170E0281C3C5D2600AA968A /* TodoViewController.swift */; };
 		7170E02E1C3C5EC300AA968A /* CreateTodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7170E02D1C3C5EC200AA968A /* CreateTodoViewController.swift */; };
+		7170E0311C3C699400AA968A /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7170E0301C3C699400AA968A /* Todo.swift */; };
 		7192DB5A1C2F51190029465B /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7192DB591C2F51190029465B /* Group.swift */; };
 		7192DB5C1C30705B0029465B /* ManageGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7192DB5B1C30705B0029465B /* ManageGroupViewController.swift */; };
 		7192DB5F1C307AA50029465B /* ManageGroup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7192DB5D1C307AA50029465B /* ManageGroup.storyboard */; };
@@ -67,6 +68,7 @@
 		7170E0261C3C5D0A00AA968A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Todos.storyboard; sourceTree = "<group>"; };
 		7170E0281C3C5D2600AA968A /* TodoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoViewController.swift; sourceTree = "<group>"; };
 		7170E02D1C3C5EC200AA968A /* CreateTodoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTodoViewController.swift; sourceTree = "<group>"; };
+		7170E0301C3C699400AA968A /* Todo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
 		7192DB591C2F51190029465B /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		7192DB5B1C30705B0029465B /* ManageGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageGroupViewController.swift; sourceTree = "<group>"; };
 		7192DB5E1C307AA50029465B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ManageGroup.storyboard; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				BF8384942B60180B9563201D /* User.swift */,
 				7192DB591C2F51190029465B /* Group.swift */,
 				BF83865844D7BF7E8EE608C1 /* MenuItem.swift */,
+				7170E0301C3C699400AA968A /* Todo.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 				7130C51D1C18C4BC007DCDE9 /* ViewController.swift in Sources */,
 				71BD1FAB1C220ACD0052A13C /* CoreDataStackManager.swift in Sources */,
 				7192DB5A1C2F51190029465B /* Group.swift in Sources */,
+				7170E0311C3C699400AA968A /* Todo.swift in Sources */,
 				7192DB621C316D4F0029465B /* Platform.swift in Sources */,
 				7130C51B1C18C4BC007DCDE9 /* AppDelegate.swift in Sources */,
 				7130C53B1C199B4C007DCDE9 /* SignUpViewController.swift in Sources */,

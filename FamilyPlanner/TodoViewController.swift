@@ -27,6 +27,16 @@ class TodoViewController: UITableViewController, NSFetchedResultsControllerDeleg
             error = error1
             print(error)
         }
+     
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: Selector("refresh"), forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshControl = refreshControl
+    }
+    
+    func refresh() {
+        FamilyPlannerClient.sharedInstance.sync() { success, errorMessage in
+            self.refreshControl?.endRefreshing()
+        }
     }
     
     //MARK: Table View

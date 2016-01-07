@@ -14,12 +14,19 @@ class FamilyPlannerClient: NSObject {
     static let sharedInstance = FamilyPlannerClient()
 
     var currentUser : User?
+    var lastSyncTime : NSDate = NSDate()
 
     private override init() {
         super.init()
+        getLastSyncTime()
         loadCurrentUser()
     }
     
+    func getLastSyncTime() {
+        if let lastUpdate : NSDate = NSUserDefaults.standardUserDefaults().objectForKey(Constants.LAST_UPDATE_TIME) as? NSDate {
+            lastSyncTime = lastUpdate
+        }
+    }
     
     func loadCurrentUser() {
         let fetchRequest = NSFetchRequest(entityName: "User")

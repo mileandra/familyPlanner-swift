@@ -12,6 +12,7 @@ class Todo: NSManagedObject {
     @NSManaged var remoteID: NSNumber
     @NSManaged var title : String
     @NSManaged var completed: Bool
+    @NSManaged var synced: Bool
     
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         
@@ -27,6 +28,7 @@ class Todo: NSManagedObject {
         remoteID = NSNumber(integer: properties["id"] as! Int)
         title = properties["title"] as! String
         completed = properties["completed"] as! Bool
-        
+        synced = true
     }
+
 }

@@ -275,6 +275,51 @@ extension FamilyPlannerClient {
         }
     }
     
+    func updateTodo(todo: Todo, completionHandler: (success: Bool, errorMessage: String?) -> Void) {
+        //TODO: check internet connection
+        let headers = [
+            "Authorization": currentUser!.auth_token
+        ]
+        let params = [
+            "todo": [
+                "title": todo.title,
+                "completed": todo.completed
+            ]
+        ]
+        // in case something goes wrong we wanna sync later
+        todo.synced = false
+        dispatch_async(dispatch_get_main_queue(), {
+            CoreDataStackManager.sharedInstance.saveContext()
+        })
+        
+        Alamofire.request(.PUT, Constants.BASE_URL() + Methods.TODOS + "\(todo.remoteID)", parameters: params, headers: headers).responseJSON { response in
+            
+            if response.result.isFailure {
+                completionHandler(success: false, errorMessage: "A technical error occurred while processing your request")
+                return
+            }
+            
+            if let JSONObject = response.result.value {
+                let json = JSON(JSONObject)
+                print("json: \(json)")
+                if let errorMessage = json["errors"].string {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        completionHandler(success: false, errorMessage: errorMessage)
+                    })
+                    return
+                }
+                todo.synced = true
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    CoreDataStackManager.sharedInstance.saveContext()
+                    completionHandler(success: true, errorMessage: nil)
+                })
+                return
+            }
+            
+        }
+    }
+    
     func persistUser(json: JSON, completionHandler: (success: Bool, errorMessage: String?) -> Void ) {
         print("JSON: \(json)")
         let properties = [

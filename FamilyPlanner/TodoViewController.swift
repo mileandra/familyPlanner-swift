@@ -50,8 +50,29 @@ class TodoViewController: UITableViewController, NSFetchedResultsControllerDeleg
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell")!
         let todo = fetchedResultsController.objectAtIndexPath(indexPath) as! Todo
-        cell.textLabel!.text = todo.title
+        cell.textLabel?.text = todo.title
+        if (todo.completed == true) {
+            cell.imageView?.image = UIImage(named: "CheckboxChecked")
+        } else {
+            cell.imageView?.image = UIImage(named: "Check")
+        }
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let todo = fetchedResultsController.objectAtIndexPath(indexPath) as! Todo
+        let cell = tableView.cellForRowAtIndexPath(indexPath)!
+        cell.selectionStyle = .None
+        if todo.completed == true {
+            todo.completed = false
+            cell.imageView?.image = UIImage(named: "Check")
+        } else {
+            todo.completed = true
+            cell.imageView?.image = UIImage(named: "CheckboxChecked")
+        }
+        FamilyPlannerClient.sharedInstance.updateTodo(todo) { success, errorMessage in
+            
+        }
     }
     
     //MARK: Core Data

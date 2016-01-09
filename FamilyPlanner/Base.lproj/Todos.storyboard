@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -27,12 +28,15 @@
             <objects>
                 <tableViewController id="lZM-Ny-CHT" customClass="TodoViewController" customModule="FamilyPlanner" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="VlR-8X-ryJ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="397-6b-vg2">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="397-6b-vg2" id="59z-87-62g">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -67,6 +71,7 @@
                         <viewControllerLayoutGuide type="bottom" id="VQy-Dk-7nU"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="yyU-GR-hcU">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Todo" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m1u-LQ-gbm" customClass="CustomizableTextField" customModule="FamilyPlanner">
@@ -122,14 +127,14 @@
                                 <exclude reference="5JK-j5-k83"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="8Wz-za-wsq"/>
-                                <exclude reference="ACp-3f-L6K"/>
-                                <exclude reference="p1l-SV-8DO"/>
                                 <exclude reference="ISo-7q-Lqr"/>
                                 <exclude reference="dNd-xJ-IjJ"/>
                                 <exclude reference="h0V-44-TP7"/>
                                 <exclude reference="F16-Ed-T7d"/>
                                 <exclude reference="cUZ-Vq-GjA"/>
+                                <exclude reference="8Wz-za-wsq"/>
+                                <exclude reference="ACp-3f-L6K"/>
+                                <exclude reference="p1l-SV-8DO"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -139,14 +144,14 @@
                                 <include reference="5JK-j5-k83"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="8Wz-za-wsq"/>
-                                <include reference="ACp-3f-L6K"/>
-                                <include reference="p1l-SV-8DO"/>
                                 <include reference="ISo-7q-Lqr"/>
                                 <include reference="dNd-xJ-IjJ"/>
                                 <include reference="h0V-44-TP7"/>
                                 <include reference="F16-Ed-T7d"/>
                                 <include reference="cUZ-Vq-GjA"/>
+                                <include reference="8Wz-za-wsq"/>
+                                <include reference="ACp-3f-L6K"/>
+                                <include reference="p1l-SV-8DO"/>
                             </mask>
                         </variation>
                     </view>

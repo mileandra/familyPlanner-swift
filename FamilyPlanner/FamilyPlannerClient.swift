@@ -7,6 +7,7 @@
 //
 
 import Alamofire
+import SwiftyJSON
 import CoreData
 
 class FamilyPlannerClient: NSObject {
@@ -54,4 +55,39 @@ class FamilyPlannerClient: NSObject {
     var sharedContext: NSManagedObjectContext {
         return CoreDataStackManager.sharedInstance.managedObjectContext
     }
+    
+    func handleRequest(auth: Bool, url: String, type: Alamofire.Method ,params: [String: AnyObject]?, completionHandler: (success: Bool, errorMessage: String?, data: JSON?) -> Void) {
+        var headers:[String:String]? = nil
+        
+        if auth {
+            if currentUser == nil {
+                completionHandler(success: false, errorMessage: "You are not logged in", data: nil)
+                return
+            }
+            headers = [
+                "Authorization": currentUser!.auth_token
+            ]
+
+        }
+        Alamofire.request(type, Constants.BASE_URL() + url, parameters: params, headers: headers).responseJSON { response in
+            if response.result.isFailure {
+                completionHandler(success: false, errorMessage:  "A technical error occurred", data: nil)
+                return
+            }
+            
+            if let JSONObject = response.result.value {
+                let json = JSON(JSONObject)
+                print("JSON: \(json)")
+                if let errorMessage = json["errors"].string {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        completionHandler(success: false, errorMessage: errorMessage, data: nil)
+                    })
+                    return
+                }
+                completionHandler(success: true, errorMessage: nil, data: json)
+            }
+            
+        }
+    }
+ 
 }

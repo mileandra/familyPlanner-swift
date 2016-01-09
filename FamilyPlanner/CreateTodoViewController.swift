@@ -20,6 +20,10 @@ class CreateTodoViewController: UIViewController, AlertRenderer {
                 "title": title
             ]
         ]
+        if title == "" {
+            presentAlert("Error", message: "Please enter a desciption")
+            return
+        }
         EZLoadingActivity.show("Saving ...", disableUI: true)
         FamilyPlannerClient.sharedInstance.createTodo(params) { success, errorMessage in
             if success {

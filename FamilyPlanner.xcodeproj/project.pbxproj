@@ -30,6 +30,7 @@
 		7170E02E1C3C5EC300AA968A /* CreateTodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7170E02D1C3C5EC200AA968A /* CreateTodoViewController.swift */; };
 		7170E0311C3C699400AA968A /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7170E0301C3C699400AA968A /* Todo.swift */; };
 		71898E001C41B3F800A83EFB /* Todos.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71898DFE1C41B3F800A83EFB /* Todos.storyboard */; };
+		71898E021C41BF1000A83EFB /* FamilyPlannerTodos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71898E011C41BF1000A83EFB /* FamilyPlannerTodos.swift */; };
 		7192DB5A1C2F51190029465B /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7192DB591C2F51190029465B /* Group.swift */; };
 		7192DB5C1C30705B0029465B /* ManageGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7192DB5B1C30705B0029465B /* ManageGroupViewController.swift */; };
 		7192DB5F1C307AA50029465B /* ManageGroup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7192DB5D1C307AA50029465B /* ManageGroup.storyboard */; };
@@ -40,7 +41,7 @@
 		BF838AD54C357D2A45360CC0 /* FamilyPlannerConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF838483611C6BC21E99F762 /* FamilyPlannerConstants.swift */; };
 		BF838CE0D0704E2ACED54F0B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8384942B60180B9563201D /* User.swift */; };
 		BF838EC8C5DAE859BB192BAB /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF83865844D7BF7E8EE608C1 /* MenuItem.swift */; };
-		BF838F978620DA17DFE16349 /* FamilyPlannerConvenient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8389D7D39858C6ACCA5938 /* FamilyPlannerConvenient.swift */; };
+		BF838F978620DA17DFE16349 /* FamilyPlannerUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8389D7D39858C6ACCA5938 /* FamilyPlannerUser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +70,7 @@
 		7170E02D1C3C5EC200AA968A /* CreateTodoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTodoViewController.swift; sourceTree = "<group>"; };
 		7170E0301C3C699400AA968A /* Todo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
 		71898DFF1C41B3F800A83EFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Todos.storyboard; sourceTree = "<group>"; };
+		71898E011C41BF1000A83EFB /* FamilyPlannerTodos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyPlannerTodos.swift; sourceTree = "<group>"; };
 		7192DB591C2F51190029465B /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		7192DB5B1C30705B0029465B /* ManageGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageGroupViewController.swift; sourceTree = "<group>"; };
 		7192DB5E1C307AA50029465B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ManageGroup.storyboard; sourceTree = "<group>"; };
@@ -81,7 +83,7 @@
 		BF838483611C6BC21E99F762 /* FamilyPlannerConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyPlannerConstants.swift; sourceTree = "<group>"; };
 		BF8384942B60180B9563201D /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BF83865844D7BF7E8EE608C1 /* MenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
-		BF8389D7D39858C6ACCA5938 /* FamilyPlannerConvenient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyPlannerConvenient.swift; sourceTree = "<group>"; };
+		BF8389D7D39858C6ACCA5938 /* FamilyPlannerUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyPlannerUser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,7 +186,8 @@
 			children = (
 				7130C53F1C1A056C007DCDE9 /* FamilyPlannerClient.swift */,
 				BF838483611C6BC21E99F762 /* FamilyPlannerConstants.swift */,
-				BF8389D7D39858C6ACCA5938 /* FamilyPlannerConvenient.swift */,
+				BF8389D7D39858C6ACCA5938 /* FamilyPlannerUser.swift */,
+				71898E011C41BF1000A83EFB /* FamilyPlannerTodos.swift */,
 			);
 			name = FamilyPlannerApi;
 			sourceTree = "<group>";
@@ -357,9 +360,10 @@
 				714F03671C2F2F690086AB7A /* CreateGroupViewController.swift in Sources */,
 				BF838AD54C357D2A45360CC0 /* FamilyPlannerConstants.swift in Sources */,
 				7170E0241C34776100AA968A /* Reach.swift in Sources */,
+				71898E021C41BF1000A83EFB /* FamilyPlannerTodos.swift in Sources */,
 				7170E0291C3C5D2600AA968A /* TodoViewController.swift in Sources */,
 				7130C5481C20A2E1007DCDE9 /* DashboardViewController.swift in Sources */,
-				BF838F978620DA17DFE16349 /* FamilyPlannerConvenient.swift in Sources */,
+				BF838F978620DA17DFE16349 /* FamilyPlannerUser.swift in Sources */,
 				71BD1FAE1C220AF50052A13C /* FamilyPlanner.xcdatamodeld in Sources */,
 				7170E0221C332BBE00AA968A /* TapKeyboardDismisser.swift in Sources */,
 				BF838CE0D0704E2ACED54F0B /* User.swift in Sources */,

@@ -11,6 +11,7 @@ extension FamilyPlannerClient {
         static func BASE_URL() -> String {
             return Platform.isSimulator ?  "http://family-planner.dev/api/" : "https://evening-badlands-8128.herokuapp.com/api/"
         }
+        static let LAST_UPDATE_TIME = "LastUpdateTime"
     }
 
     struct Methods {
@@ -19,5 +20,6 @@ extension FamilyPlannerClient {
         static let GROUPS           = "groups/"
         static let INVITE           = "invites/"
         static let INVITE_ACCEPT    = "invites/accept/"
+        static let TODOS            = "todos/"
     }
 }

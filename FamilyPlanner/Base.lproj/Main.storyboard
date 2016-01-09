@@ -56,6 +56,7 @@
                     <connections>
                         <segue destination="eoP-zx-ecv" kind="custom" identifier="showManageGroupSegue" customClass="SWRevealViewControllerSeguePushController" id="c9a-fh-Pdv"/>
                         <segue destination="B0N-Ck-gQD" kind="custom" identifier="showDashboardSegue" customClass="SWRevealViewControllerSeguePushController" id="gZs-Y5-0sL"/>
+                        <segue destination="xio-Bn-KaU" kind="custom" identifier="showTodoSegue" customClass="SWRevealViewControllerSeguePushController" id="osE-IA-fjX"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OeQ-vy-t8H" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1006,6 +1007,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8VO-Rl-xR9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="286.5" y="-552"/>
+        </scene>
+        <!--Todos-->
+        <scene sceneID="Gvg-Za-gnc">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Todos" id="xio-Bn-KaU" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Az6-3K-juZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="249.75" y="-503"/>
         </scene>
     </scenes>
     <resources>

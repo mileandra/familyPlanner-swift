@@ -5,6 +5,7 @@
 
 import Foundation
 import SwiftyJSON
+import CoreData
 import Alamofire
 
 extension FamilyPlannerClient {
@@ -182,6 +183,142 @@ extension FamilyPlannerClient {
         }
     }
     
+    func createTodo(params: [String : AnyObject]?, completionHandler: (success: Bool, errorMessage: String?) -> Void) {
+        let headers = [
+            "Authorization": currentUser!.auth_token
+        ]
+        Alamofire.request(.POST, Constants.BASE_URL() + Methods.TODOS, parameters: params, headers: headers).responseJSON { response in
+        
+            if response.result.isFailure {
+                completionHandler(success: false, errorMessage: "A technical error occurred while processing your request")
+                return
+            }
+            
+            if let JSONObject = response.result.value {
+                let json = JSON(JSONObject)
+                print("json: \(json)")
+                if let errorMessage = json["errors"].string {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        completionHandler(success: false, errorMessage: errorMessage)
+                    })
+                    return
+                }
+                let properties = [
+                    "title": json["title"].stringValue,
+                    "completed": json["completed"].boolValue,
+                    "id": json["id"].intValue
+                ]
+                Todo(properties: properties, context: self.sharedContext)
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    CoreDataStackManager.sharedInstance.saveContext()
+                    completionHandler(success: true, errorMessage: nil)
+                })
+                return
+            }
+
+        }
+    }
+    
+    func sync(completionHandler: (success: Bool, errorMessage: String?) -> Void) {
+        //TODO: limit to last update date
+        //TODO: check internet connection
+        let headers = [
+            "Authorization": currentUser!.auth_token
+        ]
+        Alamofire.request(.GET, Constants.BASE_URL() + Methods.TODOS, headers: headers).responseJSON { response in
+            if response.result.isFailure {
+                completionHandler(success: false, errorMessage: "A technical error occurred while processing your request")
+                return
+            }
+            if let JSONObject = response.result.value {
+                let json = JSON(JSONObject)
+                print("json: \(json)")
+                if let todos = json.array {
+                    for todo in todos {
+                        // We need to check if we already have the todo saved
+                        let predicate = NSPredicate(format: "remoteID == %@", NSNumber(integer: todo["id"].intValue))
+                        
+                        let fetchRequest = NSFetchRequest(entityName: "Todo")
+                        fetchRequest.predicate = predicate
+                        
+                        do {
+                            let fetchedEntities = try self.sharedContext.executeFetchRequest(fetchRequest) as! [Todo]
+                            if fetchedEntities.count == 1 {
+                                fetchedEntities.first?.title = todo["title"].stringValue
+                                fetchedEntities.first?.completed = todo["completed"].boolValue
+                            } else {
+                                // we do not have any results - create a new Todo
+                                let properties = [
+                                    "title": todo["title"].stringValue,
+                                    "completed": todo["completed"].boolValue,
+                                    "id": todo["id"].intValue
+                                ]
+                                Todo(properties: properties, context: self.sharedContext)
+                            }
+                        } catch {
+                            print("There was an error while syncing")
+                        }
+                        
+                        
+                    }
+                }
+           
+                dispatch_async(dispatch_get_main_queue(), {
+                    NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: Constants.LAST_UPDATE_TIME)
+                    CoreDataStackManager.sharedInstance.saveContext()
+                    completionHandler(success: true, errorMessage: nil)
+                })
+                return
+            }
+
+        }
+    }
+    
+    func updateTodo(todo: Todo, completionHandler: (success: Bool, errorMessage: String?) -> Void) {
+        //TODO: check internet connection
+        let headers = [
+            "Authorization": currentUser!.auth_token
+        ]
+        let params = [
+            "todo": [
+                "title": todo.title,
+                "completed": todo.completed
+            ]
+        ]
+        // in case something goes wrong we wanna sync later
+        todo.synced = false
+        dispatch_async(dispatch_get_main_queue(), {
+            CoreDataStackManager.sharedInstance.saveContext()
+        })
+        
+        Alamofire.request(.PUT, Constants.BASE_URL() + Methods.TODOS + "\(todo.remoteID)", parameters: params, headers: headers).responseJSON { response in
+            
+            if response.result.isFailure {
+                completionHandler(success: false, errorMessage: "A technical error occurred while processing your request")
+                return
+            }
+            
+            if let JSONObject = response.result.value {
+                let json = JSON(JSONObject)
+                print("json: \(json)")
+                if let errorMessage = json["errors"].string {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        completionHandler(success: false, errorMessage: errorMessage)
+                    })
+                    return
+                }
+                todo.synced = true
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    CoreDataStackManager.sharedInstance.saveContext()
+                    completionHandler(success: true, errorMessage: nil)
+                })
+                return
+            }
+            
+        }
+    }
     
     func persistUser(json: JSON, completionHandler: (success: Bool, errorMessage: String?) -> Void ) {
         print("JSON: \(json)")

@@ -32,7 +32,17 @@ class DashboardViewController: UIViewController {
         super.viewWillAppear(animated)
         if FamilyPlannerClient.sharedInstance.isAuthenticated() && FamilyPlannerClient.sharedInstance.hasGroup() == false {
             showCreateGroupScreen()
+        } else if FamilyPlannerClient.sharedInstance.isAuthenticated() && FamilyPlannerClient.sharedInstance.hasGroup() {
+            // Start a Sync in the background Queue
+            let qualityOfServiceClass = QOS_CLASS_BACKGROUND
+            let backgroundQueue = dispatch_get_global_queue(qualityOfServiceClass, 0)
+            dispatch_async(backgroundQueue, {
+                FamilyPlannerClient.sharedInstance.sync() { success, errorMessage in
+                }
+            })
+           
         }
+        
     }
     
     func showLoginScreen() {

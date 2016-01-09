@@ -17,8 +17,6 @@ class ManageGroupViewController: UIViewController, AlertRenderer {
     
     @IBOutlet weak var invitationCode: UITextField!
     
-    //TODO: generate invite code
-    // TODO: share invite code
     // TODO: manage group members
     
     override func viewDidLoad() {

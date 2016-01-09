@@ -26,6 +26,10 @@
 		714F036A1C2F3A500086AB7A /* AlertRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714F03691C2F3A500086AB7A /* AlertRenderer.swift */; };
 		7170E0221C332BBE00AA968A /* TapKeyboardDismisser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7170E0211C332BBE00AA968A /* TapKeyboardDismisser.swift */; };
 		7170E0241C34776100AA968A /* Reach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7170E0231C34776100AA968A /* Reach.swift */; };
+		7170E0291C3C5D2600AA968A /* TodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7170E0281C3C5D2600AA968A /* TodoViewController.swift */; };
+		7170E02E1C3C5EC300AA968A /* CreateTodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7170E02D1C3C5EC200AA968A /* CreateTodoViewController.swift */; };
+		7170E0311C3C699400AA968A /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7170E0301C3C699400AA968A /* Todo.swift */; };
+		71898E001C41B3F800A83EFB /* Todos.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71898DFE1C41B3F800A83EFB /* Todos.storyboard */; };
 		7192DB5A1C2F51190029465B /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7192DB591C2F51190029465B /* Group.swift */; };
 		7192DB5C1C30705B0029465B /* ManageGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7192DB5B1C30705B0029465B /* ManageGroupViewController.swift */; };
 		7192DB5F1C307AA50029465B /* ManageGroup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7192DB5D1C307AA50029465B /* ManageGroup.storyboard */; };
@@ -61,6 +65,10 @@
 		714F03691C2F3A500086AB7A /* AlertRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertRenderer.swift; sourceTree = "<group>"; };
 		7170E0211C332BBE00AA968A /* TapKeyboardDismisser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapKeyboardDismisser.swift; sourceTree = "<group>"; };
 		7170E0231C34776100AA968A /* Reach.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reach.swift; sourceTree = "<group>"; };
+		7170E0281C3C5D2600AA968A /* TodoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoViewController.swift; sourceTree = "<group>"; };
+		7170E02D1C3C5EC200AA968A /* CreateTodoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTodoViewController.swift; sourceTree = "<group>"; };
+		7170E0301C3C699400AA968A /* Todo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
+		71898DFF1C41B3F800A83EFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Todos.storyboard; sourceTree = "<group>"; };
 		7192DB591C2F51190029465B /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		7192DB5B1C30705B0029465B /* ManageGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageGroupViewController.swift; sourceTree = "<group>"; };
 		7192DB5E1C307AA50029465B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ManageGroup.storyboard; sourceTree = "<group>"; };
@@ -92,6 +100,7 @@
 		710A1BD01C24977700500E25 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				71898DFE1C41B3F800A83EFB /* Todos.storyboard */,
 				7130C5231C18C4BC007DCDE9 /* LaunchScreen.storyboard */,
 				7130C5411C1A1E4C007DCDE9 /* Main.storyboard */,
 				7192DB5D1C307AA50029465B /* ManageGroup.storyboard */,
@@ -141,12 +150,11 @@
 		7130C5311C18C7C8007DCDE9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				7130C5321C18C7E6007DCDE9 /* LoginViewController.swift */,
-				7130C53A1C199B4C007DCDE9 /* SignUpViewController.swift */,
+				7170E02C1C3C5EAB00AA968A /* Todo */,
+				7170E02B1C3C5E9B00AA968A /* Group */,
+				7170E02A1C3C5E8D00AA968A /* Account */,
 				7130C5471C20A2E1007DCDE9 /* DashboardViewController.swift */,
 				710A1BD11C24A4AC00500E25 /* SideMenuViewController.swift */,
-				714F03661C2F2F690086AB7A /* CreateGroupViewController.swift */,
-				7192DB5B1C30705B0029465B /* ManageGroupViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -158,6 +166,7 @@
 				BF8384942B60180B9563201D /* User.swift */,
 				7192DB591C2F51190029465B /* Group.swift */,
 				BF83865844D7BF7E8EE608C1 /* MenuItem.swift */,
+				7170E0301C3C699400AA968A /* Todo.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -199,6 +208,33 @@
 				7170E0211C332BBE00AA968A /* TapKeyboardDismisser.swift */,
 			);
 			name = Protocols;
+			sourceTree = "<group>";
+		};
+		7170E02A1C3C5E8D00AA968A /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				7130C5321C18C7E6007DCDE9 /* LoginViewController.swift */,
+				7130C53A1C199B4C007DCDE9 /* SignUpViewController.swift */,
+			);
+			name = Account;
+			sourceTree = "<group>";
+		};
+		7170E02B1C3C5E9B00AA968A /* Group */ = {
+			isa = PBXGroup;
+			children = (
+				714F03661C2F2F690086AB7A /* CreateGroupViewController.swift */,
+				7192DB5B1C30705B0029465B /* ManageGroupViewController.swift */,
+			);
+			name = Group;
+			sourceTree = "<group>";
+		};
+		7170E02C1C3C5EAB00AA968A /* Todo */ = {
+			isa = PBXGroup;
+			children = (
+				7170E0281C3C5D2600AA968A /* TodoViewController.swift */,
+				7170E02D1C3C5EC200AA968A /* CreateTodoViewController.swift */,
+			);
+			name = Todo;
 			sourceTree = "<group>";
 		};
 		7192DB601C316D410029465B /* Util */ = {
@@ -271,6 +307,7 @@
 			files = (
 				7192DB5F1C307AA50029465B /* ManageGroup.storyboard in Resources */,
 				714F03651C2750EE0086AB7A /* .gitignore in Resources */,
+				71898E001C41B3F800A83EFB /* Todos.storyboard in Resources */,
 				7130C5431C1A1E4C007DCDE9 /* Main.storyboard in Resources */,
 				7130C5251C18C4BC007DCDE9 /* LaunchScreen.storyboard in Resources */,
 				7130C5221C18C4BC007DCDE9 /* Assets.xcassets in Resources */,
@@ -305,6 +342,7 @@
 				710A1BD21C24A4AC00500E25 /* SideMenuViewController.swift in Sources */,
 				7130C5331C18C7E6007DCDE9 /* LoginViewController.swift in Sources */,
 				7130C5461C1A24ED007DCDE9 /* EZLoadingActivity.swift in Sources */,
+				7170E02E1C3C5EC300AA968A /* CreateTodoViewController.swift in Sources */,
 				71BD1FB41C234F410052A13C /* SWRevealViewController.m in Sources */,
 				714F036A1C2F3A500086AB7A /* AlertRenderer.swift in Sources */,
 				7130C5401C1A056C007DCDE9 /* FamilyPlannerClient.swift in Sources */,
@@ -312,12 +350,14 @@
 				7130C51D1C18C4BC007DCDE9 /* ViewController.swift in Sources */,
 				71BD1FAB1C220ACD0052A13C /* CoreDataStackManager.swift in Sources */,
 				7192DB5A1C2F51190029465B /* Group.swift in Sources */,
+				7170E0311C3C699400AA968A /* Todo.swift in Sources */,
 				7192DB621C316D4F0029465B /* Platform.swift in Sources */,
 				7130C51B1C18C4BC007DCDE9 /* AppDelegate.swift in Sources */,
 				7130C53B1C199B4C007DCDE9 /* SignUpViewController.swift in Sources */,
 				714F03671C2F2F690086AB7A /* CreateGroupViewController.swift in Sources */,
 				BF838AD54C357D2A45360CC0 /* FamilyPlannerConstants.swift in Sources */,
 				7170E0241C34776100AA968A /* Reach.swift in Sources */,
+				7170E0291C3C5D2600AA968A /* TodoViewController.swift in Sources */,
 				7130C5481C20A2E1007DCDE9 /* DashboardViewController.swift in Sources */,
 				BF838F978620DA17DFE16349 /* FamilyPlannerConvenient.swift in Sources */,
 				71BD1FAE1C220AF50052A13C /* FamilyPlanner.xcdatamodeld in Sources */,
@@ -345,6 +385,14 @@
 				7130C5421C1A1E4C007DCDE9 /* Base */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		71898DFE1C41B3F800A83EFB /* Todos.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				71898DFF1C41B3F800A83EFB /* Base */,
+			);
+			name = Todos.storyboard;
 			sourceTree = "<group>";
 		};
 		7192DB5D1C307AA50029465B /* ManageGroup.storyboard */ = {

@@ -9,11 +9,17 @@
 import UIKit
 import CoreData
 
-class TodoViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+class TodoViewController: UIViewController, NSFetchedResultsControllerDelegate, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var menuBtn: UIBarButtonItem!
     
+    @IBOutlet weak var tableView: UITableView!
+    
+    let cacheName = "TodosCache"
+    
     override func viewDidLoad() {
+        //TODO: Cleanup button
+        
         super.viewDidLoad()
         if (revealViewController() != nil) {
             menuBtn.target = revealViewController()
@@ -27,27 +33,55 @@ class TodoViewController: UITableViewController, NSFetchedResultsControllerDeleg
             error = error1
             print(error)
         }
+        
+        // Bar Button Items
+        let rightArchiveBarButtonItem:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Archive"), style: .Plain, target: self, action: "archiveTodos")
+        let rightAddBarButtonItem:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "addTodo")
+      
+        self.navigationItem.setRightBarButtonItems([rightAddBarButtonItem, rightArchiveBarButtonItem], animated: true)
      
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: Selector("refresh"), forControlEvents: UIControlEvents.ValueChanged)
-        self.refreshControl = refreshControl
+        tableView.addSubview(refreshControl)
     }
+    
+    
+    func addTodo() {
+        performSegueWithIdentifier("showCreateTodoSegue", sender: self)
+    }
+
+    func archiveTodos() {
+        let todos = fetchedResultsController.fetchedObjects as! [Todo]
+        for todo in todos {
+            if todo.completed {
+                todo.archived = true
+            }
+        }
+        dispatch_async(dispatch_get_main_queue(), {
+            CoreDataStackManager.sharedInstance.saveContext()
+        })
+    }
+    
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
+        
+        return refreshControl
+    }()
     
     func refresh() {
         FamilyPlannerClient.sharedInstance.sync() { success, errorMessage in
-            self.refreshControl?.endRefreshing()
+            self.refreshControl.endRefreshing()
         }
     }
     
     //MARK: Table View
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if fetchedResultsController.fetchedObjects != nil {
             return fetchedResultsController.fetchedObjects!.count
         }
         return 0
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell")!
         let todo = fetchedResultsController.objectAtIndexPath(indexPath) as! Todo
         cell.textLabel?.text = todo.title
@@ -59,7 +93,7 @@ class TodoViewController: UITableViewController, NSFetchedResultsControllerDeleg
         return cell
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let todo = fetchedResultsController.objectAtIndexPath(indexPath) as! Todo
         let cell = tableView.cellForRowAtIndexPath(indexPath)!
         cell.selectionStyle = .None
@@ -78,6 +112,8 @@ class TodoViewController: UITableViewController, NSFetchedResultsControllerDeleg
     //MARK: Core Data
     lazy var fetchedResultsController: NSFetchedResultsController = {
         let fetchRequest = NSFetchRequest(entityName: "Todo")
+        let predicate = NSPredicate(format: "archived == %@", false)
+        fetchRequest.predicate = predicate
         fetchRequest.sortDescriptors = []
         
         let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.sharedContext, sectionNameKeyPath: nil, cacheName: nil)

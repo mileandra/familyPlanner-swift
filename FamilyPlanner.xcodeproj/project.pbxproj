@@ -26,10 +26,10 @@
 		714F036A1C2F3A500086AB7A /* AlertRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714F03691C2F3A500086AB7A /* AlertRenderer.swift */; };
 		7170E0221C332BBE00AA968A /* TapKeyboardDismisser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7170E0211C332BBE00AA968A /* TapKeyboardDismisser.swift */; };
 		7170E0241C34776100AA968A /* Reach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7170E0231C34776100AA968A /* Reach.swift */; };
-		7170E0271C3C5D0A00AA968A /* Todos.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7170E0251C3C5D0A00AA968A /* Todos.storyboard */; };
 		7170E0291C3C5D2600AA968A /* TodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7170E0281C3C5D2600AA968A /* TodoViewController.swift */; };
 		7170E02E1C3C5EC300AA968A /* CreateTodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7170E02D1C3C5EC200AA968A /* CreateTodoViewController.swift */; };
 		7170E0311C3C699400AA968A /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7170E0301C3C699400AA968A /* Todo.swift */; };
+		71898E001C41B3F800A83EFB /* Todos.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71898DFE1C41B3F800A83EFB /* Todos.storyboard */; };
 		7192DB5A1C2F51190029465B /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7192DB591C2F51190029465B /* Group.swift */; };
 		7192DB5C1C30705B0029465B /* ManageGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7192DB5B1C30705B0029465B /* ManageGroupViewController.swift */; };
 		7192DB5F1C307AA50029465B /* ManageGroup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7192DB5D1C307AA50029465B /* ManageGroup.storyboard */; };
@@ -65,10 +65,10 @@
 		714F03691C2F3A500086AB7A /* AlertRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertRenderer.swift; sourceTree = "<group>"; };
 		7170E0211C332BBE00AA968A /* TapKeyboardDismisser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapKeyboardDismisser.swift; sourceTree = "<group>"; };
 		7170E0231C34776100AA968A /* Reach.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reach.swift; sourceTree = "<group>"; };
-		7170E0261C3C5D0A00AA968A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Todos.storyboard; sourceTree = "<group>"; };
 		7170E0281C3C5D2600AA968A /* TodoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoViewController.swift; sourceTree = "<group>"; };
 		7170E02D1C3C5EC200AA968A /* CreateTodoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTodoViewController.swift; sourceTree = "<group>"; };
 		7170E0301C3C699400AA968A /* Todo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
+		71898DFF1C41B3F800A83EFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Todos.storyboard; sourceTree = "<group>"; };
 		7192DB591C2F51190029465B /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		7192DB5B1C30705B0029465B /* ManageGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageGroupViewController.swift; sourceTree = "<group>"; };
 		7192DB5E1C307AA50029465B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ManageGroup.storyboard; sourceTree = "<group>"; };
@@ -100,9 +100,9 @@
 		710A1BD01C24977700500E25 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				71898DFE1C41B3F800A83EFB /* Todos.storyboard */,
 				7130C5231C18C4BC007DCDE9 /* LaunchScreen.storyboard */,
 				7130C5411C1A1E4C007DCDE9 /* Main.storyboard */,
-				7170E0251C3C5D0A00AA968A /* Todos.storyboard */,
 				7192DB5D1C307AA50029465B /* ManageGroup.storyboard */,
 			);
 			name = Storyboards;
@@ -307,7 +307,7 @@
 			files = (
 				7192DB5F1C307AA50029465B /* ManageGroup.storyboard in Resources */,
 				714F03651C2750EE0086AB7A /* .gitignore in Resources */,
-				7170E0271C3C5D0A00AA968A /* Todos.storyboard in Resources */,
+				71898E001C41B3F800A83EFB /* Todos.storyboard in Resources */,
 				7130C5431C1A1E4C007DCDE9 /* Main.storyboard in Resources */,
 				7130C5251C18C4BC007DCDE9 /* LaunchScreen.storyboard in Resources */,
 				7130C5221C18C4BC007DCDE9 /* Assets.xcassets in Resources */,
@@ -387,10 +387,10 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		7170E0251C3C5D0A00AA968A /* Todos.storyboard */ = {
+		71898DFE1C41B3F800A83EFB /* Todos.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				7170E0261C3C5D0A00AA968A /* Base */,
+				71898DFF1C41B3F800A83EFB /* Base */,
 			);
 			name = Todos.storyboard;
 			sourceTree = "<group>";

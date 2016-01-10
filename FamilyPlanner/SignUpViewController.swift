@@ -23,6 +23,13 @@ class SignUpViewController: UIViewController, AlertRenderer, TapKeyboardDismisse
     @IBOutlet weak var passwordConfirmField: CustomizableTextField!
     
     @IBAction func signUpButtonTouch(sender: AnyObject) {
+        
+        // Get internet connectivity
+        if Connection.connectedToNetwork() == false {
+            presentAlert("Error", message: "No Internet Connection")
+            return
+        }
+        
         let email = emailField.text!
         let password = passwordField.text!
         let passwordConfirmation = passwordConfirmField.text!

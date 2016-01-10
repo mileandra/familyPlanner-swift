@@ -33,6 +33,12 @@ class LoginViewController: UIViewController, AlertRenderer, TapKeyboardDismisser
             presentAlert("Error", message: "Please enter your email and password")
             return
         }
+        
+        // Get internet connectivity
+        if Connection.connectedToNetwork() == false {
+            presentAlert("Error", message: "No internet connection")
+        }
+
        
         EZLoadingActivity.show("Logging in...", disableUI: true)
         FamilyPlannerClient.sharedInstance.loginUser(email!, password: password!) { success, errorMessage in

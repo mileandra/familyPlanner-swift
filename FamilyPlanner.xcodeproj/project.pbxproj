@@ -25,7 +25,6 @@
 		714F03671C2F2F690086AB7A /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714F03661C2F2F690086AB7A /* CreateGroupViewController.swift */; };
 		714F036A1C2F3A500086AB7A /* AlertRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714F03691C2F3A500086AB7A /* AlertRenderer.swift */; };
 		7170E0221C332BBE00AA968A /* TapKeyboardDismisser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7170E0211C332BBE00AA968A /* TapKeyboardDismisser.swift */; };
-		7170E0241C34776100AA968A /* Reach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7170E0231C34776100AA968A /* Reach.swift */; };
 		7170E0291C3C5D2600AA968A /* TodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7170E0281C3C5D2600AA968A /* TodoViewController.swift */; };
 		7170E02E1C3C5EC300AA968A /* CreateTodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7170E02D1C3C5EC200AA968A /* CreateTodoViewController.swift */; };
 		7170E0311C3C699400AA968A /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7170E0301C3C699400AA968A /* Todo.swift */; };
@@ -38,6 +37,7 @@
 		71BD1FAB1C220ACD0052A13C /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BD1FAA1C220ACD0052A13C /* CoreDataStackManager.swift */; };
 		71BD1FAE1C220AF50052A13C /* FamilyPlanner.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 71BD1FAC1C220AF50052A13C /* FamilyPlanner.xcdatamodeld */; };
 		71BD1FB41C234F410052A13C /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71BD1FB31C234F410052A13C /* SWRevealViewController.m */; };
+		71D2C0E51C41CCE30069417E /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D2C0E41C41CCE30069417E /* Connection.swift */; };
 		BF838AD54C357D2A45360CC0 /* FamilyPlannerConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF838483611C6BC21E99F762 /* FamilyPlannerConstants.swift */; };
 		BF838CE0D0704E2ACED54F0B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8384942B60180B9563201D /* User.swift */; };
 		BF838EC8C5DAE859BB192BAB /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF83865844D7BF7E8EE608C1 /* MenuItem.swift */; };
@@ -65,7 +65,6 @@
 		714F03661C2F2F690086AB7A /* CreateGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
 		714F03691C2F3A500086AB7A /* AlertRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertRenderer.swift; sourceTree = "<group>"; };
 		7170E0211C332BBE00AA968A /* TapKeyboardDismisser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapKeyboardDismisser.swift; sourceTree = "<group>"; };
-		7170E0231C34776100AA968A /* Reach.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reach.swift; sourceTree = "<group>"; };
 		7170E0281C3C5D2600AA968A /* TodoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoViewController.swift; sourceTree = "<group>"; };
 		7170E02D1C3C5EC200AA968A /* CreateTodoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTodoViewController.swift; sourceTree = "<group>"; };
 		7170E0301C3C699400AA968A /* Todo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
@@ -80,6 +79,7 @@
 		71BD1FB11C234F410052A13C /* FamilyPlanner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FamilyPlanner-Bridging-Header.h"; sourceTree = "<group>"; };
 		71BD1FB21C234F410052A13C /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		71BD1FB31C234F410052A13C /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		71D2C0E41C41CCE30069417E /* Connection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
 		BF838483611C6BC21E99F762 /* FamilyPlannerConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyPlannerConstants.swift; sourceTree = "<group>"; };
 		BF8384942B60180B9563201D /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BF83865844D7BF7E8EE608C1 /* MenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
@@ -195,7 +195,6 @@
 		7130C5441C1A24DA007DCDE9 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
-				7170E0231C34776100AA968A /* Reach.swift */,
 				71BD1FB21C234F410052A13C /* SWRevealViewController.h */,
 				71BD1FB31C234F410052A13C /* SWRevealViewController.m */,
 				7130C5451C1A24ED007DCDE9 /* EZLoadingActivity.swift */,
@@ -244,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				7192DB611C316D4F0029465B /* Platform.swift */,
+				71D2C0E41C41CCE30069417E /* Connection.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -359,9 +359,9 @@
 				7130C53B1C199B4C007DCDE9 /* SignUpViewController.swift in Sources */,
 				714F03671C2F2F690086AB7A /* CreateGroupViewController.swift in Sources */,
 				BF838AD54C357D2A45360CC0 /* FamilyPlannerConstants.swift in Sources */,
-				7170E0241C34776100AA968A /* Reach.swift in Sources */,
 				71898E021C41BF1000A83EFB /* FamilyPlannerTodos.swift in Sources */,
 				7170E0291C3C5D2600AA968A /* TodoViewController.swift in Sources */,
+				71D2C0E51C41CCE30069417E /* Connection.swift in Sources */,
 				7130C5481C20A2E1007DCDE9 /* DashboardViewController.swift in Sources */,
 				BF838F978620DA17DFE16349 /* FamilyPlannerUser.swift in Sources */,
 				71BD1FAE1C220AF50052A13C /* FamilyPlanner.xcdatamodeld in Sources */,

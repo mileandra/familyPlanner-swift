@@ -51,14 +51,25 @@ extension FamilyPlannerClient {
             completionHandler(success: true, errorMessage: nil)
             return
         }
+        
+        var params:[String:String]? = nil
+        if lastSyncTime != nil {
+            let formatter = NSDateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZ"
+            params = [
+                "since": formatter.stringFromDate(lastSyncTime!)
+            ]
+        }
 
-        handleRequest(true, url: Methods.TODOS, type: Alamofire.Method.GET, params: nil) { success, errorMessage, data in
+        handleRequest(true, url: Methods.TODOS, type: Alamofire.Method.GET, params: params) { success, errorMessage, data in
             if success == false || data == nil {
                 completionHandler(success: false, errorMessage: errorMessage)
                 return
             }
             
-            if let todos = data!.array {
+            let json = data!
+            
+            if let todos = json["todos"].array {
                 for todo in todos {
                     // We need to check if we already have the todo saved
                     let predicate = NSPredicate(format: "remoteID == %@", NSNumber(integer: todo["id"].intValue))
@@ -85,6 +96,9 @@ extension FamilyPlannerClient {
                     }
                     
                 }
+                let formatter = NSDateFormatter()
+                formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+                self.saveLastSyncTime(formatter.dateFromString(json["synctime"].stringValue))
             }
             
             self.syncToServer() { success, errorMessage in

@@ -15,20 +15,33 @@ class FamilyPlannerClient: NSObject {
     static let sharedInstance = FamilyPlannerClient()
 
     var currentUser : User?
-    var lastSyncTime : NSDate = NSDate()
+    var lastSyncTime : NSDate?
     
     var alamofireManager:Alamofire.Manager?
 
     private override init() {
         super.init()
-        getLastSyncTime()
+        lastSyncTime = getLastSyncTime()
         loadCurrentUser()
     }
     
-    func getLastSyncTime() {
-        if let lastUpdate : NSDate = NSUserDefaults.standardUserDefaults().objectForKey(Constants.LAST_UPDATE_TIME) as? NSDate {
-            lastSyncTime = lastUpdate
+    func getLastSyncTime() -> NSDate? {
+        if lastSyncTime != nil {
+            return lastSyncTime
         }
+        if let lastUpdate : NSDate = NSUserDefaults.standardUserDefaults().objectForKey(Constants.LAST_UPDATE_TIME) as? NSDate {
+            return lastUpdate
+        }
+        return nil
+    }
+    
+    func saveLastSyncTime(newDate: NSDate?) {
+        print("setting last sync time \(newDate)")
+        if newDate == nil {
+            return
+        }
+        lastSyncTime = newDate!
+        NSUserDefaults.standardUserDefaults().setObject(lastSyncTime, forKey: Constants.LAST_UPDATE_TIME)
     }
     
     func loadCurrentUser() {
@@ -82,6 +95,8 @@ class FamilyPlannerClient: NSObject {
         configuration.timeoutIntervalForResource = 5 // time out after x seconds
         
         alamofireManager = Alamofire.Manager(configuration: configuration)
+        
+        print("Getting data from \(url) with params \(params)")
         
         alamofireManager!.request(type, Constants.BASE_URL() + url, parameters: params, headers: headers).responseJSON { response in
             if response.result.isFailure {

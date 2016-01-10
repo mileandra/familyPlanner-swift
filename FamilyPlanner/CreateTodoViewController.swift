@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class CreateTodoViewController: UIViewController, AlertRenderer {
 
@@ -15,17 +16,19 @@ class CreateTodoViewController: UIViewController, AlertRenderer {
     @IBAction func saveButtonTouch(sender: AnyObject) {
         let title = todoTextField.text!
         
-        let params = [
-            "todo": [
-                "title": title
-            ]
+        let properties = [
+            "title" : title,
+            "completed" : false,
+            "synced" : false
         ]
+        let todo = Todo(properties: properties, context: sharedContext)
+        
         if title == "" {
             presentAlert("Error", message: "Please enter a desciption")
             return
         }
         EZLoadingActivity.show("Saving ...", disableUI: true)
-        FamilyPlannerClient.sharedInstance.createTodo(params) { success, errorMessage in
+        FamilyPlannerClient.sharedInstance.createTodo(todo) { success, errorMessage in
             if success {
                 EZLoadingActivity.hide(success: true, animated: false)
                 self.navigationController?.popToRootViewControllerAnimated(true)
@@ -34,5 +37,9 @@ class CreateTodoViewController: UIViewController, AlertRenderer {
                 self.presentAlert("Error", message: errorMessage!)
             }
         }
+    }
+    
+    var sharedContext: NSManagedObjectContext {
+        return CoreDataStackManager.sharedInstance.managedObjectContext
     }
 }

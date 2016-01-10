@@ -12,7 +12,22 @@ import CoreData
 import Alamofire
 
 extension FamilyPlannerClient {
-    func createTodo(params: [String : AnyObject]?, completionHandler: (success: Bool, errorMessage: String?) -> Void) {
+    func createTodo(todo: Todo, completionHandler: (success: Bool, errorMessage: String?) -> Void) {
+        
+        if Connection.connectedToNetwork() == false {
+            dispatch_async(dispatch_get_main_queue(), {
+                CoreDataStackManager.sharedInstance.saveContext()
+                completionHandler(success: true, errorMessage: nil) // just save the todo, we will sync it later
+            })
+            return
+        }
+        
+        let params = [
+            "todo": [
+                "title" : todo.title,
+                "completed": todo.completed
+            ]
+        ]
         
         handleRequest(true, url: Methods.TODOS, type: Alamofire.Method.POST, params: params) { success, errorMessage, data in
             if success == false || data == nil {
@@ -20,12 +35,8 @@ extension FamilyPlannerClient {
                 return
             }
             
-            let properties = [
-                "title": data!["title"].stringValue,
-                "completed": data!["completed"].boolValue,
-                "id": data!["id"].intValue
-            ]
-            Todo(properties: properties, context: self.sharedContext)
+            todo.remoteID = NSNumber(integer: data!["id"].intValue)
+            todo.synced = true
             
             dispatch_async(dispatch_get_main_queue(), {
                 CoreDataStackManager.sharedInstance.saveContext()
@@ -35,6 +46,11 @@ extension FamilyPlannerClient {
     }
     
     func sync(completionHandler: (success: Bool, errorMessage: String?) -> Void) {
+        
+        if Connection.connectedToNetwork() == false {
+            completionHandler(success: true, errorMessage: nil)
+            return
+        }
 
         handleRequest(true, url: Methods.TODOS, type: Alamofire.Method.GET, params: nil) { success, errorMessage, data in
             if success == false || data == nil {
@@ -68,16 +84,64 @@ extension FamilyPlannerClient {
                         print("There was an error while syncing")
                     }
                     
-                    
                 }
             }
             
-            dispatch_async(dispatch_get_main_queue(), {
-                NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: Constants.LAST_UPDATE_TIME)
-                CoreDataStackManager.sharedInstance.saveContext()
-                completionHandler(success: true, errorMessage: nil)
-            })
+            self.syncToServer() { success, errorMessage in
+                dispatch_async(dispatch_get_main_queue(), {
+                    NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: Constants.LAST_UPDATE_TIME)
+                    CoreDataStackManager.sharedInstance.saveContext()
+                    completionHandler(success: success, errorMessage: errorMessage)
+                })
+            }
             return
+        }
+    }
+    
+    func syncToServer(completionHandler: (success: Bool, errorMessage: String?) -> Void) {
+        if Connection.connectedToNetwork() == false {
+            completionHandler(success: true, errorMessage: nil)
+            return
+        }
+       
+        let fetchRequest = NSFetchRequest(entityName: "Todo")
+        let predicate = NSPredicate(format: "synced == %@", false)
+        fetchRequest.predicate = predicate
+        
+        var todos = [Todo]()
+        
+        do {
+            
+            let fetchResults = try sharedContext.executeFetchRequest(fetchRequest) as? [Todo]
+            todos = fetchResults!
+            
+            let group = dispatch_group_create()
+            
+            for todo in todos {
+                dispatch_group_enter(group)
+                if todo.remoteID == nil {
+                    //create
+                    createTodo(todo) { success, errorMessage in
+                        if success {
+                            dispatch_group_leave(group)
+                        }
+                    }
+                } else {
+                    //update
+                    updateTodo(todo) { success, errorMessage in
+                        if success {
+                            dispatch_group_leave(group)
+                        }
+                    }
+                }
+            }
+            
+            
+            dispatch_group_notify(group, dispatch_get_main_queue()) {
+                completionHandler(success: true, errorMessage: nil)
+            }
+        } catch let error as NSError {
+            print("Sync was not successful \(error)")
         }
     }
     

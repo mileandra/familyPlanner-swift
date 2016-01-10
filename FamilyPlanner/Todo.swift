@@ -9,11 +9,13 @@
 import CoreData
 
 class Todo: NSManagedObject {
-    @NSManaged var remoteID: NSNumber
+    @NSManaged var remoteID: NSNumber?
     @NSManaged var title : String
     @NSManaged var completed: Bool
     @NSManaged var synced: Bool
     @NSManaged var archived: Bool
+    
+    //TODO: add group reference
     
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         
@@ -25,8 +27,10 @@ class Todo: NSManagedObject {
         //Core Data
         let entity = NSEntityDescription.entityForName("Todo", inManagedObjectContext: context)!
         super.init(entity: entity, insertIntoManagedObjectContext: context)
+        if properties["id"] != nil {
+            remoteID = NSNumber(integer: properties["id"] as! Int)
+        }
         
-        remoteID = NSNumber(integer: properties["id"] as! Int)
         title = properties["title"] as! String
         completed = properties["completed"] as! Bool
         synced = true

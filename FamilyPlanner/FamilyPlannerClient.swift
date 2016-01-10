@@ -59,6 +59,13 @@ class FamilyPlannerClient: NSObject {
     }
     
     func handleRequest(auth: Bool, url: String, type: Alamofire.Method ,params: [String: AnyObject]?, completionHandler: (success: Bool, errorMessage: String?, data: JSON?) -> Void) {
+        
+        //check for internet connection
+        if Connection.connectedToNetwork() == false {
+            completionHandler(success: false, errorMessage: "You have no internet connection", data: nil)
+            return
+        }
+        
         var headers:[String:String]? = nil
         
         if auth {

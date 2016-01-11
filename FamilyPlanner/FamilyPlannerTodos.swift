@@ -89,7 +89,7 @@ extension FamilyPlannerClient {
                                 "completed": todo["completed"].boolValue,
                                 "id": todo["id"].intValue
                             ]
-                            Todo(properties: properties, context: self.sharedContext)
+                            Todo(properties: properties, group: self.currentUser!.group!, context: self.sharedContext)
                         }
                     } catch {
                         print("There was an error while syncing")

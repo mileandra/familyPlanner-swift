@@ -29,7 +29,7 @@ class FamilyPlannerClient: NSObject {
         if lastSyncTime != nil {
             return lastSyncTime
         }
-        if let lastUpdate : NSDate = NSUserDefaults.standardUserDefaults().objectForKey(Constants.LAST_UPDATE_TIME) as? NSDate {
+        if let lastUpdate : NSDate = NSUserDefaults.standardUserDefaults().objectForKey(Constants.LAST_TODO_UPDATE_TIME) as? NSDate {
             return lastUpdate
         }
         return nil
@@ -41,7 +41,7 @@ class FamilyPlannerClient: NSObject {
             return
         }
         lastSyncTime = newDate!
-        NSUserDefaults.standardUserDefaults().setObject(lastSyncTime, forKey: Constants.LAST_UPDATE_TIME)
+        NSUserDefaults.standardUserDefaults().setObject(lastSyncTime, forKey: Constants.LAST_TODO_UPDATE_TIME)
     }
     
     func loadCurrentUser() {

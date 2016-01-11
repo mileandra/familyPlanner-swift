@@ -1,19 +1,16 @@
 //
-//  Todo.swift
+//  Message.swift
 //  FamilyPlanner
 //
-//  Created by Julia Will on 05.01.16.
+//  Created by Julia Will on 11.01.16.
 //  Copyright © 2016 Julia Will. All rights reserved.
 //
 
 import CoreData
 
-class Todo: NSManagedObject {
+class Message: NSManagedObject {
     @NSManaged var remoteID: NSNumber?
-    @NSManaged var title : String
-    @NSManaged var completed: Bool
-    @NSManaged var synced: Bool
-    @NSManaged var archived: Bool
+    @NSManaged var message : String
     
     @NSManaged var group : Group
     
@@ -22,20 +19,16 @@ class Todo: NSManagedObject {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
     }
     
-    init(properties: NSDictionary, group: Group, context: NSManagedObjectContext) {
+    init(properties: NSDictionary, context: NSManagedObjectContext) {
         
         //Core Data
-        let entity = NSEntityDescription.entityForName("Todo", inManagedObjectContext: context)!
+        let entity = NSEntityDescription.entityForName("Message", inManagedObjectContext: context)!
         super.init(entity: entity, insertIntoManagedObjectContext: context)
         if properties["id"] != nil {
             remoteID = NSNumber(integer: properties["id"] as! Int)
         }
         
-        title = properties["title"] as! String
-        completed = properties["completed"] as! Bool
-        synced = true
-        archived = false
-        self.group = group
+        message = properties["message"] as! String
     }
-
+    
 }

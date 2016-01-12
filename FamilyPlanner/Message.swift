@@ -11,6 +11,7 @@ import CoreData
 class Message: NSManagedObject {
     @NSManaged var remoteID: NSNumber?
     @NSManaged var message : String
+    @NSManaged var synced : Bool
     
     @NSManaged var group : Group
     
@@ -19,7 +20,7 @@ class Message: NSManagedObject {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
     }
     
-    init(properties: NSDictionary, context: NSManagedObjectContext) {
+    init(properties: NSDictionary, group : Group, context: NSManagedObjectContext) {
         
         //Core Data
         let entity = NSEntityDescription.entityForName("Message", inManagedObjectContext: context)!
@@ -27,8 +28,9 @@ class Message: NSManagedObject {
         if properties["id"] != nil {
             remoteID = NSNumber(integer: properties["id"] as! Int)
         }
-        
+        self.group = group
         message = properties["message"] as! String
+        synced = false
     }
     
 }

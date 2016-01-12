@@ -23,8 +23,10 @@ class SideMenuViewController: UITableViewController {
     * Create the Sidemenu structure
     */
     func setupMenu() {
-        menuItems.append(MenuItem(identifier: "todos", title: "Todo", selector: nil, segue: "showTodoSegue", image: nil))
+       
         menuItems.append(MenuItem(identifier: "dashboard", title: "Dashboard", selector: nil, segue: "showDashboardSegue", image: nil))
+        menuItems.append(MenuItem(identifier: "todos", title: "Todo", selector: nil, segue: "showTodoSegue", image: nil))
+        menuItems.append(MenuItem(identifier: "messages", title: "Messages", selector: nil, segue: "showMessagesSegue", image: nil))
         if (FamilyPlannerClient.sharedInstance.currentUser!.isGroupOwner) {
             menuItems.append(MenuItem(identifier: "manageGroup", title: "Manage Group", selector: nil, segue: "showManageGroupSegue", image: nil))
         }

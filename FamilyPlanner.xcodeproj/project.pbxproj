@@ -39,6 +39,9 @@
 		71BD1FB41C234F410052A13C /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71BD1FB31C234F410052A13C /* SWRevealViewController.m */; };
 		71D2C0E51C41CCE30069417E /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D2C0E41C41CCE30069417E /* Connection.swift */; };
 		71D2C0E71C444E490069417E /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D2C0E61C444E490069417E /* Message.swift */; };
+		71D2C0E91C4452160069417E /* FamilyPlannerMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D2C0E81C4452160069417E /* FamilyPlannerMessages.swift */; };
+		71D2C0EC1C4455C90069417E /* Messages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71D2C0EA1C4455C90069417E /* Messages.storyboard */; };
+		71D2C0EF1C4456AB0069417E /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D2C0EE1C4456AB0069417E /* MessagesViewController.swift */; };
 		BF838AD54C357D2A45360CC0 /* FamilyPlannerConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF838483611C6BC21E99F762 /* FamilyPlannerConstants.swift */; };
 		BF838CE0D0704E2ACED54F0B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8384942B60180B9563201D /* User.swift */; };
 		BF838EC8C5DAE859BB192BAB /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF83865844D7BF7E8EE608C1 /* MenuItem.swift */; };
@@ -82,6 +85,9 @@
 		71BD1FB31C234F410052A13C /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		71D2C0E41C41CCE30069417E /* Connection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
 		71D2C0E61C444E490069417E /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		71D2C0E81C4452160069417E /* FamilyPlannerMessages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyPlannerMessages.swift; sourceTree = "<group>"; };
+		71D2C0EB1C4455C90069417E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Messages.storyboard; sourceTree = "<group>"; };
+		71D2C0EE1C4456AB0069417E /* MessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		BF838483611C6BC21E99F762 /* FamilyPlannerConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyPlannerConstants.swift; sourceTree = "<group>"; };
 		BF8384942B60180B9563201D /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BF83865844D7BF7E8EE608C1 /* MenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
@@ -107,6 +113,7 @@
 				71898DFE1C41B3F800A83EFB /* Todos.storyboard */,
 				7130C5231C18C4BC007DCDE9 /* LaunchScreen.storyboard */,
 				7130C5411C1A1E4C007DCDE9 /* Main.storyboard */,
+				71D2C0EA1C4455C90069417E /* Messages.storyboard */,
 				7192DB5D1C307AA50029465B /* ManageGroup.storyboard */,
 			);
 			name = Storyboards;
@@ -154,6 +161,7 @@
 		7130C5311C18C7C8007DCDE9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				71D2C0ED1C4456880069417E /* Messages */,
 				7170E02C1C3C5EAB00AA968A /* Todo */,
 				7170E02B1C3C5E9B00AA968A /* Group */,
 				7170E02A1C3C5E8D00AA968A /* Account */,
@@ -191,6 +199,7 @@
 				BF838483611C6BC21E99F762 /* FamilyPlannerConstants.swift */,
 				BF8389D7D39858C6ACCA5938 /* FamilyPlannerUser.swift */,
 				71898E011C41BF1000A83EFB /* FamilyPlannerTodos.swift */,
+				71D2C0E81C4452160069417E /* FamilyPlannerMessages.swift */,
 			);
 			name = FamilyPlannerApi;
 			sourceTree = "<group>";
@@ -249,6 +258,14 @@
 				71D2C0E41C41CCE30069417E /* Connection.swift */,
 			);
 			name = Util;
+			sourceTree = "<group>";
+		};
+		71D2C0ED1C4456880069417E /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				71D2C0EE1C4456AB0069417E /* MessagesViewController.swift */,
+			);
+			name = Messages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -315,6 +332,7 @@
 				714F03651C2750EE0086AB7A /* .gitignore in Resources */,
 				71898E001C41B3F800A83EFB /* Todos.storyboard in Resources */,
 				7130C5431C1A1E4C007DCDE9 /* Main.storyboard in Resources */,
+				71D2C0EC1C4455C90069417E /* Messages.storyboard in Resources */,
 				7130C5251C18C4BC007DCDE9 /* LaunchScreen.storyboard in Resources */,
 				7130C5221C18C4BC007DCDE9 /* Assets.xcassets in Resources */,
 			);
@@ -345,6 +363,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71D2C0EF1C4456AB0069417E /* MessagesViewController.swift in Sources */,
 				710A1BD21C24A4AC00500E25 /* SideMenuViewController.swift in Sources */,
 				7130C5331C18C7E6007DCDE9 /* LoginViewController.swift in Sources */,
 				7130C5461C1A24ED007DCDE9 /* EZLoadingActivity.swift in Sources */,
@@ -371,6 +390,7 @@
 				71BD1FAE1C220AF50052A13C /* FamilyPlanner.xcdatamodeld in Sources */,
 				7170E0221C332BBE00AA968A /* TapKeyboardDismisser.swift in Sources */,
 				BF838CE0D0704E2ACED54F0B /* User.swift in Sources */,
+				71D2C0E91C4452160069417E /* FamilyPlannerMessages.swift in Sources */,
 				7192DB5C1C30705B0029465B /* ManageGroupViewController.swift in Sources */,
 				BF838EC8C5DAE859BB192BAB /* MenuItem.swift in Sources */,
 			);
@@ -409,6 +429,14 @@
 				7192DB5E1C307AA50029465B /* Base */,
 			);
 			name = ManageGroup.storyboard;
+			sourceTree = "<group>";
+		};
+		71D2C0EA1C4455C90069417E /* Messages.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				71D2C0EB1C4455C90069417E /* Base */,
+			);
+			name = Messages.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

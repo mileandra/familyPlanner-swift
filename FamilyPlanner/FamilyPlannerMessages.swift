@@ -1,4 +1,12 @@
 //
+//  FamilyPlannerMessages.swift
+//  FamilyPlanner
+//
+//  Created by Julia Will on 11.01.16.
+//  Copyright © 2016 Julia Will. All rights reserved.
+//
+
+//
 //  FamilyPlannerTodos.swift
 //  FamilyPlanner
 //
@@ -12,7 +20,7 @@ import CoreData
 import Alamofire
 
 extension FamilyPlannerClient {
-    func createTodo(todo: Todo, completionHandler: (success: Bool, errorMessage: String?) -> Void) {
+    func createMessage(message: Message, completionHandler: (success: Bool, errorMessage: String?) -> Void) {
         
         if Connection.connectedToNetwork() == false {
             dispatch_async(dispatch_get_main_queue(), {
@@ -23,20 +31,19 @@ extension FamilyPlannerClient {
         }
         
         let params = [
-            "todo": [
-                "title" : todo.title,
-                "completed": todo.completed
+            "message": [
+                "message" : message.message
             ]
         ]
         
-        handleRequest(true, url: Methods.TODOS, type: Alamofire.Method.POST, params: params) { success, errorMessage, data in
+        handleRequest(true, url: Methods.MESSAGES, type: Alamofire.Method.POST, params: params) { success, errorMessage, data in
             if success == false || data == nil {
                 completionHandler(success: false, errorMessage: errorMessage)
                 return
             }
             
-            todo.remoteID = NSNumber(integer: data!["id"].intValue)
-            todo.synced = true
+            message.remoteID = NSNumber(integer: data!["id"].intValue)
+            message.synced = true
             
             dispatch_async(dispatch_get_main_queue(), {
                 CoreDataStackManager.sharedInstance.saveContext()
@@ -45,7 +52,7 @@ extension FamilyPlannerClient {
         }
     }
     
-    func sync(completionHandler: (success: Bool, errorMessage: String?) -> Void) {
+    func syncMessages(completionHandler: (success: Bool, errorMessage: String?) -> Void) {
         
         if Connection.connectedToNetwork() == false {
             completionHandler(success: true, errorMessage: nil)
@@ -60,8 +67,8 @@ extension FamilyPlannerClient {
                 "since": formatter.stringFromDate(lastSyncTime!)
             ]
         }
-
-        handleRequest(true, url: Methods.TODOS, type: Alamofire.Method.GET, params: params) { success, errorMessage, data in
+        
+        handleRequest(true, url: Methods.MESSAGES, type: Alamofire.Method.GET, params: params) { success, errorMessage, data in
             if success == false || data == nil {
                 completionHandler(success: false, errorMessage: errorMessage)
                 return
@@ -69,27 +76,25 @@ extension FamilyPlannerClient {
             
             let json = data!
             
-            if let todos = json["todos"].array {
-                for todo in todos {
+            if let messages = json["messages"].array {
+                for message in messages {
                     // We need to check if we already have the todo saved
-                    let predicate = NSPredicate(format: "remoteID == %@", NSNumber(integer: todo["id"].intValue))
+                    let predicate = NSPredicate(format: "remoteID == %@", NSNumber(integer: message["id"].intValue))
                     
-                    let fetchRequest = NSFetchRequest(entityName: "Todo")
+                    let fetchRequest = NSFetchRequest(entityName: "Message")
                     fetchRequest.predicate = predicate
                     
                     do {
-                        let fetchedEntities = try self.sharedContext.executeFetchRequest(fetchRequest) as! [Todo]
+                        let fetchedEntities = try self.sharedContext.executeFetchRequest(fetchRequest) as! [Message]
                         if fetchedEntities.count == 1 {
-                            fetchedEntities.first?.title = todo["title"].stringValue
-                            fetchedEntities.first?.completed = todo["completed"].boolValue
+                            fetchedEntities.first?.message = message["message"].stringValue
                         } else {
-                            // we do not have any results - create a new Todo
+                            // we do not have any results - create a new Message
                             let properties = [
-                                "title": todo["title"].stringValue,
-                                "completed": todo["completed"].boolValue,
-                                "id": todo["id"].intValue
+                                "message": message["message"].stringValue,
+                                "id": message["id"].intValue
                             ]
-                            Todo(properties: properties, group: self.currentUser!.group!, context: self.sharedContext)
+                            Message(properties: properties, group: self.currentUser!.group!, context: self.sharedContext)
                         }
                     } catch {
                         print("There was an error while syncing")
@@ -98,10 +103,11 @@ extension FamilyPlannerClient {
                 }
                 let formatter = NSDateFormatter()
                 formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+                //TODO: need separate message sync time
                 self.saveLastSyncTime(formatter.dateFromString(json["synctime"].stringValue))
             }
             
-            self.syncToServer() { success, errorMessage in
+            self.syncMessagesToServer() { success, errorMessage in
                 dispatch_async(dispatch_get_main_queue(), {
                     NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: Constants.LAST_TODO_UPDATE_TIME)
                     CoreDataStackManager.sharedInstance.saveContext()
@@ -112,37 +118,37 @@ extension FamilyPlannerClient {
         }
     }
     
-    func syncToServer(completionHandler: (success: Bool, errorMessage: String?) -> Void) {
+    func syncMessagesToServer(completionHandler: (success: Bool, errorMessage: String?) -> Void) {
         if Connection.connectedToNetwork() == false {
             completionHandler(success: true, errorMessage: nil)
             return
         }
-       
-        let fetchRequest = NSFetchRequest(entityName: "Todo")
+        
+        let fetchRequest = NSFetchRequest(entityName: "Message")
         let predicate = NSPredicate(format: "(synced == %@) AND (group = %@)", false, self.getGroup())
         fetchRequest.predicate = predicate
         
-        var todos = [Todo]()
+        var messages = [Message]()
         
         do {
             
-            let fetchResults = try sharedContext.executeFetchRequest(fetchRequest) as? [Todo]
-            todos = fetchResults!
+            let fetchResults = try sharedContext.executeFetchRequest(fetchRequest) as? [Message]
+            messages = fetchResults!
             
             let group = dispatch_group_create()
             
-            for todo in todos {
+            for message in messages {
                 dispatch_group_enter(group)
-                if todo.remoteID == nil {
+                if message.remoteID == nil {
                     //create
-                    createTodo(todo) { success, errorMessage in
+                    createMessage(message) { success, errorMessage in
                         if success {
                             dispatch_group_leave(group)
                         }
                     }
                 } else {
                     //update
-                    updateTodo(todo) { success, errorMessage in
+                    updateMessage(message) { success, errorMessage in
                         if success {
                             dispatch_group_leave(group)
                         }
@@ -159,28 +165,27 @@ extension FamilyPlannerClient {
         }
     }
     
-    func updateTodo(todo: Todo, completionHandler: (success: Bool, errorMessage: String?) -> Void) {
+    func updateMessage(message: Message, completionHandler: (success: Bool, errorMessage: String?) -> Void) {
         
         let params = [
-            "todo": [
-                "title": todo.title,
-                "completed": todo.completed
+            "message": [
+                "message": message.message
             ]
         ]
         // in case something goes wrong we wanna sync later
-        todo.synced = false
+        message.synced = false
         dispatch_async(dispatch_get_main_queue(), {
             CoreDataStackManager.sharedInstance.saveContext()
         })
         
-        handleRequest(true, url: Methods.TODOS + "\(todo.remoteID)", type: Alamofire.Method.PUT, params: params) { success, errorMessage, data in
+        handleRequest(true, url: Methods.MESSAGES + "\(message.remoteID)", type: Alamofire.Method.PUT, params: params) { success, errorMessage, data in
             
             if success == false || data == nil {
                 completionHandler(success: false, errorMessage: errorMessage)
                 return
             }
             
-            todo.synced = true
+            message.synced = true
             
             dispatch_async(dispatch_get_main_queue(), {
                 CoreDataStackManager.sharedInstance.saveContext()

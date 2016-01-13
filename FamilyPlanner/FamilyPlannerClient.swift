@@ -95,15 +95,14 @@ class FamilyPlannerClient: NSObject {
             ]
 
         }
-        let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
-        configuration.timeoutIntervalForResource = 5 // time out after x seconds
         
-        alamofireManager = Alamofire.Manager(configuration: configuration)
         
         print("Getting data from \(url) with params \(params)")
         
-        alamofireManager!.request(type, Constants.BASE_URL() + url, parameters: params, headers: headers).responseJSON { response in
+        Alamofire.request(type, Constants.BASE_URL() + url, parameters: params, headers: headers).responseJSON { response in
+         
             if response.result.isFailure {
+                print(response.result.error?.userInfo)
                 completionHandler(success: false, errorMessage:  "A technical error occurred", data: nil)
                 return
             }

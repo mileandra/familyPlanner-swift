@@ -36,7 +36,7 @@ extension FamilyPlannerClient {
             }
             
             todo.remoteID = NSNumber(integer: data!["id"].intValue)
-            todo.synced = true
+            todo.synced = Bool(true)
             
             dispatch_async(dispatch_get_main_queue(), {
                 CoreDataStackManager.sharedInstance.saveContext()
@@ -82,6 +82,7 @@ extension FamilyPlannerClient {
                         if fetchedEntities.count == 1 {
                             fetchedEntities.first?.title = todo["title"].stringValue
                             fetchedEntities.first?.completed = todo["completed"].boolValue
+                            fetchedEntities.first?.synced = true
                         } else {
                             // we do not have any results - create a new Todo
                             let properties = [
@@ -89,7 +90,8 @@ extension FamilyPlannerClient {
                                 "completed": todo["completed"].boolValue,
                                 "id": todo["id"].intValue
                             ]
-                            Todo(properties: properties, group: self.currentUser!.group!, context: self.sharedContext)
+                            let todo = Todo(properties: properties, group: self.currentUser!.group!, context: self.sharedContext)
+                            todo.synced = true
                         }
                     } catch {
                         print("There was an error while syncing")
@@ -101,13 +103,15 @@ extension FamilyPlannerClient {
                 self.saveLastSyncTime(formatter.dateFromString(json["synctime"].stringValue))
             }
             
-            self.syncToServer() { success, errorMessage in
-                dispatch_async(dispatch_get_main_queue(), {
-                    NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: Constants.LAST_TODO_UPDATE_TIME)
-                    CoreDataStackManager.sharedInstance.saveContext()
-                    completionHandler(success: success, errorMessage: errorMessage)
-                })
-            }
+            dispatch_async(dispatch_get_main_queue(), {
+                // we first need to save the core data stack - otherwise all todos will get sent again
+                CoreDataStackManager.sharedInstance.saveContext()
+                self.syncToServer() { success, errorMessage in
+                    dispatch_async(dispatch_get_main_queue(), {                        
+                        completionHandler(success: success, errorMessage: errorMessage)
+                    })
+                }
+            })
             return
         }
     }
@@ -162,26 +166,27 @@ extension FamilyPlannerClient {
     func updateTodo(todo: Todo, completionHandler: (success: Bool, errorMessage: String?) -> Void) {
         
         let params = [
+            "id": todo.remoteID!,
             "todo": [
                 "title": todo.title,
                 "completed": todo.completed
             ]
         ]
         // in case something goes wrong we wanna sync later
-        todo.synced = false
+        todo.synced = Bool(false)
         dispatch_async(dispatch_get_main_queue(), {
             CoreDataStackManager.sharedInstance.saveContext()
         })
         
-        handleRequest(true, url: Methods.TODOS + "\(todo.remoteID)", type: Alamofire.Method.PUT, params: params) { success, errorMessage, data in
+        handleRequest(true, url: Methods.TODOS + "\(todo.remoteID!)", type: Alamofire.Method.PUT, params: params) { success, errorMessage, data in
             
             if success == false || data == nil {
                 completionHandler(success: false, errorMessage: errorMessage)
                 return
             }
             
-            todo.synced = true
-            
+            todo.synced = Bool(true)
+            print(todo.synced)
             dispatch_async(dispatch_get_main_queue(), {
                 CoreDataStackManager.sharedInstance.saveContext()
                 completionHandler(success: true, errorMessage: nil)

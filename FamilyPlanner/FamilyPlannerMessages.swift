@@ -43,9 +43,12 @@ extension FamilyPlannerClient {
             }
             
             message.remoteID = NSNumber(integer: data!["id"].intValue)
-            message.synced = true
+            print(message)
+            message.synced = Bool(true)
+            
             
             dispatch_async(dispatch_get_main_queue(), {
+                
                 CoreDataStackManager.sharedInstance.saveContext()
                 completionHandler(success: true, errorMessage: nil)
             })

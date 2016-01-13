@@ -29,8 +29,8 @@ class Message: NSManagedObject {
             remoteID = NSNumber(integer: properties["id"] as! Int)
         }
         self.group = group
-        message = properties["message"] as! String
-        synced = false
+        self.message = properties["message"] as! String
+        self.synced = Bool(false)
     }
     
 }

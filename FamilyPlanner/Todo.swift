@@ -33,7 +33,7 @@ class Todo: NSManagedObject {
         
         title = properties["title"] as! String
         completed = properties["completed"] as! Bool
-        synced = true
+        synced = false as! Bool
         archived = false
         self.group = group
     }

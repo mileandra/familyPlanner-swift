@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -33,18 +34,174 @@
                     <view key="view" contentMode="scaleToFill" id="qz7-K7-giA">
                         <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Mzm-r8-Ltn">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="0.95000000000000007" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="qlG-iT-wGj" customClass="MessageCell" customModule="FamilyPlanner">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qlG-iT-wGj" id="B1g-DD-sVX">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="lR5-eZ-nmr" id="bcZ-b6-hjr"/>
+                                    <outlet property="delegate" destination="lR5-eZ-nmr" id="Zze-QH-Z1z"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Mzm-r8-Ltn" firstAttribute="leading" secondItem="qz7-K7-giA" secondAttribute="leadingMargin" constant="-20" id="4EP-j6-B3e"/>
+                            <constraint firstItem="iYm-GN-bMa" firstAttribute="top" secondItem="Mzm-r8-Ltn" secondAttribute="bottom" id="ViV-fc-nV1"/>
+                            <constraint firstItem="Mzm-r8-Ltn" firstAttribute="top" secondItem="qz7-K7-giA" secondAttribute="topMargin" id="mtf-XL-C4O"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Mzm-r8-Ltn" secondAttribute="trailing" constant="-20" id="qAf-xr-ndk"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="Mzm-r8-Ltn"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="4EP-j6-B3e"/>
+                                <exclude reference="mtf-XL-C4O"/>
+                                <exclude reference="qAf-xr-ndk"/>
+                                <exclude reference="ViV-fc-nV1"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="Mzm-r8-Ltn"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="4EP-j6-B3e"/>
+                                <include reference="mtf-XL-C4O"/>
+                                <include reference="qAf-xr-ndk"/>
+                                <include reference="ViV-fc-nV1"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Messages" id="P2l-Oj-xP6">
                         <barButtonItem key="leftBarButtonItem" image="HamburgerMenu" id="hA3-s8-jmF"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="Eka-Og-lrY">
+                            <connections>
+                                <segue destination="hsm-Sp-q2I" kind="show" id="8OX-Lb-gqk"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="menuBtn" destination="hA3-s8-jmF" id="Qwb-dk-4xE"/>
+                        <outlet property="tableView" destination="Mzm-r8-Ltn" id="En2-AF-bn0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aS5-l1-FT0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1383" y="-131"/>
+        </scene>
+        <!--New Message-->
+        <scene sceneID="3MK-t3-dbk">
+            <objects>
+                <viewController title="New Message" id="hsm-Sp-q2I" customClass="CreateMessageViewController" customModule="FamilyPlanner" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="sw3-wf-1G5"/>
+                        <viewControllerLayoutGuide type="bottom" id="GiT-aS-cTT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4lJ-iD-5Ej">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your message:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jBn-VA-GDH">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="CIE-pl-88g">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G6A-8L-Wa5">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <color key="backgroundColor" red="0.34509803919999998" green="0.56862745100000001" blue="0.62352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="69" id="gb6-4d-qJK"/>
+                                </constraints>
+                                <color key="tintColor" red="0.99607843139999996" green="0.99607843139999996" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Send"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="gb6-4d-qJK"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="gb6-4d-qJK"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="sendMessageButtonTouch:" destination="hsm-Sp-q2I" eventType="touchUpInside" id="chd-Jy-NDA"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.95000000000000007" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="CIE-pl-88g" firstAttribute="top" secondItem="jBn-VA-GDH" secondAttribute="bottom" constant="8" id="9yk-f2-rt2"/>
+                            <constraint firstItem="jBn-VA-GDH" firstAttribute="trailing" secondItem="4lJ-iD-5Ej" secondAttribute="trailingMargin" id="9yv-E3-Cvb"/>
+                            <constraint firstItem="G6A-8L-Wa5" firstAttribute="trailing" secondItem="4lJ-iD-5Ej" secondAttribute="trailingMargin" id="KXo-u0-BXg"/>
+                            <constraint firstItem="G6A-8L-Wa5" firstAttribute="top" secondItem="CIE-pl-88g" secondAttribute="bottom" constant="8" id="OUO-ne-6r9"/>
+                            <constraint firstItem="jBn-VA-GDH" firstAttribute="top" secondItem="sw3-wf-1G5" secondAttribute="bottom" constant="15" id="Vlv-2v-ZKG"/>
+                            <constraint firstItem="GiT-aS-cTT" firstAttribute="top" secondItem="G6A-8L-Wa5" secondAttribute="bottom" constant="20" id="jN3-tQ-eeM"/>
+                            <constraint firstItem="CIE-pl-88g" firstAttribute="leading" secondItem="4lJ-iD-5Ej" secondAttribute="leadingMargin" id="ksk-Cl-aiU"/>
+                            <constraint firstItem="jBn-VA-GDH" firstAttribute="leading" secondItem="4lJ-iD-5Ej" secondAttribute="leadingMargin" id="nCr-ac-UJO"/>
+                            <constraint firstItem="CIE-pl-88g" firstAttribute="trailing" secondItem="4lJ-iD-5Ej" secondAttribute="trailingMargin" id="yEC-dD-BwR"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="jBn-VA-GDH"/>
+                                <exclude reference="CIE-pl-88g"/>
+                                <exclude reference="G6A-8L-Wa5"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="9yv-E3-Cvb"/>
+                                <exclude reference="Vlv-2v-ZKG"/>
+                                <exclude reference="nCr-ac-UJO"/>
+                                <exclude reference="9yk-f2-rt2"/>
+                                <exclude reference="ksk-Cl-aiU"/>
+                                <exclude reference="yEC-dD-BwR"/>
+                                <exclude reference="jN3-tQ-eeM"/>
+                                <exclude reference="KXo-u0-BXg"/>
+                                <exclude reference="OUO-ne-6r9"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="jBn-VA-GDH"/>
+                                <include reference="CIE-pl-88g"/>
+                                <include reference="G6A-8L-Wa5"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="9yv-E3-Cvb"/>
+                                <include reference="Vlv-2v-ZKG"/>
+                                <include reference="nCr-ac-UJO"/>
+                                <include reference="9yk-f2-rt2"/>
+                                <include reference="ksk-Cl-aiU"/>
+                                <include reference="yEC-dD-BwR"/>
+                                <include reference="jN3-tQ-eeM"/>
+                                <include reference="KXo-u0-BXg"/>
+                                <include reference="OUO-ne-6r9"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="messageTextField" destination="CIE-pl-88g" id="mPB-nU-Vqp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PKf-wY-7l6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2055" y="-131"/>
         </scene>
     </scenes>
     <resources>

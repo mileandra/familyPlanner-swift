@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -39,10 +40,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="0.95000000000000007" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="qlG-iT-wGj" customClass="MessageCell" customModule="FamilyPlanner">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageCell" id="qlG-iT-wGj">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qlG-iT-wGj" id="B1g-DD-sVX">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -65,10 +67,10 @@
                                 <exclude reference="Mzm-r8-Ltn"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="ViV-fc-nV1"/>
                                 <exclude reference="4EP-j6-B3e"/>
                                 <exclude reference="mtf-XL-C4O"/>
                                 <exclude reference="qAf-xr-ndk"/>
-                                <exclude reference="ViV-fc-nV1"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -76,10 +78,10 @@
                                 <include reference="Mzm-r8-Ltn"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="ViV-fc-nV1"/>
                                 <include reference="4EP-j6-B3e"/>
                                 <include reference="mtf-XL-C4O"/>
                                 <include reference="qAf-xr-ndk"/>
-                                <include reference="ViV-fc-nV1"/>
                             </mask>
                         </variation>
                     </view>
@@ -109,6 +111,7 @@
                         <viewControllerLayoutGuide type="bottom" id="GiT-aS-cTT"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="4lJ-iD-5Ej">
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your message:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jBn-VA-GDH">
@@ -120,8 +123,21 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="CIE-pl-88g">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="149" id="xZx-5h-ykf"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="xZx-5h-ykf"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="xZx-5h-ykf"/>
+                                    </mask>
+                                </variation>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G6A-8L-Wa5">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -153,9 +169,11 @@
                             <constraint firstItem="G6A-8L-Wa5" firstAttribute="trailing" secondItem="4lJ-iD-5Ej" secondAttribute="trailingMargin" id="KXo-u0-BXg"/>
                             <constraint firstItem="G6A-8L-Wa5" firstAttribute="top" secondItem="CIE-pl-88g" secondAttribute="bottom" constant="8" id="OUO-ne-6r9"/>
                             <constraint firstItem="jBn-VA-GDH" firstAttribute="top" secondItem="sw3-wf-1G5" secondAttribute="bottom" constant="15" id="Vlv-2v-ZKG"/>
+                            <constraint firstItem="G6A-8L-Wa5" firstAttribute="trailing" secondItem="4lJ-iD-5Ej" secondAttribute="trailingMargin" id="fh0-jo-WFU"/>
                             <constraint firstItem="GiT-aS-cTT" firstAttribute="top" secondItem="G6A-8L-Wa5" secondAttribute="bottom" constant="20" id="jN3-tQ-eeM"/>
                             <constraint firstItem="CIE-pl-88g" firstAttribute="leading" secondItem="4lJ-iD-5Ej" secondAttribute="leadingMargin" id="ksk-Cl-aiU"/>
                             <constraint firstItem="jBn-VA-GDH" firstAttribute="leading" secondItem="4lJ-iD-5Ej" secondAttribute="leadingMargin" id="nCr-ac-UJO"/>
+                            <constraint firstItem="G6A-8L-Wa5" firstAttribute="top" secondItem="CIE-pl-88g" secondAttribute="bottom" constant="8" id="soW-BG-HtA"/>
                             <constraint firstItem="CIE-pl-88g" firstAttribute="trailing" secondItem="4lJ-iD-5Ej" secondAttribute="trailingMargin" id="yEC-dD-BwR"/>
                         </constraints>
                         <variation key="default">
@@ -165,15 +183,17 @@
                                 <exclude reference="G6A-8L-Wa5"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="jN3-tQ-eeM"/>
+                                <exclude reference="KXo-u0-BXg"/>
+                                <exclude reference="OUO-ne-6r9"/>
+                                <exclude reference="fh0-jo-WFU"/>
+                                <exclude reference="soW-BG-HtA"/>
                                 <exclude reference="9yv-E3-Cvb"/>
                                 <exclude reference="Vlv-2v-ZKG"/>
                                 <exclude reference="nCr-ac-UJO"/>
                                 <exclude reference="9yk-f2-rt2"/>
                                 <exclude reference="ksk-Cl-aiU"/>
                                 <exclude reference="yEC-dD-BwR"/>
-                                <exclude reference="jN3-tQ-eeM"/>
-                                <exclude reference="KXo-u0-BXg"/>
-                                <exclude reference="OUO-ne-6r9"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -183,15 +203,17 @@
                                 <include reference="G6A-8L-Wa5"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="jN3-tQ-eeM"/>
+                                <include reference="KXo-u0-BXg"/>
+                                <exclude reference="OUO-ne-6r9"/>
+                                <include reference="fh0-jo-WFU"/>
+                                <include reference="soW-BG-HtA"/>
                                 <include reference="9yv-E3-Cvb"/>
                                 <include reference="Vlv-2v-ZKG"/>
                                 <include reference="nCr-ac-UJO"/>
                                 <include reference="9yk-f2-rt2"/>
                                 <include reference="ksk-Cl-aiU"/>
                                 <include reference="yEC-dD-BwR"/>
-                                <include reference="jN3-tQ-eeM"/>
-                                <include reference="KXo-u0-BXg"/>
-                                <include reference="OUO-ne-6r9"/>
                             </mask>
                         </variation>
                     </view>

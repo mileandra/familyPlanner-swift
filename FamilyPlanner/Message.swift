@@ -12,8 +12,11 @@ class Message: NSManagedObject {
     @NSManaged var remoteID: NSNumber?
     @NSManaged var message : String
     @NSManaged var synced : Bool
+    @NSManaged var subject : String?
     
     @NSManaged var group : Group
+    @NSManaged var parent : Message?
+    @NSManaged var messages : [Message]?
     
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         
@@ -31,6 +34,8 @@ class Message: NSManagedObject {
         self.group = group
         self.message = properties["message"] as! String
         self.synced = Bool(false)
+        
+        //TODO: handle parent / child
     }
     
 }

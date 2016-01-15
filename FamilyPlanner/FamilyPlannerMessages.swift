@@ -43,12 +43,10 @@ extension FamilyPlannerClient {
             }
             
             message.remoteID = NSNumber(integer: data!["id"].intValue)
-            print(message)
             message.synced = Bool(true)
             
             
             dispatch_async(dispatch_get_main_queue(), {
-                
                 CoreDataStackManager.sharedInstance.saveContext()
                 completionHandler(success: true, errorMessage: nil)
             })
@@ -97,7 +95,9 @@ extension FamilyPlannerClient {
                                 "message": message["message"].stringValue,
                                 "id": message["id"].intValue
                             ]
-                            Message(properties: properties, group: self.currentUser!.group!, context: self.sharedContext)
+                            let newMessage = Message(properties: properties, group: self.currentUser!.group!, context: self.sharedContext)
+                            newMessage.synced = Bool(true)
+                            
                         }
                     } catch {
                         print("There was an error while syncing")
@@ -110,13 +110,16 @@ extension FamilyPlannerClient {
                 self.saveLastSyncTime(formatter.dateFromString(json["synctime"].stringValue))
             }
             
-            self.syncMessagesToServer() { success, errorMessage in
-                dispatch_async(dispatch_get_main_queue(), {
-                    NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: Constants.LAST_TODO_UPDATE_TIME)
-                    CoreDataStackManager.sharedInstance.saveContext()
-                    completionHandler(success: success, errorMessage: errorMessage)
-                })
-            }
+            dispatch_async(dispatch_get_main_queue(), {
+                CoreDataStackManager.sharedInstance.saveContext()
+                self.syncMessagesToServer() { success, errorMessage in
+                    dispatch_async(dispatch_get_main_queue(), {
+                        // No need to save again, as it is saved after all requests
+                        completionHandler(success: success, errorMessage: errorMessage)
+                    })
+                }
+            })
+            
             return
         }
     }

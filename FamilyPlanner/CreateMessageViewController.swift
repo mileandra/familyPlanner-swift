@@ -34,10 +34,10 @@ class CreateMessageViewController: UIViewController, AlertRenderer {
         FamilyPlannerClient.sharedInstance.createMessage(message) { success, errorMessage in
             if success {
                 EZLoadingActivity.hide(success: true, animated: false)
-                self.navigationController?.popToRootViewControllerAnimated(true)
+                self.navigationController?.popViewControllerAnimated(true)
             } else {
                 EZLoadingActivity.hide(success: false, animated: false)
-                self.navigationController?.popToRootViewControllerAnimated(true)
+                
             }
         }
     }

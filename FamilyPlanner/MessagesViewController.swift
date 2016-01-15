@@ -22,14 +22,17 @@ class MessagesViewController: UIViewController, UITableViewDataSource, UITableVi
             menuBtn.action = Selector("revealToggle:")
             view.addGestureRecognizer(revealViewController().panGestureRecognizer())
         }
-        var error: NSError?
-        do {
-            try fetchedResultsController.performFetch()
-        } catch let error1 as NSError {
-            error = error1
-            print(error)
-        }
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 160.0
+        
+        fetchObjectsFromStore()
         tableView.addSubview(refreshControl)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchObjectsFromStore()
+        tableView.reloadData()
     }
     
     lazy var refreshControl: UIRefreshControl = {
@@ -45,11 +48,30 @@ class MessagesViewController: UIViewController, UITableViewDataSource, UITableVi
         }
     }
     
+    func fetchObjectsFromStore() {
+        var error: NSError?
+        do {
+            try fetchedResultsController.performFetch()
+        } catch let error1 as NSError {
+            error = error1
+            print(error)
+        }
+    }
+    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
     //MARK: Table View
+    
+    func configureCell(cell: UITableViewCell, indexPath: NSIndexPath) {
+        let message = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Message
+        cell.textLabel?.text = message.subject
+        cell.detailTextLabel?.text = message.message
+        print("Object for configuration: \(message)")
+    }
+    
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if fetchedResultsController.fetchedObjects != nil {
             return fetchedResultsController.fetchedObjects!.count
@@ -58,9 +80,9 @@ class MessagesViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell")!
-        let message = fetchedResultsController.objectAtIndexPath(indexPath)
-        cell.textLabel?.text = message.message
+        let cell = tableView.dequeueReusableCellWithIdentifier("MessageCell")!
+        configureCell(cell, indexPath: indexPath)
+        
         return cell
     }
     
@@ -109,8 +131,11 @@ class MessagesViewController: UIViewController, UITableViewDataSource, UITableVi
                     withRowAnimation: UITableViewRowAnimation.Fade)
             }
             
-        case .Update: break
-            //TODO: implement
+        case .Update:
+            if let indexPath = indexPath {
+                configureCell(tableView.cellForRowAtIndexPath(indexPath)!, indexPath: indexPath)
+            }
+            break
             
         case .Move:
             if let indexPath = indexPath {

@@ -90,8 +90,8 @@ extension FamilyPlannerClient {
                                 "completed": todo["completed"].boolValue,
                                 "id": todo["id"].intValue
                             ]
-                            let todo = Todo(properties: properties, group: self.currentUser!.group!, context: self.sharedContext)
-                            todo.synced = true
+                            let newTodo = Todo(properties: properties, group: self.currentUser!.group!, context: self.sharedContext)
+                            newTodo.synced = true
                         }
                     } catch {
                         print("There was an error while syncing")
@@ -107,7 +107,7 @@ extension FamilyPlannerClient {
                 // we first need to save the core data stack - otherwise all todos will get sent again
                 CoreDataStackManager.sharedInstance.saveContext()
                 self.syncToServer() { success, errorMessage in
-                    dispatch_async(dispatch_get_main_queue(), {                        
+                    dispatch_async(dispatch_get_main_queue(), {
                         completionHandler(success: success, errorMessage: errorMessage)
                     })
                 }

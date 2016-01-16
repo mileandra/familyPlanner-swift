@@ -10,13 +10,18 @@ import UIKit
 
 class MessageBubble: UIView {
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(message: Message, startY: CGFloat) {
+       
         drawOwnCell(frame: frame)
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    func framePrimary(startY: CGFloat) -> CGRect {
+        let padding: CGFloat = 0.02
+        let sidePadding = 
     }
 
     func drawOwnCell(frame frame: CGRect = CGRectMake(0, 0, 240, 120)) {

@@ -114,12 +114,6 @@
                     <view key="view" contentMode="scaleToFill" id="70j-Vp-0U9">
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7dz-2h-Odm">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="64" width="400" height="465"/>
-                                </variation>
-                            </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CSG-4v-xZH">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <subviews>
@@ -187,50 +181,104 @@
                                     </mask>
                                 </variation>
                             </view>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="e7U-JE-pv3">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="cMC-Y2-Maa">
+                                    <size key="itemSize" width="378" height="72"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="messageCell" id="lht-dh-kzp" customClass="MessageCollectionViewCell" customModule="FamilyPlanner">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="378" height="72"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e0i-5h-Nph">
+                                                    <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="widthClass=compact" fixedFrame="YES">
+                                                        <rect key="frame" x="0.0" y="8" width="378" height="21"/>
+                                                    </variation>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                                        <variation key="default">
+                                            <mask key="subviews">
+                                                <exclude reference="e0i-5h-Nph"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="widthClass=compact">
+                                            <mask key="subviews">
+                                                <include reference="e0i-5h-Nph"/>
+                                            </mask>
+                                        </variation>
+                                        <connections>
+                                            <outlet property="messageText" destination="e0i-5h-Nph" id="ujr-ja-EQu"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="IBG-xS-Qfm" id="2Jv-p5-jRe"/>
+                                    <outlet property="delegate" destination="IBG-xS-Qfm" id="rYM-TR-D23"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="7dz-2h-Odm" firstAttribute="trailing" secondItem="CSG-4v-xZH" secondAttribute="trailing" id="1hM-0l-cxH"/>
                             <constraint firstAttribute="trailingMargin" secondItem="CSG-4v-xZH" secondAttribute="trailing" constant="-20" id="4bG-Pi-VnE"/>
-                            <constraint firstItem="7dz-2h-Odm" firstAttribute="top" secondItem="6wH-pG-Mzx" secondAttribute="bottom" id="8yU-4X-4kI"/>
+                            <constraint firstItem="e7U-JE-pv3" firstAttribute="trailing" secondItem="CSG-4v-xZH" secondAttribute="trailing" id="6IO-Np-7ui"/>
+                            <constraint firstItem="kC5-MA-MEn" firstAttribute="top" secondItem="e7U-JE-pv3" secondAttribute="bottom" constant="71" id="DbX-JA-bPc"/>
+                            <constraint firstItem="e7U-JE-pv3" firstAttribute="leading" secondItem="70j-Vp-0U9" secondAttribute="leadingMargin" constant="-20" id="NUM-S7-CvU"/>
                             <constraint firstItem="kC5-MA-MEn" firstAttribute="top" secondItem="CSG-4v-xZH" secondAttribute="bottom" id="O9E-uf-acp"/>
-                            <constraint firstItem="7dz-2h-Odm" firstAttribute="leading" secondItem="70j-Vp-0U9" secondAttribute="leadingMargin" constant="-20" id="Veu-2t-WNc"/>
                             <constraint firstItem="CSG-4v-xZH" firstAttribute="leading" secondItem="70j-Vp-0U9" secondAttribute="leadingMargin" constant="-20" id="Xye-Hc-SzG"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="7dz-2h-Odm" secondAttribute="trailing" constant="-20" id="d8t-Ub-gFz"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="e7U-JE-pv3" secondAttribute="trailing" constant="-20" id="prA-lh-3cE"/>
+                            <constraint firstItem="e7U-JE-pv3" firstAttribute="top" secondItem="6wH-pG-Mzx" secondAttribute="bottom" id="vfe-UQ-7tU"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="7dz-2h-Odm"/>
                                 <exclude reference="CSG-4v-xZH"/>
+                                <exclude reference="e7U-JE-pv3"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="1hM-0l-cxH"/>
-                                <exclude reference="8yU-4X-4kI"/>
-                                <exclude reference="Veu-2t-WNc"/>
-                                <exclude reference="d8t-Ub-gFz"/>
+                                <exclude reference="6IO-Np-7ui"/>
+                                <exclude reference="NUM-S7-CvU"/>
+                                <exclude reference="prA-lh-3cE"/>
+                                <exclude reference="vfe-UQ-7tU"/>
                                 <exclude reference="4bG-Pi-VnE"/>
                                 <exclude reference="Xye-Hc-SzG"/>
+                                <exclude reference="DbX-JA-bPc"/>
                                 <exclude reference="O9E-uf-acp"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
-                                <include reference="7dz-2h-Odm"/>
                                 <include reference="CSG-4v-xZH"/>
+                                <include reference="e7U-JE-pv3"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="1hM-0l-cxH"/>
-                                <include reference="8yU-4X-4kI"/>
-                                <include reference="Veu-2t-WNc"/>
-                                <include reference="d8t-Ub-gFz"/>
+                                <exclude reference="6IO-Np-7ui"/>
+                                <include reference="NUM-S7-CvU"/>
+                                <include reference="prA-lh-3cE"/>
+                                <include reference="vfe-UQ-7tU"/>
                                 <include reference="4bG-Pi-VnE"/>
                                 <include reference="Xye-Hc-SzG"/>
+                                <include reference="DbX-JA-bPc"/>
                                 <include reference="O9E-uf-acp"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
                         <outlet property="answerTextField" destination="p34-28-cbs" id="QRY-Do-MOd"/>
+                        <outlet property="collectionView" destination="e7U-JE-pv3" id="A5v-P8-Liz"/>
                         <outlet property="sendAnswerButton" destination="pi0-Dw-U7g" id="wl2-dA-wPn"/>
                     </connections>
                 </viewController>

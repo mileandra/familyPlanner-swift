@@ -13,6 +13,7 @@ class Message: NSManagedObject {
     @NSManaged var message : String
     @NSManaged var synced : Bool
     @NSManaged var subject : String?
+    @NSManaged var read : Bool
     
     @NSManaged var group : Group
     @NSManaged var parent : Message?
@@ -35,6 +36,7 @@ class Message: NSManagedObject {
         self.message = properties["message"] as! String
         self.subject = properties["subject"] as! String?
         self.synced = Bool(false)
+        self.read = false
         
         //TODO: handle parent / child
     }

@@ -33,6 +33,7 @@ class Message: NSManagedObject {
         }
         self.group = group
         self.message = properties["message"] as! String
+        self.subject = properties["subject"] as! String?
         self.synced = Bool(false)
         
         //TODO: handle parent / child

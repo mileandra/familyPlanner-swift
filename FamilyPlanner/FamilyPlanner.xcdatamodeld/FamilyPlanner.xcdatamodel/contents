@@ -4,8 +4,8 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="ownerID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="remoteID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <relationship name="messages" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Message" inverseName="group" inverseEntity="Message" syncable="YES"/>
-        <relationship name="todos" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Todo" inverseName="group" inverseEntity="Todo" syncable="YES"/>
+        <relationship name="messages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Message" inverseName="group" inverseEntity="Message" syncable="YES"/>
+        <relationship name="todos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Todo" inverseName="group" inverseEntity="Todo" syncable="YES"/>
     </entity>
     <entity name="Message" representedClassName=".Message" syncable="YES">
         <attribute name="message" optional="YES" attributeType="String" syncable="YES"/>
@@ -32,7 +32,7 @@
         <relationship name="group" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Group" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Group" positionX="-54" positionY="0" width="128" height="30"/>
+        <element name="Group" positionX="-54" positionY="0" width="128" height="132"/>
         <element name="Message" positionX="-54" positionY="54" width="128" height="166"/>
         <element name="Todo" positionX="-54" positionY="27" width="128" height="30"/>
         <element name="User" positionX="-63" positionY="-27" width="128" height="132"/>

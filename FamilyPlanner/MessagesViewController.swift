@@ -86,6 +86,10 @@ class MessagesViewController: UIViewController, UITableViewDataSource, UITableVi
         return cell
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        performSegueWithIdentifier("showMessageDetailsSegue", sender: self)
+    }
+    
    
     
     //MARK: Core Data
@@ -171,5 +175,15 @@ class MessagesViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
         tableView.endUpdates()
+    }
+    
+    // MARK: Navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showMessageDetailsSegue" {
+            let indexPath = tableView.indexPathForSelectedRow
+            let message = fetchedResultsController.objectAtIndexPath(indexPath!) as! Message
+            let controller = segue.destinationViewController as! MessageDetailViewController
+            controller.message = message
+        }
     }
 }

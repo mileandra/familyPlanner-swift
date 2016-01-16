@@ -40,6 +40,7 @@
 		71BD1FAB1C220ACD0052A13C /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BD1FAA1C220ACD0052A13C /* CoreDataStackManager.swift */; };
 		71BD1FAE1C220AF50052A13C /* FamilyPlanner.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 71BD1FAC1C220AF50052A13C /* FamilyPlanner.xcdatamodeld */; };
 		71BD1FB41C234F410052A13C /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71BD1FB31C234F410052A13C /* SWRevealViewController.m */; };
+		71CDA25F1C4AE230002F5240 /* MessageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CDA25E1C4AE230002F5240 /* MessageDetailViewController.swift */; };
 		71D2C0E51C41CCE30069417E /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D2C0E41C41CCE30069417E /* Connection.swift */; };
 		71D2C0E71C444E490069417E /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D2C0E61C444E490069417E /* Message.swift */; };
 		71D2C0E91C4452160069417E /* FamilyPlannerMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D2C0E81C4452160069417E /* FamilyPlannerMessages.swift */; };
@@ -89,6 +90,7 @@
 		71BD1FB11C234F410052A13C /* FamilyPlanner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FamilyPlanner-Bridging-Header.h"; sourceTree = "<group>"; };
 		71BD1FB21C234F410052A13C /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		71BD1FB31C234F410052A13C /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		71CDA25E1C4AE230002F5240 /* MessageDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageDetailViewController.swift; sourceTree = "<group>"; };
 		71D2C0E41C41CCE30069417E /* Connection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
 		71D2C0E61C444E490069417E /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		71D2C0E81C4452160069417E /* FamilyPlannerMessages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyPlannerMessages.swift; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 			children = (
 				71D2C0EE1C4456AB0069417E /* MessagesViewController.swift */,
 				7118E87C1C46777F00C3BFAA /* CreateMessageViewController.swift */,
+				71CDA25E1C4AE230002F5240 /* MessageDetailViewController.swift */,
 			);
 			name = Messages;
 			sourceTree = "<group>";
@@ -391,6 +394,7 @@
 				71D2C0E71C444E490069417E /* Message.swift in Sources */,
 				7130C51B1C18C4BC007DCDE9 /* AppDelegate.swift in Sources */,
 				7130C53B1C199B4C007DCDE9 /* SignUpViewController.swift in Sources */,
+				71CDA25F1C4AE230002F5240 /* MessageDetailViewController.swift in Sources */,
 				714F03671C2F2F690086AB7A /* CreateGroupViewController.swift in Sources */,
 				BF838AD54C357D2A45360CC0 /* FamilyPlannerConstants.swift in Sources */,
 				71898E021C41BF1000A83EFB /* FamilyPlannerTodos.swift in Sources */,

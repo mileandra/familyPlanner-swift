@@ -30,11 +30,15 @@ extension FamilyPlannerClient {
             return
         }
         
-        let params = [
+        var params = [
             "message": [
                 "message" : message.message
             ]
         ]
+        print(message)
+        if message.subject != nil {
+            params["message"]!["subject"] = message.subject!
+        }
         
         handleRequest(true, url: Methods.MESSAGES, type: Alamofire.Method.POST, params: params) { success, errorMessage, data in
             if success == false || data == nil {

@@ -12,17 +12,20 @@ import CoreData
 class CreateMessageViewController: UIViewController, AlertRenderer {
 
     @IBOutlet weak var messageTextField: UITextView!
+    @IBOutlet weak var subjectTextField: UITextField!
     
     @IBAction func sendMessageButtonTouch(sender: AnyObject) {
         
         let messageText = messageTextField.text!
+        let subject = subjectTextField.text!
         
         let properties = [
             "message" : messageText,
+            "subject" : subject,
             "synced" : false
         ]
-        if messageText == "" {
-            presentAlert("Error", message: "Please enter a message")
+        if messageText == "" || subject == "" {
+            presentAlert("Error", message: "Please enter a message and a subject")
             return
         }
         

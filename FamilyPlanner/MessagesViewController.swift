@@ -1,24 +1,20 @@
 //
-//  TodoViewController.swift
+//  MessagesViewController.swift
 //  FamilyPlanner
 //
-//  Created by Julia Will on 05.01.16.
+//  Created by Julia Will on 11.01.16.
 //  Copyright © 2016 Julia Will. All rights reserved.
 //
 
 import UIKit
 import CoreData
 
-class TodoViewController: UIViewController, NSFetchedResultsControllerDelegate, UITableViewDataSource, UITableViewDelegate {
+class MessagesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate {
 
     @IBOutlet weak var menuBtn: UIBarButtonItem!
-    
     @IBOutlet weak var tableView: UITableView!
     
-    let cacheName = "TodosCache"
-    
     override func viewDidLoad() {
-        //TODO: Cleanup button
         
         super.viewDidLoad()
         if (revealViewController() != nil) {
@@ -26,46 +22,17 @@ class TodoViewController: UIViewController, NSFetchedResultsControllerDelegate, 
             menuBtn.action = Selector("revealToggle:")
             view.addGestureRecognizer(revealViewController().panGestureRecognizer())
         }
-        var error: NSError?
-        do {
-            try fetchedResultsController.performFetch()
-        } catch let error1 as NSError {
-            error = error1
-            print(error)
-        }
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 160.0
         
-        // Bar Button Items
-        let rightArchiveBarButtonItem:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Archive"), style: .Plain, target: self, action: "archiveTodos")
-        let rightAddBarButtonItem:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "addTodo")
-      
-        self.navigationItem.setRightBarButtonItems([rightAddBarButtonItem, rightArchiveBarButtonItem], animated: true)
-     
+        fetchObjectsFromStore()
         tableView.addSubview(refreshControl)
     }
     
-    
-    func addTodo() {
-        performSegueWithIdentifier("showCreateTodoSegue", sender: self)
-    }
-
-    func archiveTodos() {
-        let todos = fetchedResultsController.fetchedObjects as! [Todo]
-  
-        for todo in todos {
-            if todo.completed {
-                todo.archived = true
-                todo.synced = false
-            }
-        }
-        dispatch_async(dispatch_get_main_queue(), {
-            CoreDataStackManager.sharedInstance.saveContext()
-        })
-        let qualityOfServiceClass = QOS_CLASS_BACKGROUND
-        let backgroundQueue = dispatch_get_global_queue(qualityOfServiceClass, 0)
-        dispatch_async(backgroundQueue, {
-            FamilyPlannerClient.sharedInstance.syncToServer() { success, errorMessage in
-            }
-        })
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchObjectsFromStore()
+        tableView.reloadData()
     }
     
     lazy var refreshControl: UIRefreshControl = {
@@ -76,12 +43,35 @@ class TodoViewController: UIViewController, NSFetchedResultsControllerDelegate, 
     }()
     
     func refresh() {
-        FamilyPlannerClient.sharedInstance.sync() { success, errorMessage in
+        FamilyPlannerClient.sharedInstance.syncMessages() { success, errorMessage in
             self.refreshControl.endRefreshing()
         }
     }
     
+    func fetchObjectsFromStore() {
+        var error: NSError?
+        do {
+            try fetchedResultsController.performFetch()
+        } catch let error1 as NSError {
+            error = error1
+            print(error)
+        }
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
     //MARK: Table View
+    
+    func configureCell(cell: UITableViewCell, indexPath: NSIndexPath) {
+        let message = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Message
+        cell.textLabel?.text = message.subject
+        cell.detailTextLabel?.text = message.message
+        print("Object for configuration: \(message)")
+    }
+    
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if fetchedResultsController.fetchedObjects != nil {
             return fetchedResultsController.fetchedObjects!.count
@@ -90,37 +80,22 @@ class TodoViewController: UIViewController, NSFetchedResultsControllerDelegate, 
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell")!
-        let todo = fetchedResultsController.objectAtIndexPath(indexPath) as! Todo
-        cell.textLabel?.text = todo.title
-        if (todo.completed == true) {
-            cell.imageView?.image = UIImage(named: "CheckboxChecked")
-        } else {
-            cell.imageView?.image = UIImage(named: "Check")
-        }
+        let cell = tableView.dequeueReusableCellWithIdentifier("MessageCell")!
+        configureCell(cell, indexPath: indexPath)
+        
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let todo = fetchedResultsController.objectAtIndexPath(indexPath) as! Todo
-        let cell = tableView.cellForRowAtIndexPath(indexPath)!
-        cell.selectionStyle = .None
-        if todo.completed == true {
-            todo.completed = false
-            cell.imageView?.image = UIImage(named: "Check")
-        } else {
-            todo.completed = true
-            cell.imageView?.image = UIImage(named: "CheckboxChecked")
-        }
-        FamilyPlannerClient.sharedInstance.updateTodo(todo) { success, errorMessage in
-            
-        }
+        performSegueWithIdentifier("showMessageDetailsSegue", sender: self)
     }
+    
+   
     
     //MARK: Core Data
     lazy var fetchedResultsController: NSFetchedResultsController = {
-        let fetchRequest = NSFetchRequest(entityName: "Todo")
-        let predicate = NSPredicate(format: "archived == %@", false)
+        let fetchRequest = NSFetchRequest(entityName: "Message")
+        let predicate = NSPredicate(format: "group == %@", FamilyPlannerClient.sharedInstance.getGroup())
         fetchRequest.predicate = predicate
         fetchRequest.sortDescriptors = []
         
@@ -132,7 +107,7 @@ class TodoViewController: UIViewController, NSFetchedResultsControllerDelegate, 
     var sharedContext: NSManagedObjectContext {
         return CoreDataStackManager.sharedInstance.managedObjectContext
     }
-
+    
     
     // MARK: NSFetchedResultsControllerDelegate
     
@@ -160,8 +135,11 @@ class TodoViewController: UIViewController, NSFetchedResultsControllerDelegate, 
                     withRowAnimation: UITableViewRowAnimation.Fade)
             }
             
-        case .Update: break
-            //TODO: implement
+        case .Update:
+            if let indexPath = indexPath {
+                configureCell(tableView.cellForRowAtIndexPath(indexPath)!, indexPath: indexPath)
+            }
+            break
             
         case .Move:
             if let indexPath = indexPath {
@@ -197,5 +175,15 @@ class TodoViewController: UIViewController, NSFetchedResultsControllerDelegate, 
     
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
         tableView.endUpdates()
+    }
+    
+    // MARK: Navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showMessageDetailsSegue" {
+            let indexPath = tableView.indexPathForSelectedRow
+            let message = fetchedResultsController.objectAtIndexPath(indexPath!) as! Message
+            let controller = segue.destinationViewController as! MessageDetailViewController
+            controller.message = message
+        }
     }
 }

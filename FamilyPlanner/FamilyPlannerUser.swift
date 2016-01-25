@@ -69,9 +69,9 @@ extension FamilyPlannerClient {
         // would not be able to actively use this tool on multiple devices, so we just remove the currentUser for now
         // This has nothing to do with the API, but logically it should stay here
         dispatch_async(dispatch_get_main_queue(), {
-            self.sharedContext.deleteObject(self.currentUser!)
-            self.currentUser = nil
+            self.currentUser!.isCurrentUser = false
             CoreDataStackManager.sharedInstance.saveContext()
+            self.currentUser = nil
             completionHandler(success: true, errorMessage: nil)
         })
     }
@@ -142,25 +142,63 @@ extension FamilyPlannerClient {
     
         
     func persistUser(json: JSON, completionHandler: (success: Bool, errorMessage: String?) -> Void ) {
-        print("JSON: \(json)")
-        let properties = [
-            "email": json["email"].stringValue,
-            "id" : json["id"].intValue,
-            "auth_token" : json["auth_token"].stringValue
-        ]
-        self.currentUser = User(properties: properties, context: sharedContext)
+        let fetchRequest = NSFetchRequest(entityName: "User")
+        let predicate = NSPredicate(format: "remoteID == %@", NSNumber(integer: json["id"].intValue))
+        fetchRequest.predicate = predicate
+        var users:[User] = []
+        do {
+            let results = try sharedContext.executeFetchRequest(fetchRequest)
+            users = results as! [User]
+        } catch let error as NSError {
+            // only current user failed, so failing silent
+            print("An error occured accessing managed object context \(error.localizedDescription)")
+        }
+        if users.count > 0 {
+            currentUser = users[0]
+            currentUser!.email = json["email"].stringValue
+            currentUser!.name = json["name"].stringValue
+            currentUser!.auth_token = json["auth_token"].stringValue
+        } else {
+            let properties = [
+                "email": json["email"].stringValue,
+                "name": json["name"].stringValue,
+                "id" : json["id"].intValue,
+                "auth_token" : json["auth_token"].stringValue
+            ]
+            self.currentUser = User(properties: properties, context: sharedContext)
+
+        }
+
+        self.currentUser!.isCurrentUser = true
         
-        // see if the user already is assigned to a group
-        if json["group"]["id"].int != nil {
-            let group = Group(id: json["group"]["id"].intValue, name: json["group"]["name"].stringValue, ownerID: json["group"]["owner_id"].intValue, context: sharedContext)
-            self.currentUser!.group = group
-            print("current user remoteID \(self.currentUser!.remoteID)")
-            print("group owner id \(group.ownerID)")
-            
-            if (Int(group.ownerID) == Int(self.currentUser!.remoteID)) {
-                self.currentUser!.isGroupOwner = true
+        if self.currentUser!.group == nil && json["group"]["id"].int != nil {
+            let fetchRequest = NSFetchRequest(entityName: "Group")
+            let predicate = NSPredicate(format: "remoteID == %@", NSNumber(integer:json["group"]["id"].intValue))
+            fetchRequest.predicate = predicate
+            var groups:[Group] = []
+            do {
+                let results = try sharedContext.executeFetchRequest(fetchRequest)
+                groups = results as! [Group]
+            } catch let error as NSError {
+                // only current user failed, so failing silent
+                print("An error occured accessing managed object context \(error.localizedDescription)")
+            }
+            if groups.count > 0 {
+                currentUser!.group = groups[0]
+            } else {
+                let group = Group(id: json["group"]["id"].intValue, name: json["group"]["name"].stringValue, ownerID: json["group"]["owner_id"].intValue, context: sharedContext)
+                self.currentUser!.group = group
+                print("current user remoteID \(self.currentUser!.remoteID)")
+                print("group owner id \(group.ownerID)")
+                
+                if (Int(group.ownerID) == Int(self.currentUser!.remoteID)) {
+                    self.currentUser!.isGroupOwner = true
+                }
+                
             }
         }
+        
+       
         dispatch_async(dispatch_get_main_queue(), {
             CoreDataStackManager.sharedInstance.saveContext()
             completionHandler(success: true, errorMessage: nil)

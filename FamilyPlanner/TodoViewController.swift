@@ -50,14 +50,17 @@ class TodoViewController: UIViewController, NSFetchedResultsControllerDelegate, 
 
     func archiveTodos() {
         let todos = fetchedResultsController.fetchedObjects as! [Todo]
+  
         for todo in todos {
             if todo.completed {
                 todo.archived = true
+                todo.synced = false
             }
         }
         dispatch_async(dispatch_get_main_queue(), {
             CoreDataStackManager.sharedInstance.saveContext()
         })
+        // TODO: update in background thread
     }
     
     lazy var refreshControl: UIRefreshControl = {

@@ -143,7 +143,7 @@ extension FamilyPlannerClient {
                         if success {
                             dispatch_group_leave(group)
                         }
-                    }
+                    }                    
                 } else {
                     //update
                     updateTodo(todo) { success, errorMessage in
@@ -162,6 +162,7 @@ extension FamilyPlannerClient {
             print("Sync was not successful \(error)")
         }
     }
+    
     
     func updateTodo(todo: Todo, completionHandler: (success: Bool, errorMessage: String?) -> Void) {
         
@@ -193,4 +194,5 @@ extension FamilyPlannerClient {
             })
         }
     }
+ 
 }

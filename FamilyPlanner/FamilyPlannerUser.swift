@@ -69,9 +69,9 @@ extension FamilyPlannerClient {
         // would not be able to actively use this tool on multiple devices, so we just remove the currentUser for now
         // This has nothing to do with the API, but logically it should stay here
         dispatch_async(dispatch_get_main_queue(), {
-            self.sharedContext.deleteObject(self.currentUser!)
-            self.currentUser = nil
+            self.currentUser!.isCurrentUser = false
             CoreDataStackManager.sharedInstance.saveContext()
+            self.currentUser = nil
             completionHandler(success: true, errorMessage: nil)
         })
     }
@@ -150,6 +150,7 @@ extension FamilyPlannerClient {
             "auth_token" : json["auth_token"].stringValue
         ]
         self.currentUser = User(properties: properties, context: sharedContext)
+        self.currentUser!.isCurrentUser = true
         
         // see if the user already is assigned to a group
         if json["group"]["id"].int != nil {

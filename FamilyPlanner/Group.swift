@@ -17,6 +17,7 @@ class Group : NSManagedObject {
     
     @NSManaged var todos : [Todo]
     @NSManaged var messages : [Message]
+    @NSManaged var users : [User]
     
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         

@@ -46,6 +46,8 @@ class FamilyPlannerClient: NSObject {
     
     func loadCurrentUser() {
         let fetchRequest = NSFetchRequest(entityName: "User")
+        let predicate = NSPredicate(format: "isCurrentUser == %@", true)
+        fetchRequest.predicate = predicate
         var users:[User] = []
         do {
             let results = try sharedContext.executeFetchRequest(fetchRequest)

@@ -10,6 +10,7 @@ class User : NSManagedObject {
     @NSManaged var remoteID: NSNumber
     @NSManaged var isGroupOwner: Bool
     @NSManaged var email : String
+    @NSManaged var name : String
     @NSManaged var auth_token : String
     @NSManaged var group: Group?
     
@@ -26,6 +27,7 @@ class User : NSManagedObject {
         
         remoteID = NSNumber(integer: properties["id"] as! Int)
         email = properties["email"] as! String
+        name = properties["name"] as! String
         auth_token = properties["auth_token"] as! String
         isGroupOwner = false
 

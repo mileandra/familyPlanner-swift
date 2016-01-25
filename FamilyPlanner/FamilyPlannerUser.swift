@@ -145,6 +145,7 @@ extension FamilyPlannerClient {
         print("JSON: \(json)")
         let properties = [
             "email": json["email"].stringValue,
+            "name": json["name"].stringValue,
             "id" : json["id"].intValue,
             "auth_token" : json["auth_token"].stringValue
         ]

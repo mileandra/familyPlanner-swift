@@ -17,7 +17,7 @@ class SignUpViewController: UIViewController, AlertRenderer, TapKeyboardDismisse
     
 
     @IBOutlet weak var emailField: CustomizableTextField!
-    
+    @IBOutlet weak var nameField: CustomizableTextField!
     @IBOutlet weak var passwordField: CustomizableTextField!
     
     @IBOutlet weak var passwordConfirmField: CustomizableTextField!
@@ -31,10 +31,11 @@ class SignUpViewController: UIViewController, AlertRenderer, TapKeyboardDismisse
         }
         
         let email = emailField.text!
+        let name = nameField.text!
         let password = passwordField.text!
         let passwordConfirmation = passwordConfirmField.text!
         
-        if (email == "" || password == "" || passwordConfirmation == "") {
+        if (email == "" || password == "" || name == "" || passwordConfirmation == "") {
             presentAlert("Error", message: "Please fill in all fields")
             return
         }
@@ -46,6 +47,7 @@ class SignUpViewController: UIViewController, AlertRenderer, TapKeyboardDismisse
         let params = [
             "user": [
                 "email": email,
+                "name": name,
                 "password": password,
                 "password_confirmation": passwordConfirmation
             ]

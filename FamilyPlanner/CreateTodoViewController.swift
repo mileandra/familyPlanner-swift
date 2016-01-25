@@ -21,7 +21,8 @@ class CreateTodoViewController: UIViewController, AlertRenderer {
             "completed" : false,
             "synced" : false
         ]
-        let todo = Todo(properties: properties, context: sharedContext)
+        let group = FamilyPlannerClient.sharedInstance.currentUser!.group!
+        let todo = Todo(properties: properties, group: group, context: sharedContext)
         
         if title == "" {
             presentAlert("Error", message: "Please enter a desciption")

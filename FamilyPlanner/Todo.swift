@@ -15,14 +15,14 @@ class Todo: NSManagedObject {
     @NSManaged var synced: Bool
     @NSManaged var archived: Bool
     
-    //TODO: add group reference
+    @NSManaged var group : Group
     
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         
         super.init(entity: entity, insertIntoManagedObjectContext: context)
     }
     
-    init(properties: NSDictionary, context: NSManagedObjectContext) {
+    init(properties: NSDictionary, group: Group, context: NSManagedObjectContext) {
         
         //Core Data
         let entity = NSEntityDescription.entityForName("Todo", inManagedObjectContext: context)!
@@ -33,8 +33,9 @@ class Todo: NSManagedObject {
         
         title = properties["title"] as! String
         completed = properties["completed"] as! Bool
-        synced = true
+        synced = false as! Bool
         archived = false
+        self.group = group
     }
 
 }

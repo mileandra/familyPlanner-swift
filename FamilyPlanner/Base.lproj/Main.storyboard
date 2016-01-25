@@ -57,6 +57,7 @@
                         <segue destination="eoP-zx-ecv" kind="custom" identifier="showManageGroupSegue" customClass="SWRevealViewControllerSeguePushController" id="c9a-fh-Pdv"/>
                         <segue destination="B0N-Ck-gQD" kind="custom" identifier="showDashboardSegue" customClass="SWRevealViewControllerSeguePushController" id="gZs-Y5-0sL"/>
                         <segue destination="xio-Bn-KaU" kind="custom" identifier="showTodoSegue" customClass="SWRevealViewControllerSeguePushController" id="osE-IA-fjX"/>
+                        <segue destination="BJS-Sk-Xsv" kind="custom" identifier="showMessagesSegue" customClass="SWRevealViewControllerSeguePushController" id="xfr-bG-KeS"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OeQ-vy-t8H" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1064,6 +1065,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Az6-3K-juZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="249.75" y="-503"/>
+        </scene>
+        <!--Messages-->
+        <scene sceneID="1g0-o7-n8q">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Messages" id="BJS-Sk-Xsv" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UQA-IW-0xy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="261" y="-451"/>
         </scene>
     </scenes>
     <resources>

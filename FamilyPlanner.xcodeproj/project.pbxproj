@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		710A1BD21C24A4AC00500E25 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710A1BD11C24A4AC00500E25 /* SideMenuViewController.swift */; };
+		7118E87D1C46777F00C3BFAA /* CreateMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7118E87C1C46777F00C3BFAA /* CreateMessageViewController.swift */; };
 		7130C51B1C18C4BC007DCDE9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7130C51A1C18C4BC007DCDE9 /* AppDelegate.swift */; };
 		7130C51D1C18C4BC007DCDE9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7130C51C1C18C4BC007DCDE9 /* ViewController.swift */; };
 		7130C5221C18C4BC007DCDE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7130C5211C18C4BC007DCDE9 /* Assets.xcassets */; };
@@ -37,7 +38,13 @@
 		71BD1FAB1C220ACD0052A13C /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BD1FAA1C220ACD0052A13C /* CoreDataStackManager.swift */; };
 		71BD1FAE1C220AF50052A13C /* FamilyPlanner.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 71BD1FAC1C220AF50052A13C /* FamilyPlanner.xcdatamodeld */; };
 		71BD1FB41C234F410052A13C /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71BD1FB31C234F410052A13C /* SWRevealViewController.m */; };
+		71CDA25F1C4AE230002F5240 /* MessageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CDA25E1C4AE230002F5240 /* MessageDetailViewController.swift */; };
+		71CDA2611C4AECE0002F5240 /* MessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CDA2601C4AECE0002F5240 /* MessageCollectionViewCell.swift */; };
 		71D2C0E51C41CCE30069417E /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D2C0E41C41CCE30069417E /* Connection.swift */; };
+		71D2C0E71C444E490069417E /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D2C0E61C444E490069417E /* Message.swift */; };
+		71D2C0E91C4452160069417E /* FamilyPlannerMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D2C0E81C4452160069417E /* FamilyPlannerMessages.swift */; };
+		71D2C0EC1C4455C90069417E /* Messages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71D2C0EA1C4455C90069417E /* Messages.storyboard */; };
+		71D2C0EF1C4456AB0069417E /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D2C0EE1C4456AB0069417E /* MessagesViewController.swift */; };
 		BF838AD54C357D2A45360CC0 /* FamilyPlannerConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF838483611C6BC21E99F762 /* FamilyPlannerConstants.swift */; };
 		BF838CE0D0704E2ACED54F0B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8384942B60180B9563201D /* User.swift */; };
 		BF838EC8C5DAE859BB192BAB /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF83865844D7BF7E8EE608C1 /* MenuItem.swift */; };
@@ -46,6 +53,7 @@
 
 /* Begin PBXFileReference section */
 		710A1BD11C24A4AC00500E25 /* SideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
+		7118E87C1C46777F00C3BFAA /* CreateMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateMessageViewController.swift; sourceTree = "<group>"; };
 		7130C5171C18C4BC007DCDE9 /* FamilyPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FamilyPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7130C51A1C18C4BC007DCDE9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7130C51C1C18C4BC007DCDE9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -79,7 +87,13 @@
 		71BD1FB11C234F410052A13C /* FamilyPlanner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FamilyPlanner-Bridging-Header.h"; sourceTree = "<group>"; };
 		71BD1FB21C234F410052A13C /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		71BD1FB31C234F410052A13C /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		71CDA25E1C4AE230002F5240 /* MessageDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageDetailViewController.swift; sourceTree = "<group>"; };
+		71CDA2601C4AECE0002F5240 /* MessageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCollectionViewCell.swift; sourceTree = "<group>"; };
 		71D2C0E41C41CCE30069417E /* Connection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
+		71D2C0E61C444E490069417E /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		71D2C0E81C4452160069417E /* FamilyPlannerMessages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyPlannerMessages.swift; sourceTree = "<group>"; };
+		71D2C0EB1C4455C90069417E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Messages.storyboard; sourceTree = "<group>"; };
+		71D2C0EE1C4456AB0069417E /* MessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		BF838483611C6BC21E99F762 /* FamilyPlannerConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyPlannerConstants.swift; sourceTree = "<group>"; };
 		BF8384942B60180B9563201D /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BF83865844D7BF7E8EE608C1 /* MenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
@@ -105,6 +119,7 @@
 				71898DFE1C41B3F800A83EFB /* Todos.storyboard */,
 				7130C5231C18C4BC007DCDE9 /* LaunchScreen.storyboard */,
 				7130C5411C1A1E4C007DCDE9 /* Main.storyboard */,
+				71D2C0EA1C4455C90069417E /* Messages.storyboard */,
 				7192DB5D1C307AA50029465B /* ManageGroup.storyboard */,
 			);
 			name = Storyboards;
@@ -152,6 +167,7 @@
 		7130C5311C18C7C8007DCDE9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				71D2C0ED1C4456880069417E /* Messages */,
 				7170E02C1C3C5EAB00AA968A /* Todo */,
 				7170E02B1C3C5E9B00AA968A /* Group */,
 				7170E02A1C3C5E8D00AA968A /* Account */,
@@ -166,9 +182,10 @@
 			children = (
 				7130C53E1C1A0549007DCDE9 /* FamilyPlannerApi */,
 				BF8384942B60180B9563201D /* User.swift */,
+				7170E0301C3C699400AA968A /* Todo.swift */,
 				7192DB591C2F51190029465B /* Group.swift */,
 				BF83865844D7BF7E8EE608C1 /* MenuItem.swift */,
-				7170E0301C3C699400AA968A /* Todo.swift */,
+				71D2C0E61C444E490069417E /* Message.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -177,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				7130C5381C198659007DCDE9 /* CustomizableTextField.swift */,
+				71CDA2601C4AECE0002F5240 /* MessageCollectionViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -188,6 +206,7 @@
 				BF838483611C6BC21E99F762 /* FamilyPlannerConstants.swift */,
 				BF8389D7D39858C6ACCA5938 /* FamilyPlannerUser.swift */,
 				71898E011C41BF1000A83EFB /* FamilyPlannerTodos.swift */,
+				71D2C0E81C4452160069417E /* FamilyPlannerMessages.swift */,
 			);
 			name = FamilyPlannerApi;
 			sourceTree = "<group>";
@@ -246,6 +265,16 @@
 				71D2C0E41C41CCE30069417E /* Connection.swift */,
 			);
 			name = Util;
+			sourceTree = "<group>";
+		};
+		71D2C0ED1C4456880069417E /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				71D2C0EE1C4456AB0069417E /* MessagesViewController.swift */,
+				7118E87C1C46777F00C3BFAA /* CreateMessageViewController.swift */,
+				71CDA25E1C4AE230002F5240 /* MessageDetailViewController.swift */,
+			);
+			name = Messages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -312,6 +341,7 @@
 				714F03651C2750EE0086AB7A /* .gitignore in Resources */,
 				71898E001C41B3F800A83EFB /* Todos.storyboard in Resources */,
 				7130C5431C1A1E4C007DCDE9 /* Main.storyboard in Resources */,
+				71D2C0EC1C4455C90069417E /* Messages.storyboard in Resources */,
 				7130C5251C18C4BC007DCDE9 /* LaunchScreen.storyboard in Resources */,
 				7130C5221C18C4BC007DCDE9 /* Assets.xcassets in Resources */,
 			);
@@ -342,9 +372,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71D2C0EF1C4456AB0069417E /* MessagesViewController.swift in Sources */,
 				710A1BD21C24A4AC00500E25 /* SideMenuViewController.swift in Sources */,
 				7130C5331C18C7E6007DCDE9 /* LoginViewController.swift in Sources */,
 				7130C5461C1A24ED007DCDE9 /* EZLoadingActivity.swift in Sources */,
+				71CDA2611C4AECE0002F5240 /* MessageCollectionViewCell.swift in Sources */,
 				7170E02E1C3C5EC300AA968A /* CreateTodoViewController.swift in Sources */,
 				71BD1FB41C234F410052A13C /* SWRevealViewController.m in Sources */,
 				714F036A1C2F3A500086AB7A /* AlertRenderer.swift in Sources */,
@@ -355,8 +387,10 @@
 				7192DB5A1C2F51190029465B /* Group.swift in Sources */,
 				7170E0311C3C699400AA968A /* Todo.swift in Sources */,
 				7192DB621C316D4F0029465B /* Platform.swift in Sources */,
+				71D2C0E71C444E490069417E /* Message.swift in Sources */,
 				7130C51B1C18C4BC007DCDE9 /* AppDelegate.swift in Sources */,
 				7130C53B1C199B4C007DCDE9 /* SignUpViewController.swift in Sources */,
+				71CDA25F1C4AE230002F5240 /* MessageDetailViewController.swift in Sources */,
 				714F03671C2F2F690086AB7A /* CreateGroupViewController.swift in Sources */,
 				BF838AD54C357D2A45360CC0 /* FamilyPlannerConstants.swift in Sources */,
 				71898E021C41BF1000A83EFB /* FamilyPlannerTodos.swift in Sources */,
@@ -367,6 +401,8 @@
 				71BD1FAE1C220AF50052A13C /* FamilyPlanner.xcdatamodeld in Sources */,
 				7170E0221C332BBE00AA968A /* TapKeyboardDismisser.swift in Sources */,
 				BF838CE0D0704E2ACED54F0B /* User.swift in Sources */,
+				7118E87D1C46777F00C3BFAA /* CreateMessageViewController.swift in Sources */,
+				71D2C0E91C4452160069417E /* FamilyPlannerMessages.swift in Sources */,
 				7192DB5C1C30705B0029465B /* ManageGroupViewController.swift in Sources */,
 				BF838EC8C5DAE859BB192BAB /* MenuItem.swift in Sources */,
 			);
@@ -405,6 +441,14 @@
 				7192DB5E1C307AA50029465B /* Base */,
 			);
 			name = ManageGroup.storyboard;
+			sourceTree = "<group>";
+		};
+		71D2C0EA1C4455C90069417E /* Messages.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				71D2C0EB1C4455C90069417E /* Base */,
+			);
+			name = Messages.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

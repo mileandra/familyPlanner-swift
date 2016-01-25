@@ -4,6 +4,18 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="ownerID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="remoteID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <relationship name="messages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Message" inverseName="group" inverseEntity="Message" syncable="YES"/>
+        <relationship name="todos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Todo" inverseName="group" inverseEntity="Todo" syncable="YES"/>
+    </entity>
+    <entity name="Message" representedClassName=".Message" syncable="YES">
+        <attribute name="message" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="read" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="remoteID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="subject" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="synced" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Group" inverseName="messages" inverseEntity="Group" syncable="YES"/>
+        <relationship name="messages" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Message" inverseName="parent" inverseEntity="Message" syncable="YES"/>
+        <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Message" inverseName="messages" inverseEntity="Message" syncable="YES"/>
     </entity>
     <entity name="Todo" representedClassName=".Todo" syncable="YES">
         <attribute name="archived" optional="YES" attributeType="Boolean" syncable="YES"/>
@@ -11,6 +23,7 @@
         <attribute name="remoteID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="synced" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Group" inverseName="todos" inverseEntity="Group" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName=".User" syncable="YES">
         <attribute name="auth_token" optional="YES" attributeType="String" syncable="YES"/>
@@ -18,11 +31,12 @@
         <attribute name="isGroupOwner" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="remoteID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <relationship name="group" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Group" syncable="YES"/>
+        <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Group" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Group" positionX="-54" positionY="0" width="128" height="98"/>
-        <element name="Todo" positionX="-54" positionY="27" width="128" height="132"/>
-        <element name="User" positionX="-63" positionY="-27" width="128" height="149"/>
+        <element name="Group" positionX="-54" positionY="0" width="128" height="132"/>
+        <element name="Message" positionX="-54" positionY="54" width="128" height="183"/>
+        <element name="Todo" positionX="-54" positionY="27" width="128" height="30"/>
+        <element name="User" positionX="-63" positionY="-27" width="128" height="132"/>
     </elements>
 </model>

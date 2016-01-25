@@ -53,11 +53,11 @@ extension FamilyPlannerClient {
         }
         
         var params:[String:String]? = nil
-        if lastSyncTime != nil {
+        if getGroup().lastTodoSyncTime != nil {
             let formatter = NSDateFormatter()
             formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZ"
             params = [
-                "since": formatter.stringFromDate(lastSyncTime!)
+                "since": formatter.stringFromDate(getGroup().lastTodoSyncTime!)
             ]
         }
 
@@ -100,7 +100,7 @@ extension FamilyPlannerClient {
                 }
                 let formatter = NSDateFormatter()
                 formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-                self.saveLastSyncTime(formatter.dateFromString(json["synctime"].stringValue))
+                self.getGroup().lastTodoSyncTime = formatter.dateFromString(json["synctime"].stringValue)
             }
             
             dispatch_async(dispatch_get_main_queue(), {

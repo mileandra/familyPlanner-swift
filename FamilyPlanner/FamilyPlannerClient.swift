@@ -15,33 +15,12 @@ class FamilyPlannerClient: NSObject {
     static let sharedInstance = FamilyPlannerClient()
 
     var currentUser : User?
-    var lastSyncTime : NSDate?
     
     var alamofireManager:Alamofire.Manager?
 
     private override init() {
         super.init()
-        lastSyncTime = getLastSyncTime()
         loadCurrentUser()
-    }
-    
-    func getLastSyncTime() -> NSDate? {
-        if lastSyncTime != nil {
-            return lastSyncTime
-        }
-        if let lastUpdate : NSDate = NSUserDefaults.standardUserDefaults().objectForKey(Constants.LAST_TODO_UPDATE_TIME) as? NSDate {
-            return lastUpdate
-        }
-        return nil
-    }
-    
-    func saveLastSyncTime(newDate: NSDate?) {
-        print("setting last sync time \(newDate)")
-        if newDate == nil {
-            return
-        }
-        lastSyncTime = newDate!
-        NSUserDefaults.standardUserDefaults().setObject(lastSyncTime, forKey: Constants.LAST_TODO_UPDATE_TIME)
     }
     
     func loadCurrentUser() {

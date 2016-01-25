@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="14F27" minimumToolsVersion="Xcode 7.0">
     <entity name="Group" representedClassName=".Group" syncable="YES">
+        <attribute name="lastMessageSyncTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="lastTodoSyncTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="ownerID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="remoteID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
@@ -36,7 +38,7 @@
         <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Group" inverseName="users" inverseEntity="Group" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Group" positionX="-54" positionY="0" width="128" height="149"/>
+        <element name="Group" positionX="-54" positionY="0" width="128" height="183"/>
         <element name="Message" positionX="-54" positionY="54" width="128" height="183"/>
         <element name="Todo" positionX="-54" positionY="27" width="128" height="30"/>
         <element name="User" positionX="-63" positionY="-27" width="128" height="166"/>

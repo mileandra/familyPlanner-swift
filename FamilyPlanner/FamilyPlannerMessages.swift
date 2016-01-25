@@ -65,11 +65,11 @@ extension FamilyPlannerClient {
         }
         
         var params:[String:String]? = nil
-        if lastSyncTime != nil {
+        if getGroup().lastMessageSyncTime != nil {
             let formatter = NSDateFormatter()
             formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZ"
             params = [
-                "since": formatter.stringFromDate(lastSyncTime!)
+                "since": formatter.stringFromDate(getGroup().lastMessageSyncTime!)
             ]
         }
         
@@ -110,8 +110,7 @@ extension FamilyPlannerClient {
                 }
                 let formatter = NSDateFormatter()
                 formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-                //TODO: need separate message sync time
-                self.saveLastSyncTime(formatter.dateFromString(json["synctime"].stringValue))
+                self.getGroup().lastMessageSyncTime = formatter.dateFromString(json["synctime"].stringValue)
             }
             
             dispatch_async(dispatch_get_main_queue(), {

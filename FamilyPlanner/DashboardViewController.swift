@@ -39,6 +39,8 @@ class DashboardViewController: UIViewController {
             dispatch_async(backgroundQueue, {
                 FamilyPlannerClient.sharedInstance.sync() { success, errorMessage in
                 }
+                FamilyPlannerClient.sharedInstance.syncMessages() { success, errorMessage in
+                }
             })
            
         }

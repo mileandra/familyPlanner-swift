@@ -96,6 +96,7 @@ extension FamilyPlannerClient {
                         } else {
                             // we do not have any results - create a new Message
                             let properties = [
+                                "subject": message["subject"].stringValue,
                                 "message": message["message"].stringValue,
                                 "id": message["id"].intValue
                             ]

@@ -170,7 +170,8 @@ extension FamilyPlannerClient {
             "id": todo.remoteID!,
             "todo": [
                 "title": todo.title,
-                "completed": todo.completed
+                "completed": todo.completed,
+                "archived": todo.archived
             ]
         ]
         // in case something goes wrong we wanna sync later
@@ -187,7 +188,9 @@ extension FamilyPlannerClient {
             }
             
             todo.synced = Bool(true)
-            print(todo.synced)
+            if todo.archived == true && data!["archived"].boolValue == true {
+                self.sharedContext.deleteObject(todo)
+            }
             dispatch_async(dispatch_get_main_queue(), {
                 CoreDataStackManager.sharedInstance.saveContext()
                 completionHandler(success: true, errorMessage: nil)

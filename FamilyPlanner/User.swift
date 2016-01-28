@@ -34,4 +34,5 @@ class User : NSManagedObject {
         isCurrentUser = false
     }
     
+        
 }

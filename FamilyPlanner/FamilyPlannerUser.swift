@@ -137,6 +137,23 @@ extension FamilyPlannerClient {
         
     }
     
+    func removeUserFromGroup(user: User, completionHandler: (success: Bool, errorMessage: String?) -> Void) {
+        let params = [
+            "user_id": user.remoteID
+        ]
+        handleRequest(true, url: "\(Methods.GROUPS)remove_member", type: Alamofire.Method.POST, params: params) { success, errorMessage, data in
+            if success == false || data == nil {
+                completionHandler(success: false, errorMessage: errorMessage)
+                return
+            }
+            self.sharedContext.deleteObject(user)
+            dispatch_async(dispatch_get_main_queue(), {
+                CoreDataStackManager.sharedInstance.saveContext()
+                completionHandler(success: true, errorMessage: nil)
+            })
+        }
+    }
+    
     func syncGroup(completionHandler: (success: Bool, errorMessage: String?) -> Void) {
         if hasGroup() {
             handleRequest(true, url: Methods.GROUPS + "\(getGroup().remoteID)", type: Alamofire.Method.GET, params: nil) { success, errorMessage, data in
@@ -148,8 +165,10 @@ extension FamilyPlannerClient {
                 }
                 
                 let json = data!
+                var ids:[NSNumber] = [NSNumber]()
                 if let users = json["users"].array {
                     for user in users {
+                        ids.append(NSNumber(integer: user["id"].intValue))
                         // We need to check if we already have the todo saved
                         let predicate = NSPredicate(format: "remoteID == %@", NSNumber(integer: user["id"].intValue))
                         
@@ -168,6 +187,7 @@ extension FamilyPlannerClient {
                                 // we do not have any results - create a new Todo
                                 let properties = [
                                     "name": user["name"].stringValue,
+                                    "email": user["email"].stringValue,
                                     "id": user["id"].intValue
                                 ]
                                 let newUser = User(properties: properties,  context: self.sharedContext)
@@ -176,11 +196,25 @@ extension FamilyPlannerClient {
                         } catch {
                             print("There was an error while syncing")
                         }
-                        
                     }
-                    let formatter = NSDateFormatter()
-                    formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-                    self.getGroup().lastTodoSyncTime = formatter.dateFromString(json["synctime"].stringValue)
+                    
+                    let isPredicate = NSPredicate(format: "NOT(remoteID IN %@) AND group == %@", ids, self.getGroup())
+                    let fetchRequest = NSFetchRequest(entityName: "User")
+                    fetchRequest.predicate = isPredicate
+                    do {
+                        let fetchedEntities = try self.sharedContext.executeFetchRequest(fetchRequest) as! [User]
+                        if fetchedEntities.count > 0 {
+                            for user in fetchedEntities {
+                                self.sharedContext.deleteObject(user)
+                            }
+                        }
+                    } catch {
+                        print("Unable to remove inactive users")
+                    }
+                    dispatch_async(dispatch_get_main_queue(), {
+                        CoreDataStackManager.sharedInstance.saveContext()
+                        completionHandler(success: true, errorMessage: nil)
+                    })
                 }
             }
         }

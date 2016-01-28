@@ -10,7 +10,7 @@
         <!--Navigation Controller-->
         <scene sceneID="7Xz-yo-syK">
             <objects>
-                <navigationController id="0IG-AS-7Ql" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="messagesViewController" id="0IG-AS-7Ql" sceneMemberID="viewController">
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="AbstractSizeClassScreen[widthClass=compact]"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="3vC-Iv-HQr">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -44,7 +44,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qlG-iT-wGj" id="B1g-DD-sVX">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="207" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -112,6 +112,7 @@
                         <viewControllerLayoutGuide type="bottom" id="kC5-MA-MEn"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="70j-Vp-0U9">
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CSG-4v-xZH">
@@ -249,14 +250,14 @@
                                 <exclude reference="e7U-JE-pv3"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="DbX-JA-bPc"/>
+                                <exclude reference="O9E-uf-acp"/>
+                                <exclude reference="4bG-Pi-VnE"/>
+                                <exclude reference="Xye-Hc-SzG"/>
                                 <exclude reference="6IO-Np-7ui"/>
                                 <exclude reference="NUM-S7-CvU"/>
                                 <exclude reference="prA-lh-3cE"/>
                                 <exclude reference="vfe-UQ-7tU"/>
-                                <exclude reference="4bG-Pi-VnE"/>
-                                <exclude reference="Xye-Hc-SzG"/>
-                                <exclude reference="DbX-JA-bPc"/>
-                                <exclude reference="O9E-uf-acp"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -265,14 +266,14 @@
                                 <include reference="e7U-JE-pv3"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="DbX-JA-bPc"/>
+                                <include reference="O9E-uf-acp"/>
+                                <include reference="4bG-Pi-VnE"/>
+                                <include reference="Xye-Hc-SzG"/>
                                 <exclude reference="6IO-Np-7ui"/>
                                 <include reference="NUM-S7-CvU"/>
                                 <include reference="prA-lh-3cE"/>
                                 <include reference="vfe-UQ-7tU"/>
-                                <include reference="4bG-Pi-VnE"/>
-                                <include reference="Xye-Hc-SzG"/>
-                                <include reference="DbX-JA-bPc"/>
-                                <include reference="O9E-uf-acp"/>
                             </mask>
                         </variation>
                     </view>
@@ -372,11 +373,11 @@
                                 <exclude reference="P1t-dc-9fG"/>
                                 <exclude reference="RSR-lU-LjV"/>
                                 <exclude reference="WQ8-PW-sKj"/>
+                                <exclude reference="3gu-7m-fnU"/>
+                                <exclude reference="4A5-eV-ZSG"/>
                                 <exclude reference="I0W-TE-Bkx"/>
                                 <exclude reference="SDS-aC-H69"/>
                                 <exclude reference="h1I-vm-jOi"/>
-                                <exclude reference="3gu-7m-fnU"/>
-                                <exclude reference="4A5-eV-ZSG"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -389,11 +390,11 @@
                                 <include reference="P1t-dc-9fG"/>
                                 <include reference="RSR-lU-LjV"/>
                                 <include reference="WQ8-PW-sKj"/>
+                                <include reference="3gu-7m-fnU"/>
+                                <include reference="4A5-eV-ZSG"/>
                                 <include reference="I0W-TE-Bkx"/>
                                 <include reference="SDS-aC-H69"/>
                                 <include reference="h1I-vm-jOi"/>
-                                <include reference="3gu-7m-fnU"/>
-                                <include reference="4A5-eV-ZSG"/>
                             </mask>
                         </variation>
                     </view>

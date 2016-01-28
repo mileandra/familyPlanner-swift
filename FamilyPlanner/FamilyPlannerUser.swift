@@ -10,6 +10,7 @@ import Alamofire
 
 extension FamilyPlannerClient {
 
+    // create a new session
     func loginUser(email: String, password: String, completionHandler: (success: Bool, errorMessage: String?) -> Void) {
         let params = [
                 "session": [
@@ -35,6 +36,7 @@ extension FamilyPlannerClient {
         }
     }
 
+    // create a new user
     func signupUser(params: [String : AnyObject]?, completionHandler: (success: Bool, errorMessage: String?) -> Void) {
         Alamofire.request(.POST, Constants.BASE_URL() + Methods.USERS, parameters: params).responseJSON { response in
             
@@ -75,6 +77,7 @@ extension FamilyPlannerClient {
         })
     }
     
+    // create a new group
     func createGroup(params: [String : AnyObject]?, completionHandler: (success: Bool, errorMessage: String?) -> Void) {
 
         handleRequest(true, url: Methods.GROUPS, type: Alamofire.Method.POST, params: params) { success, errorMessage, data in
@@ -99,6 +102,7 @@ extension FamilyPlannerClient {
         }
     }
     
+    // Create a new invite
     func createInvite(completionHandler: (success: Bool, errorMessage: String?, code: String?) -> Void) {
 
         handleRequest(true, url: Methods.INVITE, type: Alamofire.Method.POST, params: nil) { success, errorMessage, data in
@@ -116,6 +120,7 @@ extension FamilyPlannerClient {
         }
     }
 
+    // Accept an invitation to join a group
     func acceptInvite(params: [String : AnyObject]?, completionHandler: (success: Bool, errorMessage: String?) -> Void) {
 
         handleRequest(true, url: Methods.INVITE_ACCEPT, type: Alamofire.Method.POST, params: params) { success, errorMessage, data in
@@ -137,6 +142,7 @@ extension FamilyPlannerClient {
         
     }
     
+    // Only for group owners - they may remove a member from the group
     func removeUserFromGroup(user: User, completionHandler: (success: Bool, errorMessage: String?) -> Void) {
         let params = [
             "user_id": user.remoteID
@@ -154,6 +160,7 @@ extension FamilyPlannerClient {
         }
     }
     
+    // Get Group data and members
     func syncGroup(completionHandler: (success: Bool, errorMessage: String?) -> Void) {
         if hasGroup() {
             handleRequest(true, url: Methods.GROUPS + "\(getGroup().remoteID)", type: Alamofire.Method.GET, params: nil) { success, errorMessage, data in
@@ -198,6 +205,7 @@ extension FamilyPlannerClient {
                         }
                     }
                     
+                    // We need to remove all users that might still be saved on the device for the group and are not on the server anymore
                     let isPredicate = NSPredicate(format: "NOT(remoteID IN %@) AND group == %@", ids, self.getGroup())
                     let fetchRequest = NSFetchRequest(entityName: "User")
                     fetchRequest.predicate = isPredicate
@@ -285,6 +293,7 @@ extension FamilyPlannerClient {
             }
         }
         
+        // sync group if the user already belongs to one
         if self.currentUser!.group != nil {
             dispatch_async(dispatch_get_main_queue(), {
                 CoreDataStackManager.sharedInstance.saveContext()

@@ -62,9 +62,9 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="903-7l-fCf">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="903-7l-fCf">
                                         <rect key="frame" x="7" y="46" width="48" height="30"/>
-                                        <state key="normal" title="Cancel">
+                                        <state key="normal" title="Close">
                                             <color key="titleColor" red="0.25490196079999999" green="0.41568627450000001" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
@@ -93,17 +93,45 @@
                                     <constraint firstItem="3L0-dy-vaF" firstAttribute="leading" secondItem="B2i-Fb-imc" secondAttribute="leading" constant="8" id="ym0-l9-xyv"/>
                                 </constraints>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SOB-bS-XPf">
+                                <rect key="frame" x="-1" y="101" width="401" height="499"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MemberCell" rowHeight="30" id="W6P-OA-W1w">
+                                        <rect key="frame" x="0.0" y="28" width="401" height="30"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="W6P-OA-W1w" id="6Hd-md-xeS">
+                                            <rect key="frame" x="0.0" y="0.0" width="401" height="29"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="lSG-L0-08J" id="Oqj-rY-pEk"/>
+                                    <outlet property="delegate" destination="lSG-L0-08J" id="md0-lJ-bMk"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="0.94732373240000001" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="SOB-bS-XPf" secondAttribute="trailing" constant="-20" id="0e0-Cq-mII"/>
+                            <constraint firstItem="SOB-bS-XPf" firstAttribute="top" secondItem="5OF-Zr-Xg0" secondAttribute="bottom" constant="37" id="1na-vR-WZd"/>
                             <constraint firstItem="kgQ-h3-kFi" firstAttribute="leading" secondItem="4rG-GT-GAx" secondAttribute="leadingMargin" id="2Vs-Ad-gDu"/>
                             <constraint firstItem="kgQ-h3-kFi" firstAttribute="top" secondItem="5OF-Zr-Xg0" secondAttribute="bottom" constant="8" id="8k4-QJ-5Tt"/>
+                            <constraint firstItem="SOB-bS-XPf" firstAttribute="leading" secondItem="4rG-GT-GAx" secondAttribute="leadingMargin" constant="-21" id="D2j-B5-pYt"/>
                             <constraint firstItem="Rw2-hk-css" firstAttribute="top" secondItem="5OF-Zr-Xg0" secondAttribute="bottom" constant="7" id="D6y-tp-ii5"/>
                             <constraint firstItem="B2i-Fb-imc" firstAttribute="top" secondItem="Rw2-hk-css" secondAttribute="bottom" constant="8" id="Gr9-Q1-jG0"/>
+                            <constraint firstItem="LnK-4u-Dy9" firstAttribute="top" secondItem="SOB-bS-XPf" secondAttribute="bottom" id="PKl-k4-jDR"/>
                             <constraint firstItem="Rw2-hk-css" firstAttribute="trailing" secondItem="4rG-GT-GAx" secondAttribute="trailingMargin" id="Z53-Uk-176"/>
+                            <constraint firstItem="LnK-4u-Dy9" firstAttribute="top" secondItem="SOB-bS-XPf" secondAttribute="bottom" id="hS3-ue-HcQ"/>
                             <constraint firstItem="B2i-Fb-imc" firstAttribute="trailing" secondItem="4rG-GT-GAx" secondAttribute="trailingMargin" id="jsp-9w-wm4"/>
                             <constraint firstItem="B2i-Fb-imc" firstAttribute="leading" secondItem="4rG-GT-GAx" secondAttribute="leadingMargin" id="uyC-nm-CbU"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="hS3-ue-HcQ"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Manage Group" id="T1g-mP-yha">
                         <barButtonItem key="leftBarButtonItem" image="HamburgerMenu" id="ivq-e8-Ms9"/>
@@ -112,6 +140,8 @@
                         <outlet property="invitationCode" destination="3L0-dy-vaF" id="jm4-yC-f27"/>
                         <outlet property="invitationView" destination="B2i-Fb-imc" id="d0X-4f-4pp"/>
                         <outlet property="menuBtn" destination="ivq-e8-Ms9" id="uAN-79-riJ"/>
+                        <outlet property="tableView" destination="SOB-bS-XPf" id="7Jd-3L-URu"/>
+                        <outlet property="tableViewTop" destination="1na-vR-WZd" id="9HI-px-wq8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m7J-IV-554" userLabel="First Responder" sceneMemberID="firstResponder"/>

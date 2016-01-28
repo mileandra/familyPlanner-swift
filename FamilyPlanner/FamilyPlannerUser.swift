@@ -52,7 +52,6 @@ extension FamilyPlannerClient {
                     return
                 } else {
                     self.persistUser(json, completionHandler: completionHandler)
-                   
                 }
                 
             }
@@ -131,16 +130,99 @@ extension FamilyPlannerClient {
             
             dispatch_async(dispatch_get_main_queue(), {
                 CoreDataStackManager.sharedInstance.saveContext()
-                completionHandler(success: true, errorMessage: nil)
+                self.syncGroup(completionHandler);
             })
             return
         }
         
     }
-
-
     
-        
+    func removeUserFromGroup(user: User, completionHandler: (success: Bool, errorMessage: String?) -> Void) {
+        let params = [
+            "user_id": user.remoteID
+        ]
+        handleRequest(true, url: "\(Methods.GROUPS)remove_member", type: Alamofire.Method.POST, params: params) { success, errorMessage, data in
+            if success == false || data == nil {
+                completionHandler(success: false, errorMessage: errorMessage)
+                return
+            }
+            self.sharedContext.deleteObject(user)
+            dispatch_async(dispatch_get_main_queue(), {
+                CoreDataStackManager.sharedInstance.saveContext()
+                completionHandler(success: true, errorMessage: nil)
+            })
+        }
+    }
+    
+    func syncGroup(completionHandler: (success: Bool, errorMessage: String?) -> Void) {
+        if hasGroup() {
+            handleRequest(true, url: Methods.GROUPS + "\(getGroup().remoteID)", type: Alamofire.Method.GET, params: nil) { success, errorMessage, data in
+                if success == false || data == nil {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        completionHandler(success: false, errorMessage: errorMessage)
+                    })
+                    return
+                }
+                
+                let json = data!
+                var ids:[NSNumber] = [NSNumber]()
+                if let users = json["users"].array {
+                    for user in users {
+                        ids.append(NSNumber(integer: user["id"].intValue))
+                        // We need to check if we already have the todo saved
+                        let predicate = NSPredicate(format: "remoteID == %@", NSNumber(integer: user["id"].intValue))
+                        
+                        let fetchRequest = NSFetchRequest(entityName: "User")
+                        fetchRequest.predicate = predicate
+                        
+                        do {
+                            let fetchedEntities = try self.sharedContext.executeFetchRequest(fetchRequest) as! [User]
+                            if fetchedEntities.count == 1 {
+                                // just update the name - we can be sure that id won't change
+                                fetchedEntities.first?.name = user["name"].stringValue
+                                if fetchedEntities.first?.remoteID != self.currentUser!.remoteID {
+                                    fetchedEntities.first?.auth_token = nil
+                                }
+                            } else {
+                                // we do not have any results - create a new Todo
+                                let properties = [
+                                    "name": user["name"].stringValue,
+                                    "email": user["email"].stringValue,
+                                    "id": user["id"].intValue
+                                ]
+                                let newUser = User(properties: properties,  context: self.sharedContext)
+                                newUser.group = self.getGroup()
+                            }
+                        } catch {
+                            print("There was an error while syncing")
+                        }
+                    }
+                    
+                    let isPredicate = NSPredicate(format: "NOT(remoteID IN %@) AND group == %@", ids, self.getGroup())
+                    let fetchRequest = NSFetchRequest(entityName: "User")
+                    fetchRequest.predicate = isPredicate
+                    do {
+                        let fetchedEntities = try self.sharedContext.executeFetchRequest(fetchRequest) as! [User]
+                        if fetchedEntities.count > 0 {
+                            for user in fetchedEntities {
+                                self.sharedContext.deleteObject(user)
+                            }
+                        }
+                    } catch {
+                        print("Unable to remove inactive users")
+                    }
+                    dispatch_async(dispatch_get_main_queue(), {
+                        CoreDataStackManager.sharedInstance.saveContext()
+                        completionHandler(success: true, errorMessage: nil)
+                    })
+                }
+            }
+        }
+    }
+    
+    /**
+    * Persist the user after sign in
+    */
     func persistUser(json: JSON, completionHandler: (success: Bool, errorMessage: String?) -> Void ) {
         let fetchRequest = NSFetchRequest(entityName: "User")
         let predicate = NSPredicate(format: "remoteID == %@", NSNumber(integer: json["id"].intValue))
@@ -171,6 +253,11 @@ extension FamilyPlannerClient {
 
         self.currentUser!.isCurrentUser = true
         
+        // make sure the user is removed from group if he is no longer a member
+        if self.currentUser!.group != nil && json["group"]["id"].int != nil && self.currentUser!.group!.remoteID != NSNumber(integer:json["group"]["id"].intValue) {
+            self.currentUser!.group = nil
+        }
+        
         if self.currentUser!.group == nil && json["group"]["id"].int != nil {
             let fetchRequest = NSFetchRequest(entityName: "Group")
             let predicate = NSPredicate(format: "remoteID == %@", NSNumber(integer:json["group"]["id"].intValue))
@@ -198,6 +285,13 @@ extension FamilyPlannerClient {
             }
         }
         
+        if self.currentUser!.group != nil {
+            dispatch_async(dispatch_get_main_queue(), {
+                CoreDataStackManager.sharedInstance.saveContext()
+                self.syncGroup(completionHandler)
+            })
+            return
+        }
        
         dispatch_async(dispatch_get_main_queue(), {
             CoreDataStackManager.sharedInstance.saveContext()

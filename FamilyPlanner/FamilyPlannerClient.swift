@@ -37,6 +37,9 @@ class FamilyPlannerClient: NSObject {
         }
         if users.count > 0 {
             currentUser = users[0]
+            syncGroup() { success, errorMessage in
+                // fail silent
+            }
         }
     }
     
@@ -72,7 +75,7 @@ class FamilyPlannerClient: NSObject {
                 return
             }
             headers = [
-                "Authorization": currentUser!.auth_token
+                "Authorization": currentUser!.auth_token!
             ]
 
         }

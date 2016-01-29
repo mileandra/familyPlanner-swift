@@ -95,7 +95,7 @@ class MessagesViewController: UIViewController, UITableViewDataSource, UITableVi
     //MARK: Core Data
     lazy var fetchedResultsController: NSFetchedResultsController = {
         let fetchRequest = NSFetchRequest(entityName: "Message")
-        let predicate = NSPredicate(format: "group == %@", FamilyPlannerClient.sharedInstance.getGroup())
+        let predicate = NSPredicate(format: "group == %@", FamilyPlannerClient.sharedInstance.getGroup()!)
         fetchRequest.predicate = predicate
         fetchRequest.sortDescriptors = []
         

@@ -58,7 +58,7 @@ class DashboardViewController: UIViewController {
         }
         var labelText = "You have no uncompleted Todos"
         
-        let predicate = NSPredicate(format: "group = %@ AND completed = %@", FamilyPlannerClient.sharedInstance.getGroup(), false)
+        let predicate = NSPredicate(format: "group = %@ AND completed = %@", FamilyPlannerClient.sharedInstance.getGroup()!, false)
         let fetchRequest = NSFetchRequest(entityName: "Todo")
         fetchRequest.predicate = predicate
         
@@ -80,7 +80,7 @@ class DashboardViewController: UIViewController {
             return
         }
         var labelText = "You have no unread messages"
-        let predicate = NSPredicate(format: "group = %@ AND read = %@", FamilyPlannerClient.sharedInstance.getGroup(), false)
+        let predicate = NSPredicate(format: "group = %@ AND read = %@", FamilyPlannerClient.sharedInstance.getGroup()!, false)
         let fetchRequest = NSFetchRequest(entityName: "Message")
         fetchRequest.predicate = predicate
         

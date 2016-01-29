@@ -58,18 +58,21 @@ extension FamilyPlannerClient {
     }
     
     func syncMessages(completionHandler: (success: Bool, errorMessage: String?) -> Void) {
-        
+        if hasGroup() == false {
+            completionHandler(success: false, errorMessage: "No group")
+            return
+        }
         if Connection.connectedToNetwork() == false {
             completionHandler(success: true, errorMessage: nil)
             return
         }
         
         var params:[String:String]? = nil
-        if getGroup().lastMessageSyncTime != nil {
+        if getGroup()!.lastMessageSyncTime != nil {
             let formatter = NSDateFormatter()
             formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZ"
             params = [
-                "since": formatter.stringFromDate(getGroup().lastMessageSyncTime!)
+                "since": formatter.stringFromDate(getGroup()!.lastMessageSyncTime!)
             ]
         }
         
@@ -111,7 +114,7 @@ extension FamilyPlannerClient {
                 }
                 let formatter = NSDateFormatter()
                 formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-                self.getGroup().lastMessageSyncTime = formatter.dateFromString(json["synctime"].stringValue)
+                self.getGroup()!.lastMessageSyncTime = formatter.dateFromString(json["synctime"].stringValue)
             }
             
             dispatch_async(dispatch_get_main_queue(), {
@@ -129,13 +132,19 @@ extension FamilyPlannerClient {
     }
     
     func syncMessagesToServer(completionHandler: (success: Bool, errorMessage: String?) -> Void) {
+        
+        if hasGroup() == false {
+            completionHandler(success: false, errorMessage: "No Group")
+            return
+        }
+        
         if Connection.connectedToNetwork() == false {
             completionHandler(success: true, errorMessage: nil)
             return
         }
         
         let fetchRequest = NSFetchRequest(entityName: "Message")
-        let predicate = NSPredicate(format: "(synced == %@) AND (group = %@)", false, self.getGroup())
+        let predicate = NSPredicate(format: "(synced == %@) AND (group = %@)", false, self.getGroup()!)
         fetchRequest.predicate = predicate
         
         var messages = [Message]()

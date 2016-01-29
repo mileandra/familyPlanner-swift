@@ -163,7 +163,7 @@ extension FamilyPlannerClient {
     // Get Group data and members
     func syncGroup(completionHandler: (success: Bool, errorMessage: String?) -> Void) {
         if hasGroup() {
-            handleRequest(true, url: Methods.GROUPS + "\(getGroup().remoteID)", type: Alamofire.Method.GET, params: nil) { success, errorMessage, data in
+            handleRequest(true, url: Methods.GROUPS + "\(getGroup()!.remoteID)", type: Alamofire.Method.GET, params: nil) { success, errorMessage, data in
                 if success == false || data == nil {
                     dispatch_async(dispatch_get_main_queue(), {
                         completionHandler(success: false, errorMessage: errorMessage)
@@ -206,7 +206,7 @@ extension FamilyPlannerClient {
                     }
                     
                     // We need to remove all users that might still be saved on the device for the group and are not on the server anymore
-                    let isPredicate = NSPredicate(format: "NOT(remoteID IN %@) AND group == %@", ids, self.getGroup())
+                    let isPredicate = NSPredicate(format: "NOT(remoteID IN %@) AND group == %@", ids, self.getGroup()!)
                     let fetchRequest = NSFetchRequest(entityName: "User")
                     fetchRequest.predicate = isPredicate
                     do {

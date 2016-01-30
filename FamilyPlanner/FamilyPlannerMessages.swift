@@ -30,15 +30,20 @@ extension FamilyPlannerClient {
             return
         }
         
+        let parentID = message.parent == nil ? nil : message.parent!.remoteID
+        
         var params = [
             "message": [
                 "message" : message.message
             ]
         ]
-        print(message)
         if message.subject != nil {
             params["message"]!["subject"] = message.subject!
         }
+        if parentID != nil {
+            params["message"]!["responds_id"] = "\(parentID!)"
+        }
+    
         
         handleRequest(true, url: Methods.MESSAGES, type: Alamofire.Method.POST, params: params) { success, errorMessage, data in
             if success == false || data == nil {

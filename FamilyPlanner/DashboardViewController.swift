@@ -29,6 +29,8 @@ class DashboardViewController: UIViewController {
             menuBtn.action = Selector("revealToggle:")
             view.addGestureRecognizer(revealViewController().panGestureRecognizer())
         }
+        updateTodoStatus()
+        updateMessageStatus()
     }
     
     override func viewWillAppear(animated: Bool) {

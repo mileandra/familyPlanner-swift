@@ -29,7 +29,6 @@ class MessageDetailViewController: UIViewController, UICollectionViewDataSource,
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        //TODO: show Messages
         //TODO: set Title to subject
     }
     override func viewWillDisappear(animated: Bool) {
@@ -64,6 +63,7 @@ class MessageDetailViewController: UIViewController, UICollectionViewDataSource,
         return keyboardSize.CGRectValue().height
     }
 
+    //MARK: Send answer
     @IBAction func sendAnswerButtonTouch(sender: AnyObject) {
         let answerText = answerTextField.text
         if answerText == nil {
@@ -84,6 +84,7 @@ class MessageDetailViewController: UIViewController, UICollectionViewDataSource,
                 EZLoadingActivity.hide(success: true, animated: false)
                 self.answerTextField.text = ""
                 self.answerTextField.endEditing(true)
+                self.collectionView.reloadData()
             } else {
                 EZLoadingActivity.hide(success: false, animated: false)
                 self.presentAlert("Error", message: errorMessage!)
@@ -91,6 +92,7 @@ class MessageDetailViewController: UIViewController, UICollectionViewDataSource,
         }
     }
     
+    //MARK: Coredata
     var sharedContext: NSManagedObjectContext {
         return CoreDataStackManager.sharedInstance.managedObjectContext
     }
@@ -100,12 +102,20 @@ class MessageDetailViewController: UIViewController, UICollectionViewDataSource,
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("messageCell", forIndexPath: indexPath) as! MessageCollectionViewCell
         if indexPath.row == 0 {
             cell.messageText.text = message.message
+        } else {
+            let index = indexPath.row - 1
+            let childMessage = message.messages![index]
+            cell.messageText.text = childMessage.message
         }
         return cell
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        var count = 1
+        if message.messages != nil {
+            count += message.messages!.count
+        }
+        return count
     }
 
     

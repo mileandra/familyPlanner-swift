@@ -15,15 +15,53 @@ class MessageDetailViewController: UIViewController, UICollectionViewDataSource,
     @IBOutlet weak var sendAnswerButton: UIButton!
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var answerView: UIView!
+    
+    @IBOutlet weak var anserBottomConstraint: NSLayoutConstraint!
     
     var message : Message!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        subscribeToKeyboardNotifications()
+    }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         //TODO: show Messages
         //TODO: set Title to subject
-        //TODO: slide view up with Keyboard
+    }
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        unsubscribeFromKeyboardNotifications()
+    }
+    
+    //MARK: Keyboard show/hide
+    func subscribeToKeyboardNotifications() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:"    , name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
+    }
+    func unsubscribeFromKeyboardNotifications() {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name:
+            UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        //only move view up when editing the bottom textfield
+        anserBottomConstraint.constant = getKeyboardHeight(notification)
+        
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        anserBottomConstraint.constant = 0
+    }
+    
+    func getKeyboardHeight(notification: NSNotification) -> CGFloat {
+        let userInfo = notification.userInfo
+        let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue // of CGRect
+        return keyboardSize.CGRectValue().height
     }
 
     @IBAction func sendAnswerButtonTouch(sender: AnyObject) {
@@ -44,6 +82,8 @@ class MessageDetailViewController: UIViewController, UICollectionViewDataSource,
         FamilyPlannerClient.sharedInstance.createMessage(answer) { success, errorMessage in
             if success == true {
                 EZLoadingActivity.hide(success: true, animated: false)
+                self.answerTextField.text = ""
+                self.answerTextField.endEditing(true)
             } else {
                 EZLoadingActivity.hide(success: false, animated: false)
                 self.presentAlert("Error", message: errorMessage!)

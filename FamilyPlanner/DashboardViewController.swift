@@ -82,7 +82,7 @@ class DashboardViewController: UIViewController {
             return
         }
         var labelText = "You have no unread messages"
-        let predicate = NSPredicate(format: "group = %@ AND read = %@", FamilyPlannerClient.sharedInstance.getGroup()!, false)
+        let predicate = NSPredicate(format: "group = %@ AND read = %@ AND (parent = nil)", FamilyPlannerClient.sharedInstance.getGroup()!, false)
         let fetchRequest = NSFetchRequest(entityName: "Message")
         fetchRequest.predicate = predicate
         

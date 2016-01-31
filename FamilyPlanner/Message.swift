@@ -14,6 +14,7 @@ class Message: NSManagedObject {
     @NSManaged var synced : Bool
     @NSManaged var subject : String?
     @NSManaged var read : Bool
+    @NSManaged var updatedAt: NSDate?
     
     @NSManaged var group : Group
     @NSManaged var parent : Message?

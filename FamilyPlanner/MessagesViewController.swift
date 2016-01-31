@@ -96,7 +96,7 @@ class MessagesViewController: UIViewController, UITableViewDataSource, UITableVi
         let fetchRequest = NSFetchRequest(entityName: "Message")
         let predicate = NSPredicate(format: "group == %@ AND (parent = nil)", FamilyPlannerClient.sharedInstance.getGroup()!)
         fetchRequest.predicate = predicate
-        fetchRequest.sortDescriptors = []
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "updatedAt", ascending: false)]
         
         let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.sharedContext, sectionNameKeyPath: nil, cacheName: nil)
         fetchedResultsController.delegate = self

@@ -124,6 +124,10 @@ extension FamilyPlannerClient {
             let fetchedEntities = try self.sharedContext.executeFetchRequest(fetchRequest) as! [Message]
             if fetchedEntities.count == 1 {
                 fetchedEntities.first?.message = message["message"].stringValue
+                fetchedEntities.first?.read = message["read"].boolValue
+                let formatter = NSDateFormatter()
+                formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+                fetchedEntities.first?.updatedAt = formatter.dateFromString(message["updated_at"].stringValue)
                 if message["responses"].array != nil {
                     for msg in message["responses"].arrayValue {
                         if let child = self.persistMessage(msg) {
@@ -140,6 +144,11 @@ extension FamilyPlannerClient {
                     "id": message["id"].intValue
                 ]
                 let newMessage = Message(properties: properties, group: self.currentUser!.group!, context: self.sharedContext)
+                let formatter = NSDateFormatter()
+                formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+                newMessage.updatedAt = formatter.dateFromString(message["updated_at"].stringValue)
+                newMessage.read = message["read"].boolValue
+                
                 if message["responses"].array != nil {
                     for msg in message["responses"].arrayValue {
                         if let child = self.persistMessage(msg) {

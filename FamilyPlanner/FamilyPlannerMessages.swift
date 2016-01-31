@@ -46,12 +46,17 @@ extension FamilyPlannerClient {
     
         
         handleRequest(true, url: Methods.MESSAGES, type: Alamofire.Method.POST, params: params) { success, errorMessage, data in
+            
             if success == false || data == nil {
                 completionHandler(success: false, errorMessage: errorMessage)
                 return
             }
             
-            message.remoteID = NSNumber(integer: data!["id"].intValue)
+            let json = data!
+            
+            message.remoteID = NSNumber(integer: json["id"].intValue)
+            message.createdAt = FamilyPlannerClient.getDateFromString(json["created_at"].stringValue)
+            message.updatedAt = FamilyPlannerClient.getDateFromString(json["updated_at"].stringValue)
             message.synced = Bool(true)
             
             
@@ -126,9 +131,9 @@ extension FamilyPlannerClient {
             if fetchedEntities.count == 1 {
                 fetchedEntities.first?.message = message["message"].stringValue
                 fetchedEntities.first?.read = message["read"].boolValue
-                let formatter = NSDateFormatter()
-                formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-                fetchedEntities.first?.updatedAt = formatter.dateFromString(message["updated_at"].stringValue)
+                fetchedEntities.first?.author = message["author"].stringValue
+                fetchedEntities.first?.updatedAt = FamilyPlannerClient.getDateFromString(message["updated_at"].stringValue)
+                fetchedEntities.first?.createdAt = FamilyPlannerClient.getDateFromString(message["created_at"].stringValue)
                 
                 //create children
                 if message["responses"].array != nil {
@@ -144,12 +149,13 @@ extension FamilyPlannerClient {
                 let properties = [
                     "subject": message["subject"].stringValue,
                     "message": message["message"].stringValue,
+                    "author": message["author"].stringValue,
                     "id": message["id"].intValue
                 ]
                 let newMessage = Message(properties: properties, group: self.currentUser!.group!, context: self.sharedContext)
-                let formatter = NSDateFormatter()
-                formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-                newMessage.updatedAt = formatter.dateFromString(message["updated_at"].stringValue)
+                
+                newMessage.updatedAt = FamilyPlannerClient.getDateFromString(message["updated_at"].stringValue)
+                newMessage.createdAt = FamilyPlannerClient.getDateFromString(message["created_at"].stringValue)
                 newMessage.read = message["read"].boolValue
                 
                 //create children

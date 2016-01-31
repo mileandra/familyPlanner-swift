@@ -22,6 +22,7 @@ class CreateMessageViewController: UIViewController, AlertRenderer {
         let properties = [
             "message" : messageText,
             "subject" : subject,
+            "author" : FamilyPlannerClient.sharedInstance.currentUser!.name,
             "synced" : false
         ]
         if messageText == "" || subject == "" {

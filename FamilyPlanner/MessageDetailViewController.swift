@@ -75,7 +75,8 @@ class MessageDetailViewController: UIViewController, UICollectionViewDataSource,
         }
         
         let properties:NSDictionary = [
-            "message" : answerText!
+            "message" : answerText!,
+            "author": FamilyPlannerClient.sharedInstance.currentUser!.name
         ]
         
         let answer = Message(properties: properties, group: FamilyPlannerClient.sharedInstance.getGroup()!, context: sharedContext)
@@ -103,13 +104,17 @@ class MessageDetailViewController: UIViewController, UICollectionViewDataSource,
     //MARK: CollectionView
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("messageCell", forIndexPath: indexPath) as! MessageCollectionViewCell
+        
         if indexPath.row == 0 {
+            cell.metaInfoText.text = message.metaInfoText()
             cell.messageText.text = message.message
         } else {
             let index = indexPath.row - 1
             let childMessage = message.messages![index]
+            cell.metaInfoText.text = childMessage.metaInfoText()
             cell.messageText.text = childMessage.message
         }
+        cell.messageText.sizeToFit()
         return cell
     }
     

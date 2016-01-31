@@ -59,6 +59,12 @@ class FamilyPlannerClient: NSObject {
         return CoreDataStackManager.sharedInstance.managedObjectContext
     }
     
+    static func getDateFromString(dateString: String) -> NSDate? {
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        return formatter.dateFromString(dateString)
+    }
+    
     func handleRequest(auth: Bool, url: String, type: Alamofire.Method ,params: [String: AnyObject]?, completionHandler: (success: Bool, errorMessage: String?, data: JSON?) -> Void) {
         
         //check for internet connection

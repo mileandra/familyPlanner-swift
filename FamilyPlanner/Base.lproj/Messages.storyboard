@@ -132,31 +132,72 @@
                                             <rect key="frame" x="0.0" y="0.0" width="378" height="72"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lqb-zO-wg4">
+                                                    <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="8" y="8" width="362" height="21"/>
+                                                    </variation>
+                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e0i-5h-Nph">
                                                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
-                                                    <variation key="widthClass=compact" fixedFrame="YES">
-                                                        <rect key="frame" x="0.0" y="8" width="378" height="21"/>
-                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="lqb-zO-wg4" firstAttribute="leading" secondItem="lht-dh-kzp" secondAttribute="leadingMargin" id="60U-RW-zcc"/>
+                                            <constraint firstItem="lqb-zO-wg4" firstAttribute="top" secondItem="lht-dh-kzp" secondAttribute="topMargin" constant="-8" id="6Mi-Vm-1DK">
+                                                <variation key="widthClass=compact" constant="0.0"/>
+                                            </constraint>
+                                            <constraint firstAttribute="trailingMargin" secondItem="e0i-5h-Nph" secondAttribute="trailing" id="7eg-Xs-hna"/>
+                                            <constraint firstItem="e0i-5h-Nph" firstAttribute="top" secondItem="lht-dh-kzp" secondAttribute="topMargin" constant="10" id="Q94-bN-Bvb">
+                                                <variation key="widthClass=compact" constant="17"/>
+                                            </constraint>
+                                            <constraint firstItem="e0i-5h-Nph" firstAttribute="leading" secondItem="lht-dh-kzp" secondAttribute="leadingMargin" id="rel-bm-4Yd"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="lqb-zO-wg4" secondAttribute="trailing" id="sK1-GE-rrs"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="e0i-5h-Nph" secondAttribute="bottom" id="swB-Qf-bj2"/>
+                                        </constraints>
                                         <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                         <variation key="default">
                                             <mask key="subviews">
+                                                <exclude reference="lqb-zO-wg4"/>
                                                 <exclude reference="e0i-5h-Nph"/>
+                                            </mask>
+                                            <mask key="constraints">
+                                                <exclude reference="60U-RW-zcc"/>
+                                                <exclude reference="6Mi-Vm-1DK"/>
+                                                <exclude reference="sK1-GE-rrs"/>
+                                                <exclude reference="7eg-Xs-hna"/>
+                                                <exclude reference="Q94-bN-Bvb"/>
+                                                <exclude reference="rel-bm-4Yd"/>
+                                                <exclude reference="swB-Qf-bj2"/>
                                             </mask>
                                         </variation>
                                         <variation key="widthClass=compact">
                                             <mask key="subviews">
+                                                <include reference="lqb-zO-wg4"/>
                                                 <include reference="e0i-5h-Nph"/>
+                                            </mask>
+                                            <mask key="constraints">
+                                                <include reference="60U-RW-zcc"/>
+                                                <include reference="6Mi-Vm-1DK"/>
+                                                <include reference="sK1-GE-rrs"/>
+                                                <include reference="7eg-Xs-hna"/>
+                                                <include reference="Q94-bN-Bvb"/>
+                                                <include reference="rel-bm-4Yd"/>
+                                                <include reference="swB-Qf-bj2"/>
                                             </mask>
                                         </variation>
                                         <connections>
                                             <outlet property="messageText" destination="e0i-5h-Nph" id="ujr-ja-EQu"/>
+                                            <outlet property="metaInfoText" destination="lqb-zO-wg4" id="Ezf-Ux-y63"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

@@ -14,6 +14,9 @@ class Message: NSManagedObject {
     @NSManaged var synced : Bool
     @NSManaged var subject : String?
     @NSManaged var read : Bool
+    @NSManaged var createdAt: NSDate?
+    @NSManaged var updatedAt: NSDate?
+    @NSManaged var author: String
     
     @NSManaged var group : Group
     @NSManaged var parent : Message?
@@ -37,8 +40,19 @@ class Message: NSManagedObject {
         self.subject = properties["subject"] as! String?
         self.synced = Bool(false)
         self.read = false
-        
+        self.author = properties["author"] as! String
         //TODO: handle parent / child
     }
     
+    func metaInfoText() -> String {
+        
+        var str = "\(author) wrote"
+        if createdAt != nil {
+            let formatter = NSDateFormatter()
+            formatter.dateFormat = "MM/dd/yyyy HH:mm"
+            str = str + " at \(formatter.stringFromDate(createdAt!))"
+        }
+        str = str + ":"
+        return str
+    }
 }

@@ -27,6 +27,7 @@ class MessagesViewController: UIViewController, UITableViewDataSource, UITableVi
         
         fetchObjectsFromStore()
         tableView.addSubview(refreshControl)
+
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -68,7 +69,7 @@ class MessagesViewController: UIViewController, UITableViewDataSource, UITableVi
         let message = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Message
         cell.textLabel?.text = message.subject
         cell.detailTextLabel?.text = message.message
-        print("Object for configuration: \(message)")
+       
     }
     
     
@@ -95,9 +96,9 @@ class MessagesViewController: UIViewController, UITableViewDataSource, UITableVi
     //MARK: Core Data
     lazy var fetchedResultsController: NSFetchedResultsController = {
         let fetchRequest = NSFetchRequest(entityName: "Message")
-        let predicate = NSPredicate(format: "group == %@", FamilyPlannerClient.sharedInstance.getGroup()!)
+        let predicate = NSPredicate(format: "group == %@ AND (parent = nil)", FamilyPlannerClient.sharedInstance.getGroup()!)
         fetchRequest.predicate = predicate
-        fetchRequest.sortDescriptors = []
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "updatedAt", ascending: false)]
         
         let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.sharedContext, sectionNameKeyPath: nil, cacheName: nil)
         fetchedResultsController.delegate = self

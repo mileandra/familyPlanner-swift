@@ -30,23 +30,33 @@ extension FamilyPlannerClient {
             return
         }
         
+        let parentID = message.parent == nil ? nil : message.parent!.remoteID
+        
         var params = [
             "message": [
                 "message" : message.message
             ]
         ]
-        print(message)
         if message.subject != nil {
             params["message"]!["subject"] = message.subject!
         }
+        if parentID != nil {
+            params["message"]!["responds_id"] = "\(parentID!)"
+        }
+    
         
         handleRequest(true, url: Methods.MESSAGES, type: Alamofire.Method.POST, params: params) { success, errorMessage, data in
+            
             if success == false || data == nil {
                 completionHandler(success: false, errorMessage: errorMessage)
                 return
             }
             
-            message.remoteID = NSNumber(integer: data!["id"].intValue)
+            let json = data!
+            
+            message.remoteID = NSNumber(integer: json["id"].intValue)
+            message.createdAt = FamilyPlannerClient.getDateFromString(json["created_at"].stringValue)
+            message.updatedAt = FamilyPlannerClient.getDateFromString(json["updated_at"].stringValue)
             message.synced = Bool(true)
             
             
@@ -57,6 +67,7 @@ extension FamilyPlannerClient {
         }
     }
     
+    //Get messages from the server and sync local ones
     func syncMessages(completionHandler: (success: Bool, errorMessage: String?) -> Void) {
         if hasGroup() == false {
             completionHandler(success: false, errorMessage: "No group")
@@ -86,31 +97,7 @@ extension FamilyPlannerClient {
             
             if let messages = json["messages"].array {
                 for message in messages {
-                    // We need to check if we already have the todo saved
-                    let predicate = NSPredicate(format: "remoteID == %@", NSNumber(integer: message["id"].intValue))
-                    
-                    let fetchRequest = NSFetchRequest(entityName: "Message")
-                    fetchRequest.predicate = predicate
-                    
-                    do {
-                        let fetchedEntities = try self.sharedContext.executeFetchRequest(fetchRequest) as! [Message]
-                        if fetchedEntities.count == 1 {
-                            fetchedEntities.first?.message = message["message"].stringValue
-                        } else {
-                            // we do not have any results - create a new Message
-                            let properties = [
-                                "subject": message["subject"].stringValue,
-                                "message": message["message"].stringValue,
-                                "id": message["id"].intValue
-                            ]
-                            let newMessage = Message(properties: properties, group: self.currentUser!.group!, context: self.sharedContext)
-                            newMessage.synced = Bool(true)
-                            
-                        }
-                    } catch {
-                        print("There was an error while syncing")
-                    }
-                    
+                    self.persistMessage(message)
                 }
                 let formatter = NSDateFormatter()
                 formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
@@ -131,6 +118,65 @@ extension FamilyPlannerClient {
         }
     }
     
+    // Create a new message and all children recursive
+    func persistMessage(message: JSON) -> Message? {
+        // We need to check if we already have the todo saved
+        let predicate = NSPredicate(format: "remoteID == %@", NSNumber(integer: message["id"].intValue))
+        
+        let fetchRequest = NSFetchRequest(entityName: "Message")
+        fetchRequest.predicate = predicate
+        
+        do {
+            let fetchedEntities = try self.sharedContext.executeFetchRequest(fetchRequest) as! [Message]
+            if fetchedEntities.count == 1 {
+                fetchedEntities.first?.message = message["message"].stringValue
+                fetchedEntities.first?.read = message["read"].boolValue
+                fetchedEntities.first?.author = message["author"].stringValue
+                fetchedEntities.first?.updatedAt = FamilyPlannerClient.getDateFromString(message["updated_at"].stringValue)
+                fetchedEntities.first?.createdAt = FamilyPlannerClient.getDateFromString(message["created_at"].stringValue)
+                
+                //create children
+                if message["responses"].array != nil {
+                    for msg in message["responses"].arrayValue {
+                        if let child = self.persistMessage(msg) {
+                            child.parent = fetchedEntities.first!
+                        }
+                    }
+                }
+                return fetchedEntities.first
+            } else {
+                // we do not have any results - create a new Message
+                let properties = [
+                    "subject": message["subject"].stringValue,
+                    "message": message["message"].stringValue,
+                    "author": message["author"].stringValue,
+                    "id": message["id"].intValue
+                ]
+                let newMessage = Message(properties: properties, group: self.currentUser!.group!, context: self.sharedContext)
+                
+                newMessage.updatedAt = FamilyPlannerClient.getDateFromString(message["updated_at"].stringValue)
+                newMessage.createdAt = FamilyPlannerClient.getDateFromString(message["created_at"].stringValue)
+                newMessage.read = message["read"].boolValue
+                
+                //create children
+                if message["responses"].array != nil {
+                    for msg in message["responses"].arrayValue {
+                        if let child = self.persistMessage(msg) {
+                            child.parent = newMessage
+                        }
+                    }
+                }
+                newMessage.synced = Bool(true)
+                return newMessage
+            }
+            
+        } catch {
+            print("There was an error while syncing")
+        }
+        return nil
+    }
+    
+    //save unsynced messages to server
     func syncMessagesToServer(completionHandler: (success: Bool, errorMessage: String?) -> Void) {
         
         if hasGroup() == false {
@@ -188,7 +234,8 @@ extension FamilyPlannerClient {
         
         let params = [
             "message": [
-                "message": message.message
+                "message": message.message,
+                "read": message.read
             ]
         ]
         // in case something goes wrong we wanna sync later
@@ -197,7 +244,7 @@ extension FamilyPlannerClient {
             CoreDataStackManager.sharedInstance.saveContext()
         })
         
-        handleRequest(true, url: Methods.MESSAGES + "\(message.remoteID)", type: Alamofire.Method.PUT, params: params) { success, errorMessage, data in
+        handleRequest(true, url: Methods.MESSAGES + "\(message.remoteID!)", type: Alamofire.Method.PUT, params: params) { success, errorMessage, data in
             
             if success == false || data == nil {
                 completionHandler(success: false, errorMessage: errorMessage)

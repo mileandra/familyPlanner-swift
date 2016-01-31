@@ -27,6 +27,7 @@ class MessagesViewController: UIViewController, UITableViewDataSource, UITableVi
         
         fetchObjectsFromStore()
         tableView.addSubview(refreshControl)
+
     }
     
     override func viewWillAppear(animated: Bool) {

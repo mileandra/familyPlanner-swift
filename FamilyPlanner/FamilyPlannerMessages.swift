@@ -113,6 +113,7 @@ extension FamilyPlannerClient {
         }
     }
     
+    // Create a new message and all children recursive
     func persistMessage(message: JSON) -> Message? {
         // We need to check if we already have the todo saved
         let predicate = NSPredicate(format: "remoteID == %@", NSNumber(integer: message["id"].intValue))
@@ -128,6 +129,8 @@ extension FamilyPlannerClient {
                 let formatter = NSDateFormatter()
                 formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
                 fetchedEntities.first?.updatedAt = formatter.dateFromString(message["updated_at"].stringValue)
+                
+                //create children
                 if message["responses"].array != nil {
                     for msg in message["responses"].arrayValue {
                         if let child = self.persistMessage(msg) {
@@ -149,6 +152,7 @@ extension FamilyPlannerClient {
                 newMessage.updatedAt = formatter.dateFromString(message["updated_at"].stringValue)
                 newMessage.read = message["read"].boolValue
                 
+                //create children
                 if message["responses"].array != nil {
                     for msg in message["responses"].arrayValue {
                         if let child = self.persistMessage(msg) {
@@ -166,6 +170,7 @@ extension FamilyPlannerClient {
         return nil
     }
     
+    //save unsynced messages to server
     func syncMessagesToServer(completionHandler: (success: Bool, errorMessage: String?) -> Void) {
         
         if hasGroup() == false {
@@ -223,7 +228,8 @@ extension FamilyPlannerClient {
         
         let params = [
             "message": [
-                "message": message.message
+                "message": message.message,
+                "read": message.read
             ]
         ]
         // in case something goes wrong we wanna sync later
@@ -232,7 +238,7 @@ extension FamilyPlannerClient {
             CoreDataStackManager.sharedInstance.saveContext()
         })
         
-        handleRequest(true, url: Methods.MESSAGES + "\(message.remoteID)", type: Alamofire.Method.PUT, params: params) { success, errorMessage, data in
+        handleRequest(true, url: Methods.MESSAGES + "\(message.remoteID!)", type: Alamofire.Method.PUT, params: params) { success, errorMessage, data in
             
             if success == false || data == nil {
                 completionHandler(success: false, errorMessage: errorMessage)

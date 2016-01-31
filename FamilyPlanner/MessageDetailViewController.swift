@@ -24,13 +24,16 @@ class MessageDetailViewController: UIViewController, UICollectionViewDataSource,
     override func viewDidLoad() {
         super.viewDidLoad()
         subscribeToKeyboardNotifications()
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
         
-        //TODO: set Title to subject
+        
+        //User has seen new message and responses: mark as read
+        message.read = true
+        FamilyPlannerClient.sharedInstance.updateMessage(message) { success, errorMessage in
+            //background-operation: fail silent as we can sync later
+            self.collectionView.reloadData()
+        }
     }
+
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         unsubscribeFromKeyboardNotifications()

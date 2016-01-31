@@ -22,6 +22,7 @@ class CreateMessageViewController: UIViewController, AlertRenderer {
         let properties = [
             "message" : messageText,
             "subject" : subject,
+            "author" : FamilyPlannerClient.sharedInstance.currentUser!.name,
             "synced" : false
         ]
         if messageText == "" || subject == "" {
@@ -30,7 +31,7 @@ class CreateMessageViewController: UIViewController, AlertRenderer {
         }
         
         let group = FamilyPlannerClient.sharedInstance.getGroup()
-        let message = Message(properties: properties, group: group, context: sharedContext)
+        let message = Message(properties: properties, group: group!, context: sharedContext)
         print(message)
         
         EZLoadingActivity.show("Sending...", disableUI: true)

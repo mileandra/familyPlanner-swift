@@ -53,11 +53,11 @@ extension FamilyPlannerClient {
         }
         
         var params:[String:String]? = nil
-        if getGroup().lastTodoSyncTime != nil {
+        if getGroup()!.lastTodoSyncTime != nil {
             let formatter = NSDateFormatter()
             formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZ"
             params = [
-                "since": formatter.stringFromDate(getGroup().lastTodoSyncTime!)
+                "since": formatter.stringFromDate(getGroup()!.lastTodoSyncTime!)
             ]
         }
 
@@ -100,7 +100,7 @@ extension FamilyPlannerClient {
                 }
                 let formatter = NSDateFormatter()
                 formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-                self.getGroup().lastTodoSyncTime = formatter.dateFromString(json["synctime"].stringValue)
+                self.getGroup()!.lastTodoSyncTime = formatter.dateFromString(json["synctime"].stringValue)
             }
             
             dispatch_async(dispatch_get_main_queue(), {
@@ -123,7 +123,7 @@ extension FamilyPlannerClient {
         }
        
         let fetchRequest = NSFetchRequest(entityName: "Todo")
-        let predicate = NSPredicate(format: "(synced == %@) AND (group = %@)", false, self.getGroup())
+        let predicate = NSPredicate(format: "(synced == %@) AND (group = %@)", false, self.getGroup()!)
         fetchRequest.predicate = predicate
         
         var todos = [Todo]()

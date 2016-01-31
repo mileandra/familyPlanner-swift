@@ -86,7 +86,7 @@ class ManageGroupViewController: UIViewController, UITableViewDataSource, UITabl
 
     lazy var fetchedResultsController: NSFetchedResultsController = {
         let fetchRequest = NSFetchRequest(entityName: "User")
-        let predicate = NSPredicate(format: "group == %@", FamilyPlannerClient.sharedInstance.getGroup())
+        let predicate = NSPredicate(format: "group == %@", FamilyPlannerClient.sharedInstance.getGroup()!)
         fetchRequest.predicate = predicate
         fetchRequest.sortDescriptors = []
         

@@ -33,6 +33,7 @@ class SideMenuViewController: UITableViewController {
         menuItems.append(MenuItem(identifier: "logoout", title: "Logout", selector: "logout", segue: nil, image: nil))
     }
     
+    
     func logout() {
         FamilyPlannerClient.sharedInstance.logoutUser() { success, errorMessage in        
             // now we no longer have a current user, so the dashboard should handle it when we arrive

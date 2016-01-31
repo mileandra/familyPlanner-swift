@@ -83,7 +83,7 @@ class FamilyPlannerClient: NSObject {
         
         print("Getting data from \(url) with params \(params)")
         
-        Alamofire.request(type, Constants.BASE_URL() + url, parameters: params, headers: headers, encoding: .JSON).responseJSON { response in
+        Alamofire.request(type, Constants.BASE_URL() + url, parameters: params, headers: headers).responseJSON { response in
             debugPrint(response)
             
             if response.result.isFailure {

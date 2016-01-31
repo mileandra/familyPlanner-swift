@@ -68,7 +68,6 @@ class MessagesViewController: UIViewController, UITableViewDataSource, UITableVi
         let message = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Message
         cell.textLabel?.text = message.subject
         cell.detailTextLabel?.text = message.message
-        print("Object for configuration: \(message)")
     }
     
     

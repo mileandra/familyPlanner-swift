@@ -104,6 +104,8 @@ class MessageDetailViewController: UIViewController, UICollectionViewDataSource,
     //MARK: CollectionView
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("messageCell", forIndexPath: indexPath) as! MessageCollectionViewCell
+        cell.messageText.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        cell.messageText.numberOfLines = 0
         
         if indexPath.row == 0 {
             cell.metaInfoText.text = message.metaInfoText()
@@ -114,7 +116,9 @@ class MessageDetailViewController: UIViewController, UICollectionViewDataSource,
             cell.metaInfoText.text = childMessage.metaInfoText()
             cell.messageText.text = childMessage.message
         }
+        
         cell.messageText.sizeToFit()
+        cell.metaInfoText.sizeToFit()
         return cell
     }
     
@@ -126,5 +130,19 @@ class MessageDetailViewController: UIViewController, UICollectionViewDataSource,
         return count
     }
 
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        var height:CGFloat = 72.0
+        let msg = indexPath.row == 0 ? message : message.messages![indexPath.row-1]
+        let label:UILabel = UILabel(frame: CGRectMake(0,0,300,CGFloat.max))
+        label.numberOfLines = 0
+        label.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        label.text = msg.message
+        label.sizeToFit()
+        
+        height = 30.0 + label.frame.height
+        print(label.text)
+        print(height)
+        return CGSize(width: collectionView.bounds.size.width, height: height);
+    }
     
 }

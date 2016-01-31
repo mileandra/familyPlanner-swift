@@ -13,9 +13,5 @@ class MessageCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var messageText: UILabel!
     @IBOutlet weak var metaInfoText: UILabel!
     
-    var own:Bool = true
-    
-    override func drawRect(rect: CGRect) {
-        messageText.sizeToFit()
-    }
+   
 }

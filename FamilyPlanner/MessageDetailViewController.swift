@@ -9,12 +9,12 @@
 import UIKit
 import CoreData
 
-class MessageDetailViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, AlertRenderer {
+class MessageDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AlertRenderer {
     
     @IBOutlet weak var answerTextField: UITextField!
     @IBOutlet weak var sendAnswerButton: UIButton!
+    @IBOutlet weak var tableView: UITableView!
     
-    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var answerView: UIView!
     
     @IBOutlet weak var anserBottomConstraint: NSLayoutConstraint!
@@ -25,12 +25,28 @@ class MessageDetailViewController: UIViewController, UICollectionViewDataSource,
         super.viewDidLoad()
         subscribeToKeyboardNotifications()
         
+        //set height stretching cells
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 70.0
+        
+        //hide extra empty cells
+        //http://stackoverflow.com/questions/28708574/how-to-remove-extra-empty-cells-in-tableviewcontroller-ios-swift
+        tableView.tableFooterView = UIView()
+        
+        //scroll to tableViewbottom
+        // http://stackoverflow.com/questions/29378009/how-do-i-automatically-scroll-in-a-table-view-using-swift
+        let numberOfSections = self.tableView.numberOfSections
+        let numberOfRows = self.tableView.numberOfRowsInSection(numberOfSections-1)
+        
+        let indexPath = NSIndexPath(forRow: numberOfRows-1, inSection: numberOfSections-1)
+        self.tableView.scrollToRowAtIndexPath(indexPath,
+            atScrollPosition: UITableViewScrollPosition.Middle, animated: true)
         
         //User has seen new message and responses: mark as read
         message.read = true
         FamilyPlannerClient.sharedInstance.updateMessage(message) { success, errorMessage in
             //background-operation: fail silent as we can sync later
-            self.collectionView.reloadData()
+            self.tableView.reloadData()
         }
     }
 
@@ -88,7 +104,7 @@ class MessageDetailViewController: UIViewController, UICollectionViewDataSource,
                 EZLoadingActivity.hide(success: true, animated: false)
                 self.answerTextField.text = ""
                 self.answerTextField.endEditing(true)
-                self.collectionView.reloadData()
+                self.tableView.reloadData()
             } else {
                 EZLoadingActivity.hide(success: false, animated: false)
                 self.presentAlert("Error", message: errorMessage!)
@@ -101,9 +117,10 @@ class MessageDetailViewController: UIViewController, UICollectionViewDataSource,
         return CoreDataStackManager.sharedInstance.managedObjectContext
     }
     
-    //MARK: CollectionView
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("messageCell", forIndexPath: indexPath) as! MessageCollectionViewCell
+    //MARK: TableView
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("messageCell") as! MessageCollectionViewCell!
+        
         cell.messageText.lineBreakMode = NSLineBreakMode.ByWordWrapping
         cell.messageText.numberOfLines = 0
         
@@ -122,7 +139,8 @@ class MessageDetailViewController: UIViewController, UICollectionViewDataSource,
         return cell
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var count = 1
         if message.messages != nil {
             count += message.messages!.count
@@ -130,19 +148,5 @@ class MessageDetailViewController: UIViewController, UICollectionViewDataSource,
         return count
     }
 
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        var height:CGFloat = 72.0
-        let msg = indexPath.row == 0 ? message : message.messages![indexPath.row-1]
-        let label:UILabel = UILabel(frame: CGRectMake(0,0,300,CGFloat.max))
-        label.numberOfLines = 0
-        label.lineBreakMode = NSLineBreakMode.ByWordWrapping
-        label.text = msg.message
-        label.sizeToFit()
-        
-        height = 30.0 + label.frame.height
-        print(label.text)
-        print(height)
-        return CGSize(width: collectionView.bounds.size.width, height: height);
-    }
     
 }

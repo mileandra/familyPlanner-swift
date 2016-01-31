@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MessageCollectionViewCell: UICollectionViewCell {
+class MessageCollectionViewCell: UITableViewCell {
 
     @IBOutlet weak var messageText: UILabel!
     @IBOutlet weak var metaInfoText: UILabel!

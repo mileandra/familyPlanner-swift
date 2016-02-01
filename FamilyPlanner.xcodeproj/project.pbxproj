@@ -29,6 +29,9 @@
 		7170E0291C3C5D2600AA968A /* TodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7170E0281C3C5D2600AA968A /* TodoViewController.swift */; };
 		7170E02E1C3C5EC300AA968A /* CreateTodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7170E02D1C3C5EC200AA968A /* CreateTodoViewController.swift */; };
 		7170E0311C3C699400AA968A /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7170E0301C3C699400AA968A /* Todo.swift */; };
+		717192E31C60047800AC924D /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 717192E11C60047800AC924D /* FBSDKCoreKit.framework */; };
+		717192E41C60047800AC924D /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 717192E21C60047800AC924D /* FBSDKLoginKit.framework */; };
+		717192E61C60083E00AC924D /* FacebookLoginClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717192E51C60083E00AC924D /* FacebookLoginClient.swift */; };
 		71898E001C41B3F800A83EFB /* Todos.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71898DFE1C41B3F800A83EFB /* Todos.storyboard */; };
 		71898E021C41BF1000A83EFB /* FamilyPlannerTodos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71898E011C41BF1000A83EFB /* FamilyPlannerTodos.swift */; };
 		7192DB5A1C2F51190029465B /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7192DB591C2F51190029465B /* Group.swift */; };
@@ -76,6 +79,9 @@
 		7170E0281C3C5D2600AA968A /* TodoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoViewController.swift; sourceTree = "<group>"; };
 		7170E02D1C3C5EC200AA968A /* CreateTodoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTodoViewController.swift; sourceTree = "<group>"; };
 		7170E0301C3C699400AA968A /* Todo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
+		717192E11C60047800AC924D /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		717192E21C60047800AC924D /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		717192E51C60083E00AC924D /* FacebookLoginClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookLoginClient.swift; sourceTree = "<group>"; };
 		71898DFF1C41B3F800A83EFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Todos.storyboard; sourceTree = "<group>"; };
 		71898E011C41BF1000A83EFB /* FamilyPlannerTodos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyPlannerTodos.swift; sourceTree = "<group>"; };
 		7192DB591C2F51190029465B /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
@@ -106,6 +112,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7130C52E1C18C6D6007DCDE9 /* Alamofire.framework in Frameworks */,
+				717192E31C60047800AC924D /* FBSDKCoreKit.framework in Frameworks */,
+				717192E41C60047800AC924D /* FBSDKLoginKit.framework in Frameworks */,
 				7130C52F1C18C6D6007DCDE9 /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -128,9 +136,8 @@
 		7130C50E1C18C4BC007DCDE9 = {
 			isa = PBXGroup;
 			children = (
+				717192E01C60045900AC924D /* frameworks */,
 				714F03641C2750EE0086AB7A /* .gitignore */,
-				7130C52C1C18C6D6007DCDE9 /* Alamofire.framework */,
-				7130C52D1C18C6D6007DCDE9 /* SwiftyJSON.framework */,
 				7130C5191C18C4BC007DCDE9 /* FamilyPlanner */,
 				7130C5181C18C4BC007DCDE9 /* Products */,
 			);
@@ -186,6 +193,7 @@
 				7192DB591C2F51190029465B /* Group.swift */,
 				BF83865844D7BF7E8EE608C1 /* MenuItem.swift */,
 				71D2C0E61C444E490069417E /* Message.swift */,
+				717192E51C60083E00AC924D /* FacebookLoginClient.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -256,6 +264,17 @@
 				7170E02D1C3C5EC200AA968A /* CreateTodoViewController.swift */,
 			);
 			name = Todo;
+			sourceTree = "<group>";
+		};
+		717192E01C60045900AC924D /* frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				717192E11C60047800AC924D /* FBSDKCoreKit.framework */,
+				717192E21C60047800AC924D /* FBSDKLoginKit.framework */,
+				7130C52C1C18C6D6007DCDE9 /* Alamofire.framework */,
+				7130C52D1C18C6D6007DCDE9 /* SwiftyJSON.framework */,
+			);
+			name = frameworks;
 			sourceTree = "<group>";
 		};
 		7192DB601C316D410029465B /* Util */ = {
@@ -376,6 +395,7 @@
 				710A1BD21C24A4AC00500E25 /* SideMenuViewController.swift in Sources */,
 				7130C5331C18C7E6007DCDE9 /* LoginViewController.swift in Sources */,
 				7130C5461C1A24ED007DCDE9 /* EZLoadingActivity.swift in Sources */,
+				717192E61C60083E00AC924D /* FacebookLoginClient.swift in Sources */,
 				71CDA2611C4AECE0002F5240 /* MessageCollectionViewCell.swift in Sources */,
 				7170E02E1C3C5EC300AA968A /* CreateTodoViewController.swift in Sources */,
 				71BD1FB41C234F410052A13C /* SWRevealViewController.m in Sources */,
@@ -545,6 +565,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = FamilyPlanner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -566,6 +587,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = FamilyPlanner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

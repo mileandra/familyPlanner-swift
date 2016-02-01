@@ -16,6 +16,8 @@ class DashboardViewController: UIViewController {
     @IBOutlet weak var todoStatusLabel: UILabel!
     @IBOutlet weak var messageStatusLabel: UILabel!
     
+    var timer:NSTimer?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if FamilyPlannerClient.sharedInstance.isAuthenticated() == false{
@@ -23,6 +25,8 @@ class DashboardViewController: UIViewController {
         }
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "showLoginScreen", name: "userLogoutNotification", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "stopTimer", name: UIApplicationDidEnterBackgroundNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "setupTimer", name: UIApplicationDidBecomeActiveNotification, object: nil)
         
         if (revealViewController() != nil) {
             menuBtn.target = revealViewController()
@@ -31,27 +35,49 @@ class DashboardViewController: UIViewController {
         }
         updateTodoStatus()
         updateMessageStatus()
+        
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         if FamilyPlannerClient.sharedInstance.isAuthenticated() && FamilyPlannerClient.sharedInstance.hasGroup() == false {
             showCreateGroupScreen()
-        } else if FamilyPlannerClient.sharedInstance.isAuthenticated() && FamilyPlannerClient.sharedInstance.hasGroup() {
-            // Start a Sync in the background Queue
-            let qualityOfServiceClass = QOS_CLASS_BACKGROUND
-            let backgroundQueue = dispatch_get_global_queue(qualityOfServiceClass, 0)
-            dispatch_async(backgroundQueue, {
-                FamilyPlannerClient.sharedInstance.sync() { success, errorMessage in
-                    self.updateTodoStatus()
-                }
-                FamilyPlannerClient.sharedInstance.syncMessages() { success, errorMessage in
-                    self.updateMessageStatus()
-                }
-            })
-           
         }
+        setupTimer()
+    }
+
+    
+    func setupTimer() {
+        if FamilyPlannerClient.sharedInstance.isAuthenticated() && FamilyPlannerClient.sharedInstance.hasGroup() {
+            if timer == nil {
+                timer = NSTimer.scheduledTimerWithTimeInterval(60.0, target: self, selector: "syncData", userInfo: nil, repeats: true)
+            }
+            
+            syncData()
+        }
+
         
+    }
+    func stopTimer() {
+        if timer != nil {
+            timer!.invalidate()
+            print("stopping timer")
+        }
+    }
+    
+    func syncData() {
+        print("Sync data")
+        // Start a Sync in the background Queue
+        let qualityOfServiceClass = QOS_CLASS_BACKGROUND
+        let backgroundQueue = dispatch_get_global_queue(qualityOfServiceClass, 0)
+        dispatch_async(backgroundQueue, {
+            FamilyPlannerClient.sharedInstance.sync() { success, errorMessage in
+                self.updateTodoStatus()
+            }
+            FamilyPlannerClient.sharedInstance.syncMessages() { success, errorMessage in
+                self.updateMessageStatus()
+            }
+        })
     }
     
     func updateTodoStatus() {

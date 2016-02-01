@@ -123,6 +123,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="z7N-Fn-zgc" id="jDW-ge-FEL">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="71"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ho-RQ-iZm">
@@ -279,13 +280,13 @@
                                 <exclude reference="CSG-4v-xZH"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="jVL-Qp-XKc"/>
+                                <exclude reference="4uk-S7-MNX"/>
+                                <exclude reference="O38-8X-Coh"/>
                                 <exclude reference="eDW-SA-c54"/>
                                 <exclude reference="fMV-sQ-YDW"/>
                                 <exclude reference="gPV-UC-6vY"/>
                                 <exclude reference="xHD-4a-reO"/>
-                                <exclude reference="4uk-S7-MNX"/>
-                                <exclude reference="O38-8X-Coh"/>
-                                <exclude reference="jVL-Qp-XKc"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -294,13 +295,13 @@
                                 <include reference="CSG-4v-xZH"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="jVL-Qp-XKc"/>
+                                <include reference="4uk-S7-MNX"/>
+                                <include reference="O38-8X-Coh"/>
                                 <include reference="eDW-SA-c54"/>
                                 <include reference="fMV-sQ-YDW"/>
                                 <include reference="gPV-UC-6vY"/>
                                 <include reference="xHD-4a-reO"/>
-                                <include reference="4uk-S7-MNX"/>
-                                <include reference="O38-8X-Coh"/>
-                                <include reference="jVL-Qp-XKc"/>
                             </mask>
                         </variation>
                     </view>

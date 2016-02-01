@@ -103,9 +103,6 @@
                                 <state key="normal" title="View Todos">
                                     <color key="titleColor" red="0.34509803919999998" green="0.56862745100000001" blue="0.62352941179999999" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="285" y="101" width="95" height="30"/>
-                                </variation>
                                 <connections>
                                     <action selector="viewTodosButtonTouch:" destination="5eY-66-RVK" eventType="touchUpInside" id="Qbn-xa-dyq"/>
                                 </connections>
@@ -273,7 +270,7 @@
                                             <action selector="joinButtonTouch:" destination="Lwn-mN-cEN" eventType="touchUpInside" id="LBR-iV-JHR"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Invitation Code" placeholder="Family Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aP9-gw-xNs" customClass="CustomizableTextField" customModule="FamilyPlanner">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Invitation Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aP9-gw-xNs" customClass="CustomizableTextField" customModule="FamilyPlanner">
                                         <rect key="frame" x="-25" y="-30" width="97" height="30"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -592,9 +589,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="20" y="153" width="73" height="29"/>
-                                </variation>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="hM2-9h-iXU" customClass="CustomizableTextField" customModule="FamilyPlanner">
                                 <rect key="frame" x="-25" y="-30" width="97" height="30"/>
@@ -632,8 +626,7 @@
                                         <exclude reference="I7P-2S-o6f"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="20" y="214" width="360" height="35"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="I7P-2S-o6f"/>
                                     </mask>
@@ -654,8 +647,7 @@
                                         <exclude reference="vjO-QN-LGU"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="20" y="329" width="360" height="40"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="vjO-QN-LGU"/>
                                     </mask>
@@ -669,9 +661,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="20" y="408" width="175" height="17"/>
-                                </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OwH-J5-jln">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -679,9 +668,6 @@
                                 <state key="normal" title="Sign Up">
                                     <color key="titleColor" red="0.25490196078431371" green="0.41568627450980389" blue="0.49019607843137253" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="203" y="403" width="51" height="29"/>
-                                </variation>
                                 <connections>
                                     <segue destination="fYF-wF-hai" kind="show" id="gty-r9-Vm3"/>
                                 </connections>
@@ -722,8 +708,7 @@
                                         <exclude reference="wVD-XP-rJA"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="20" y="264" width="360" height="35"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="wVD-XP-rJA"/>
                                     </mask>
@@ -867,8 +852,7 @@
                                         <exclude reference="62B-aK-JeB"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="20" y="266" width="360" height="35"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="62B-aK-JeB"/>
                                     </mask>
@@ -905,8 +889,7 @@
                                         <exclude reference="ERB-IJ-TlW"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="20" y="315" width="360" height="35"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="ERB-IJ-TlW"/>
                                     </mask>
@@ -927,8 +910,7 @@
                                         <exclude reference="F8C-p2-5V8"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="20" y="431" width="360" height="40"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="F8C-p2-5V8"/>
                                     </mask>
@@ -968,8 +950,7 @@
                                         <exclude reference="xf3-Gz-Haa"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="20" y="366" width="361" height="35"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="xf3-Gz-Haa"/>
                                     </mask>
@@ -980,9 +961,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="20" y="511" width="166" height="17"/>
-                                </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XfL-p0-qNr">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -990,9 +968,6 @@
                                 <state key="normal" title="Login">
                                     <color key="titleColor" red="0.25490196079999999" green="0.41568627450000001" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="188" y="505" width="36" height="29"/>
-                                </variation>
                                 <connections>
                                     <segue destination="BYZ-38-t0r" kind="show" id="dtR-j7-oJg"/>
                                 </connections>
@@ -1028,8 +1003,7 @@
                                         <exclude reference="k6i-tX-jYN"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="20" y="217" width="360" height="35"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="k6i-tX-jYN"/>
                                     </mask>
@@ -1040,9 +1014,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="20" y="160" width="85" height="29"/>
-                                </variation>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

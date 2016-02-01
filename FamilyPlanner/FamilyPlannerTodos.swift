@@ -46,7 +46,10 @@ extension FamilyPlannerClient {
     }
     
     func sync(completionHandler: (success: Bool, errorMessage: String?) -> Void) {
-        
+        if hasGroup() == false {
+            completionHandler(success: false, errorMessage: "No group")
+            return
+        }
         if Connection.connectedToNetwork() == false {
             completionHandler(success: true, errorMessage: nil)
             return

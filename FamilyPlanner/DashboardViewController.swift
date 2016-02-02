@@ -25,6 +25,7 @@ class DashboardViewController: UIViewController {
         }
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "showLoginScreen", name: "userLogoutNotification", object: nil)
+        //As we currently are not able (due to provisioning profiles) to realize push notifications for reloading data (e. g. through Parse), we need to rely on a timer. If really releasing this someday, this would be replaced by push
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "stopTimer", name: UIApplicationDidEnterBackgroundNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "setupTimer", name: UIApplicationDidBecomeActiveNotification, object: nil)
         

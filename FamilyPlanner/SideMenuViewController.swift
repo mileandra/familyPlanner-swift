@@ -13,9 +13,8 @@ class SideMenuViewController: UITableViewController {
     
     var menuItems:[MenuItem] = []
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         setupMenu()
     }
 
@@ -23,7 +22,7 @@ class SideMenuViewController: UITableViewController {
     * Create the Sidemenu structure
     */
     func setupMenu() {
-       
+        menuItems = []
         menuItems.append(MenuItem(identifier: "dashboard", title: "Dashboard", selector: nil, segue: "showDashboardSegue", image: nil))
         menuItems.append(MenuItem(identifier: "todos", title: "Todo", selector: nil, segue: "showTodoSegue", image: nil))
         menuItems.append(MenuItem(identifier: "messages", title: "Messages", selector: nil, segue: "showMessagesSegue", image: nil))
@@ -31,6 +30,7 @@ class SideMenuViewController: UITableViewController {
             menuItems.append(MenuItem(identifier: "manageGroup", title: "Manage Group", selector: nil, segue: "showManageGroupSegue", image: nil))
         }
         menuItems.append(MenuItem(identifier: "logoout", title: "Logout", selector: "logout", segue: nil, image: nil))
+        self.tableView.reloadData()
     }
     
     

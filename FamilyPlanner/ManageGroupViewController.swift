@@ -193,6 +193,7 @@ class ManageGroupViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         let user = fetchedResultsController.objectAtIndexPath(indexPath) as! User
+        // An admin user can remove everyone but himself from the group
         if user.isGroupOwner {
             return false
         }

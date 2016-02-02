@@ -40,7 +40,7 @@ In the todo view you can create new todos by clicking the "new" button in the to
 
 ### Messages
 ![Message](https://dl.dropboxusercontent.com/u/3950128/FamilyPlanner/new_message.png)
-To stay in sync with your group, you can send email-like messages with a subject that other members can respond to.
+To stay in sync with your group, you can send email-like messages with a subject that other members can respond to. Messages are sent to the whole group (like announcements) - it is currently not possible to send a message to specific targets.
 
 ### Manage Group
 ![Manage Group](https://dl.dropboxusercontent.com/u/3950128/FamilyPlanner/manage_group.png)

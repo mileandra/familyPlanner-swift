@@ -22,6 +22,8 @@
 		7130C5431C1A1E4C007DCDE9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7130C5411C1A1E4C007DCDE9 /* Main.storyboard */; };
 		7130C5461C1A24ED007DCDE9 /* EZLoadingActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7130C5451C1A24ED007DCDE9 /* EZLoadingActivity.swift */; };
 		7130C5481C20A2E1007DCDE9 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7130C5471C20A2E1007DCDE9 /* DashboardViewController.swift */; };
+		7148D1A51C61531B00331F97 /* Alamofire.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 7130C52C1C18C6D6007DCDE9 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7148D1A61C61531E00331F97 /* SwiftyJSON.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 7130C52D1C18C6D6007DCDE9 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		714F03651C2750EE0086AB7A /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 714F03641C2750EE0086AB7A /* .gitignore */; };
 		714F03671C2F2F690086AB7A /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714F03661C2F2F690086AB7A /* CreateGroupViewController.swift */; };
 		714F036A1C2F3A500086AB7A /* AlertRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714F03691C2F3A500086AB7A /* AlertRenderer.swift */; };
@@ -50,6 +52,21 @@
 		BF838EC8C5DAE859BB192BAB /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF83865844D7BF7E8EE608C1 /* MenuItem.swift */; };
 		BF838F978620DA17DFE16349 /* FamilyPlannerUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8389D7D39858C6ACCA5938 /* FamilyPlannerUser.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7148D1A41C61530C00331F97 /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7148D1A61C61531E00331F97 /* SwiftyJSON.framework in Copy Frameworks */,
+				7148D1A51C61531B00331F97 /* Alamofire.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		710A1BD11C24A4AC00500E25 /* SideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
@@ -287,7 +304,7 @@
 				7130C5131C18C4BC007DCDE9 /* Sources */,
 				7130C5141C18C4BC007DCDE9 /* Frameworks */,
 				7130C5151C18C4BC007DCDE9 /* Resources */,
-				7130C5301C18C701007DCDE9 /* ShellScript */,
+				7148D1A41C61530C00331F97 /* Copy Frameworks */,
 			);
 			buildRules = (
 			);
@@ -348,24 +365,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		7130C5301C18C701007DCDE9 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7130C5131C18C4BC007DCDE9 /* Sources */ = {

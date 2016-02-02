@@ -6,9 +6,9 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="ownerID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="remoteID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <relationship name="messages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Message" inverseName="group" inverseEntity="Message" syncable="YES"/>
-        <relationship name="todos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Todo" inverseName="group" inverseEntity="Todo" syncable="YES"/>
-        <relationship name="users" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="group" inverseEntity="User" syncable="YES"/>
+        <relationship name="messages" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Message" inverseName="group" inverseEntity="Message" syncable="YES"/>
+        <relationship name="todos" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Todo" inverseName="group" inverseEntity="Todo" syncable="YES"/>
+        <relationship name="users" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="User" inverseName="group" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="Message" representedClassName=".Message" syncable="YES">
         <attribute name="author" optional="YES" attributeType="String" syncable="YES"/>

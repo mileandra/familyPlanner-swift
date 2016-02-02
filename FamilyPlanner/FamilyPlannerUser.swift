@@ -69,10 +69,13 @@ extension FamilyPlannerClient {
         // we should also delete it on the server, but in that case we
         // would not be able to actively use this tool on multiple devices, so we just remove the currentUser for now
         // This has nothing to do with the API, but logically it should stay here
+        self.currentUser!.isCurrentUser = false
+        self.sharedContext.deleteObject(self.getGroup()!)
+        self.currentUser = nil
+
         dispatch_async(dispatch_get_main_queue(), {
-            self.currentUser!.isCurrentUser = false
             CoreDataStackManager.sharedInstance.saveContext()
-            self.currentUser = nil
+            
             completionHandler(success: true, errorMessage: nil)
         })
     }
